@@ -24,6 +24,15 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quo quae laboriosam architecto. Necessitatibus sapiente accusantium dolor dolorem nulla laudantium, reiciendis deserunt, ipsa molestiae odit laborum laboriosam corporis harum repellat?</p>
       </div>
     </section>
+  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <div class="home-card p-5 bg-white rounded elevation-3">
+      <img
+        src="https://bcw.blob.core.windows.net/public/img/8600856373152463"
+        alt="CodeWorks Logo"
+        class="rounded-circle"
+      >
+   
+    </div>
   </div>
 </template>
 

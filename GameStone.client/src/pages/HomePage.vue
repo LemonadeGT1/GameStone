@@ -31,7 +31,7 @@
         alt="CodeWorks Logo"
         class="rounded-circle"
       >
-   
+    </div>
     </div>
   </div>
 </template>

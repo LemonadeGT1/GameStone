@@ -4,6 +4,7 @@ import { ValueSchema } from '../models/Value'
 import { GatheringSchema } from '../models/Gathering.js';
 import { GameSchema } from '../models/Game.js';
 import { GroupSchema } from '../models/Group';
+import { PlayerSchema } from '../models/Player.js';
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
@@ -11,6 +12,8 @@ class DbContext {
   Groups = mongoose.model('Groups', GroupSchema)
   Gatherings = mongoose.model('Gathering', GatheringSchema);
   Games = mongoose.model('Game', GameSchema);
+
+  Players = mongoose.model('Player', PlayerSchema);
 }
 
 export const dbContext = new DbContext()

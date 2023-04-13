@@ -13,3 +13,10 @@ PlayerSchema.virtual('gathering', {
     justOne: true,
     ref: 'Gathering'
 })
+
+PlayerSchema.virtual('profile', {
+    localField: 'accountId',
+    foreignField: '_id',
+    justOne: true,
+    ref: 'Account'
+})

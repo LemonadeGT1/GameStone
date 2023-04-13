@@ -37,7 +37,18 @@ class GroupsService {
         return originalGroup
     }
 
-    async 
+    async deleteGroup(groupId, userId) {
+        let group = await this.getGroupById(groupId)
+        if (group.creatorId != userId) {
+            throw new Forbidden('You are not allowed to delete this.')
+        }
+        if (group.isDeleted == true) {
+            throw new BadRequest(`${group.name} has already been deleted.`)
+        }
+        group.isDeleted = true
+        await group.save()
+        return `${group.name} has been deleted`
+    }
 }
 
 export const groupsService = new GroupsService()

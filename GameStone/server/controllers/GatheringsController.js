@@ -21,7 +21,8 @@ export class GatheringsController extends BaseController {
     //Get All Gatherings
     async getAllGatherings(req, res, next) {
         try {
-            let gatherings = await gatheringsService.getAllGatherings()
+            let query = req.query
+            let gatherings = await gatheringsService.getAllGatherings(query)
             res.send(gatherings)
         } catch (error) {
             next(error)

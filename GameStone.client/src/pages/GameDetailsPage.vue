@@ -33,14 +33,14 @@
             </div>
         </div>
         <div class="row justify-content-center mt-4">
-            <div class="col-2">
-                <button class="btn btn-dark">button</button>
+            <div class="col-3">
+                <button class="btn btn-info border rounded-pill">Create a Gathering</button>
             </div>
-            <div class="col-2">
-                <button class="btn btn-dark">button</button>
+            <div class="col-3">
+                <button class="btn btn-info border rounded-pill">Find Gatherings</button>
             </div>
-            <div class="col-2">
-                <button class="btn btn-dark">button</button>
+            <div class="col-3">
+                <button class="btn btn-info border rounded-pill">Add Game to Collection</button>
             </div>
         </div>
     </div>

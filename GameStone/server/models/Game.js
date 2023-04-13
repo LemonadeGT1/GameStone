@@ -10,8 +10,8 @@ export const GameSchema = new Schema({
   min_playtime: { type: Number, required: true },
   max_playtime: { type: Number, required: true },
   categories: { type: Array },
-  mechanics: { type: Array }
-
+  mechanics: { type: Array },
+  id: { type: String, required: true }
 },
   { timestamps: true, toJSON: { virtuals: true } })
 

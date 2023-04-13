@@ -2,24 +2,25 @@
   <div class="justify-content-center container-fluid">
     <!-- SECTION HERO IMG-->
     <section class="row justify-content-center">
-      <div class="col-12">
+      <div class="col-12 p-0">
         <img class="img-fluid position-relative hero-img"
-        src="https://images.unsplash.com/photo-1615806647582-53fea422c9b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
-        alt="hero-img">
+          src="https://images.unsplash.com/photo-1615806647582-53fea422c9b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
+          alt="hero-img">
       </div>
       <div class="col-10 position-absolute mt-5 image-text">
-        <h1>Welcome to GameStone, the one stop shop for finding players of all kinds to game it out with! Hit one of the above buttons to take a look or click on one of these suggested one!</h1>
+        <h1>Welcome to GameStone, the one stop shop for finding players of all kinds to game it out with! Hit one of the
+          above buttons to take a look or click on one of these suggested one!</h1>
       </div>
     </section>
     <!-- SECTION GROUPS -->
-    <section class="row justify-content-center p-2">
+    <section class="row justify-content-center p-2 my-3">
       <div class="col-7 card elevation-5">
         <h3>Find a Group</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti veritatis voluptatem illum
           inventore rerum. Unde omnis quasi doloremque, veritatis tempora qui maiores quibusdam ratione officia enim
           aperiam ad laboriosam?</p>
       </div>
-      <div class="col-3">
+      <div class="col-4 d-flex justify-content-center">
         <img class="img-fluid elevation-5 rounded group-img"
           src="https://images.unsplash.com/photo-1643992356285-6eb7c466f505?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1131&q=80"
           alt="group-img">
@@ -27,12 +28,12 @@
     </section>
     <!-- SECTION GATHERINGS -->
     <section class="row justify-content-center p-2">
-      <div class="col-3">
+      <div class="col-4 d-flex justify-content-center">
         <img class="img-fluid rounded elevation-5 gathering-img"
           src="https://images.unsplash.com/photo-1677188010559-0667a1ed33a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1113&q=80"
           alt="gathering-img">
       </div>
-      <div class="col-7 card elevation-5 ">
+      <div class="col-7 card rounded elevation-5 ">
         <h3>Join a Gathering</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quo quae laboriosam architecto. Necessitatibus
           sapiente accusantium dolor dolorem nulla laudantium, reiciendis deserunt, ipsa molestiae odit laborum laboriosam
@@ -55,15 +56,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-.image-text{
+.image-text {
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.9px);
-  -webkit-backdrop-filter: blur(5.9);
-  border: 1px solid rgba(255, 255, 255, 0.43);
-  background: 255, 255, 255, 0.55;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 .hero-img {
   height: 40vh;
   width: 100%;
@@ -101,5 +102,9 @@ export default {
       object-position: center;
     }
   }
+}
+
+.card {
+  background-color: rgb(247 244 241) !important;
 }
 </style>

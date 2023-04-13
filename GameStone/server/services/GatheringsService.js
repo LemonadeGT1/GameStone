@@ -5,6 +5,8 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 
 class GatheringsService {
 
+
+
     async getAllGatherings() {
         const gatherings = await dbContext.Gatherings.find()
             .populate("creator", "name picture")
@@ -15,18 +17,39 @@ class GatheringsService {
     async getGatheringById(gatheringId) {
         const gathering = await dbContext.Gatherings.findById(gatheringId)
             .populate("creator", "name picture")
-
         if (gathering == null) {
-            throw new BadRequest('That Gathering Does Not Exist!')
+            throw new BadRequest('That Gathering Does Not Exist! Oh No!')
         }
+        return gathering
+
     }
 
+    async editGathering(gatheringEdits, gatheringId) {
+        const originalGathering = await this.getGatheringById(gatheringId)
+        if (originalGathering.isCanceled == true) {
+            throw new BadRequest(`Gathering: ${originalGathering.name} is canceled and cannot be edited`)
+        }
+        originalGathering.name = gatheringEdits.name ? gatheringEdits.name : originalGathering.name
+        originalGathering.description = gatheringEdits.description ? gatheringEdits.description : originalGathering.description
+        originalGathering.image_url = gatheringEdits.image_url ? gatheringEdits.image_url : originalGathering.image_url
+        originalGathering.location = gatheringEdits.location ? gatheringEdits.location : originalGathering.location
+        originalGathering.capacity = gatheringEdits.capacity ? gatheringEdits.capacity : originalGathering.capacity
+        originalGathering.date = gatheringEdits.date ? gatheringEdits.date : originalGathering.date
+        originalGathering.isPublic = gatheringEdits.isPublic ? gatheringEdits.isPublic : originalGathering.isPublic
+        await originalGathering.save()
+        return originalGathering
 
+    }
 
     async createGathering(gData) {
         const gathering = await dbContext.Gatherings.create(gData)
         await gathering.populate("creator", "name picture")
         return gathering
+    }
+
+
+    cancelGathering(gatheringId, userId) {
+
     }
 
 }

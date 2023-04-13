@@ -1,6 +1,6 @@
 import { Profile } from "./Account"
 
-export class Gathering{
+export class Gathering {
     constructor(data) {
         this.id = data.id
         this.creatorId = data.creatorId

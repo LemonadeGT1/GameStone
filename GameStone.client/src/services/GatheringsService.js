@@ -8,8 +8,9 @@ class GatheringsService {
 
     async getAllGatherings() {
         const res = await api.get('api/gatherings')
-        AppState.gatherings = res.data.map(g => new Gathering(g))
         logger.log('[ALL GATHERINGS]', res.data)
+        AppState.gatherings = res.data.map(g => new Gathering(g))
+        logger.log(AppState.gatherings, 'all appstate gatherings')
     }
 }
 

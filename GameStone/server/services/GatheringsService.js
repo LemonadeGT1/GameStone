@@ -48,8 +48,17 @@ class GatheringsService {
     }
 
 
-    cancelGathering(gatheringId, userId) {
-
+    async cancelGathering(gatheringId, userId) {
+        let gathering = await this.getGatheringById(gatheringId)
+        if (gathering.creatorId != userId) {
+            throw new Forbidden(`You do not have permission to cancel Gathering: ${gathering.name}. Fool! -_-`)
+        }
+        if (gathering.isCanceled == true) {
+            throw new BadRequest(`Gathering: ${gathering.name} has already been canceled prior`)
+        }
+        gathering.isCanceled = true
+        await gathering.save()
+        return `Gathering: ${gathering.name} has been canceled`
     }
 
 }

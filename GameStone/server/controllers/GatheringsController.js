@@ -10,8 +10,11 @@ export class GatheringsController extends BaseController {
             .get("", this.getAllGatherings)
             .get("/:id", this.getGatheringById)
             .use(Auth0Provider.getAuthorizedUserInfo)
+            .put("/:id", this.editGathering)
             .post("", this.createGathering)
+            .delete("/:id", this.cancelGathering)
     }
+
 
 
     //Get All Gatherings
@@ -38,6 +41,19 @@ export class GatheringsController extends BaseController {
         }
     }
 
+    // Edit Gathering
+    async editGathering(req, res, next) {
+        try {
+            const gatheringEdits = req.body
+            const gatheringId = req.params.id
+            const editedGathering = await gatheringsService.editGathering(gatheringEdits, gatheringId)
+            res.send(editedGathering)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
 
     // Create Gathering
     async createGathering(req, res, next) {
@@ -50,4 +66,18 @@ export class GatheringsController extends BaseController {
             next(error)
         }
     }
+
+    //Cancel Gathering
+    async cancelGathering(req, res, next) {
+        try {
+            let userId = req.userInfo.id
+            let gatheringId = req.params.id
+            let message = await gatheringsService.cancelGathering(gatheringId, userId)
+            res.send(message)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
 }

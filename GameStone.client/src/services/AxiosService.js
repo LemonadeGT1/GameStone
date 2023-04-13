@@ -6,7 +6,7 @@ export const api = Axios.create({
 })
 
 export const atlasApi = Axios.create({
-  baseURL: 'https://api.boardgameatlas.com/api',
+  baseURL: 'https://api.boardgameatlas.com/api/search',
   timeout: 8000,
-  params: { client_id: 'JLBr5npPhV', fields: 'id,name,description,image_url,min_players,max_players,playtime,categories,mechanics', order_by: 'rank', limit: '20'  }
+  params: { client_id: "JLBr5npPhV", fields: "id,name,description,image_url,min_players,max_players,min_playtime,max_playtime,categories,mechanics", order_by: "rank", limit: "20"  }
 })

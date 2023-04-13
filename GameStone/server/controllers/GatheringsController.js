@@ -62,9 +62,7 @@ export class GatheringsController extends BaseController {
             let gData = req.body
             let userId = req.userInfo.id
             gData.creatorId = userId
-
             let gathering = await gatheringsService.createGathering(gData)
-            await playersService.becomePlayer({ gatheringId: gathering.id, accountId: userId })
             res.send(gathering)
         } catch (error) {
             next(error)

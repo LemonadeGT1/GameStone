@@ -28,6 +28,11 @@ const routes = [
     component: loadPage('GameSearchPage')
   },
   {
+    path: '/games/:gameId',
+    name: 'GameDetails',
+    component: loadPage('GameDetailsPage')
+  },
+  {
     path: '/groups',
     name: 'Groups',
     component: loadPage('GroupSearchPage')

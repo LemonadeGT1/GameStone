@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { gatheringsService } from "../services/GatheringsService.js";
+import { playersService } from "../services/PlayersService.js";
 
 
 export class GatheringsController extends BaseController {
@@ -59,7 +60,8 @@ export class GatheringsController extends BaseController {
     async createGathering(req, res, next) {
         try {
             let gData = req.body
-            gData.creatorId = req.userInfo.id
+            let userId = req.userInfo.id
+            gData.creatorId = userId
             let gathering = await gatheringsService.createGathering(gData)
             res.send(gathering)
         } catch (error) {

@@ -1,8 +1,7 @@
 $themes: (
-  default: (
-    "body-bg": #e5e5e5,
+  default: ("body-bg": #e5e5e5,
     "primary": #fafcf0, // custom page bg
-    "secondary": #008291, // custom form bg
+    "secondary": #008291, // custom form bg/big title ones
     "success": #00f867,
     "info": #daa486, //custom title/buttons
     "warning": #fbcf33,
@@ -11,8 +10,7 @@ $themes: (
     "dark": #0e0d0d, // custom navbar bg
     "grey": #cbcbcb,
   ),
-  dark: (
-    "body-bg": #090f18,
+  dark: ("body-bg": #090f18,
     "primary": #89e5b0,
     "secondary": #fff9a4,
     "success": #00f867,

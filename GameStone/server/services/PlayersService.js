@@ -6,6 +6,7 @@ class PlayersService {
         const player = await dbContext.Players.create(playerData)
         await player.populate('profile')
         await player.populate('gathering')
+        return player
     }
 
 }

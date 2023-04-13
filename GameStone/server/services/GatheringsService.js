@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { playersService } from "./PlayersService.js"
 
 
 
@@ -44,6 +45,7 @@ class GatheringsService {
     async createGathering(gData) {
         const gathering = await dbContext.Gatherings.create(gData)
         await gathering.populate("creator", "name picture")
+        // await playersService.becomePlayer({ gatheringId: gData.id })
         return gathering
     }
 

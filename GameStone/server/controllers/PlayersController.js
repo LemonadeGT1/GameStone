@@ -9,6 +9,18 @@ export class PlayersController extends BaseController {
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.becomePlayer)
+            .delete('/:id', this.quit)
+    }
+    async quit(req, res, next) {
+        try {
+            let playerId = req.params.id
+            let userId = req.userInfo.id
+            let message = await playersService.quit(playerId, userId)
+            res.send(message)
+        } catch (error) {
+            next(error)
+
+        }
     }
     async becomePlayer(req, res, next) {
         try {

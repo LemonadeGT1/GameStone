@@ -1,9 +1,28 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { gatheringsService } from "./GatheringsService.js"
 
 
 class PlayersService {
+    async quit(playerId, userId) {
+        let player = await dbContext.Players.findById(playerId)
+
+        if (player == null) {
+            throw new BadRequest("Player doesn't exist")
+        }
+
+        if (userId != player.accountId) {
+            throw new Forbidden("You can't make other people quit")
+        }
+
+        let gathering = await gatheringsService.getGatheringById(player.gatheringId)
+        if (gathering == null) {
+            throw new BadRequest("Gathering doesn't exist")
+        }
+        gathering.capacity++
+        gathering.save()
+        return "You quit this game"
+    }
     async becomePlayer(playerData) {
         const aPlayer = dbContext.Players.find(playerData)
         if (aPlayer[0]) {

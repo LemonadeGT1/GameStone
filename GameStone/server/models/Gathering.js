@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 
 export const GatheringSchema = new Schema({
     name: { type: String, required: true, default: "New Gathering", minLength: 2, maxLength: 50 },
-    coverImg: { type: String, maxLength: 1000 },
+    image_url: { type: String, maxLength: 1000 },
     location: { type: String, maxLength: 200, required: true, default: "tbd" },
     capacity: { type: Number, min: 2, max: 10000 },
     date: { type: Date, required: true, default: new Date },

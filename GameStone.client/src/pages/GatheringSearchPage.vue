@@ -3,21 +3,32 @@
         <section class="row m-3">
             <div class="col-12">
                 <div class="d-flex justify-content-between">
-                    <h1>Gatherings</h1>
+                    <h1 class="text-secondary">Gatherings</h1>
                     <button class="btn btn-info border rounded-pill">Create a Gathering</button>
                 </div>
             </div>
             <div class="col-12">
-                <div class="d-flex justify-content-between">
-                    <h5>Search</h5>
-                    <h5>Filter Bar</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Search</h5>
+                        <SearchBar />
+                    </div>
+                    <div class="col-6">
+                        <h5>Filter Bar</h5>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="row">
-            <div v-for="g in gatherings" :key="g.id" class="col-6">
-                <GatheringCard :gathering="g" />
+        <section class="row justify-content-center ">
+            <div class="col-10">
+                <div class="row justify-content-center">
+                    <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card  my-3 mx-4 py-2">
+                        <GatheringCard :gathering="g" />
+                    </div>
+                    <div class="col-5 mx-4"></div>
+                </div>
             </div>
+
         </section>
     </div>
 </template>
@@ -52,4 +63,16 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.gathering-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    border-radius: 30px;
+    background-color: #d9d9d9;
+    // height: 130px;
+}
+
+// .titleText {
+//     color: ;
+// }
+</style>

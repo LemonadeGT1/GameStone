@@ -45,7 +45,7 @@ class GatheringsService {
     async createGathering(gData) {
         const gathering = await dbContext.Gatherings.create(gData)
         await gathering.populate("creator", "name picture")
-        // await playersService.becomePlayer({ gatheringId: gData.id })
+        await playersService.becomePlayer({ gatheringId: gathering.id, accountId: gData.creatorId })
         return gathering
     }
 

@@ -11,6 +11,7 @@ export class GroupsController extends BaseController {
         .get("/:id", this.getGroupById)
         .use(Auth0Provider.getAuthorizedUserInfo)
         .put("/:id", this.editGroup)
+        .delete("/:id", this.deleteGroup)
         .post("", this.createGroup)
     }
 
@@ -49,6 +50,17 @@ export class GroupsController extends BaseController {
             const groupId = req.params.id
             const editedGroup = await groupsService.editGroup(groupEdit, groupId)
             res.send(editedGroup)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async deleteGroup(req, res, next) {
+        try {
+            let userId = req.userInfo.id
+            let groupId = req.params.id
+            let message = await groupsService.deleteGroup(groupId, userId)
+            res.send(message)
         } catch (error) {
             next(error)
         }

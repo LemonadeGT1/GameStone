@@ -3,14 +3,12 @@ export class Game{
         this.id = data .id
         this.name = data.name
         this.description = data.description
-        this.coverImg = data.coverImg
-        this.minPlayer = data.minPlayer
-        this.maxPlayer = data.maxPlayer
-        this.category = data.category
-        this.playtime = data.playtime
-        this.type = data.type
-        this.rules_url = data.rules_url
-        this.players = data.players
-        this.images = this.images
+        this.image_url = data.image_url
+        this.min_players = data.min_players
+        this.max_players = data.max_players
+        this.min_playtime = data.min_playtime
+        this.max_playtime = data.max_playtime
+        this.mechanics = data.mechanics
+        this.categories = data.categories
     }
 }

@@ -10,15 +10,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase">
-            About
-          </router-link>
-          <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase">
-            Games
-          </router-link>
-        </li>
       </ul>
+      <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase">
+        About
+      </router-link>
+      <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase">
+        Games
+      </router-link>
+      <router-link :to="{ name: 'Groups' }" class="btn text-light selectable text-uppercase">
+        Groups
+      </router-link>
+      <router-link :to="{ name: 'Gatherings' }" class="btn text-light selectable text-uppercase">
+        Gatherings
+      </router-link>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>

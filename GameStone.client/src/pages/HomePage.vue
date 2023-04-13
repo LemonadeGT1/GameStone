@@ -1,10 +1,15 @@
 <template>
-  <div class="row container-fluid">
+  <div class="justify-content-center container-fluid">
     <!-- SECTION HERO IMG-->
-    <section class="col-12">
-      <img class="img-fluid hero-img"
+    <section class="row justify-content-center">
+      <div class="col-12">
+        <img class="img-fluid hero-img"
         src="https://images.unsplash.com/photo-1615806647582-53fea422c9b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
         alt="hero-img">
+      </div>
+      <div class="col-10 image-text">
+        fgdf
+      </div>
     </section>
     <!-- SECTION GROUPS -->
     <section class="row justify-content-center p-2">
@@ -47,8 +52,16 @@ export default {
 
 <style scoped lang="scss">
 
+.image-text{
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9);
+  border: 1px solid rgba(255, 255, 255, 0.43);
+  background: 255, 255, 255, 0.55;
+}
 .hero-img {
-  height: 33vh;
+  height: 40vh;
   width: 100%;
   object-fit: cover;
   object-position: center;

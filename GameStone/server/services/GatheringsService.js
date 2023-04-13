@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { playersService } from "./PlayersService.js"
 
 
 
@@ -31,7 +32,7 @@ class GatheringsService {
         }
         originalGathering.name = gatheringEdits.name ? gatheringEdits.name : originalGathering.name
         originalGathering.description = gatheringEdits.description ? gatheringEdits.description : originalGathering.description
-        originalGathering.image_url = gatheringEdits.image_url ? gatheringEdits.image_url : originalGathering.image_url
+        originalGathering.coverImg = gatheringEdits.coverImg ? gatheringEdits.image_url : originalGathering.coverImg
         originalGathering.location = gatheringEdits.location ? gatheringEdits.location : originalGathering.location
         originalGathering.capacity = gatheringEdits.capacity ? gatheringEdits.capacity : originalGathering.capacity
         originalGathering.date = gatheringEdits.date ? gatheringEdits.date : originalGathering.date
@@ -44,6 +45,7 @@ class GatheringsService {
     async createGathering(gData) {
         const gathering = await dbContext.Gatherings.create(gData)
         await gathering.populate("creator", "name picture")
+        // await playersService.becomePlayer({ gatheringId: gData.id })
         return gathering
     }
 

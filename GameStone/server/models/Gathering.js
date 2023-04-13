@@ -6,7 +6,7 @@ export const GatheringSchema = new Schema({
     description: { type: String, require: true, default: "Please add a description of gathering", minLength: 10, maxLength: 1000 },
     coverImg: { type: String, maxLength: 1000 },
     location: { type: String, maxLength: 200, required: true, default: "tbd" },
-    capacity: { type: Number, min: 2, max: 10000 },
+    capacity: { type: Number, min: 2, max: 10000, default: 1 },
     date: { type: Date, required: true, default: new Date },
     isPublic: { type: Boolean, default: true, required: true },
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: "Account" },

@@ -8,6 +8,7 @@ export const AppState = reactive({
 
   /** @type {import('./models/Game.js').Game} */
   myGames: {},
+  gatherings: [],
   gameMechanics: [
     {
       "id": "SWJGuaim9h",

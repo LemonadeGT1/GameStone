@@ -5,7 +5,7 @@ import BaseController from "../utils/BaseController.js";
 
 export class GamesController extends BaseController {
     constructor() {
-        super('')
+        super('api/games')
         this.router
     }
 }

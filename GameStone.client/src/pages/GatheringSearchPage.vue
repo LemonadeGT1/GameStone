@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-
+        
 
     </div>
 </template>
@@ -11,6 +11,7 @@ import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import Pop from '../utils/Pop';
 import { gatheringsService } from '../services/GatheringsService';
+import { logger } from '../utils/Logger';
 export default {
     setup(){
         async function getAllGatherings() {
@@ -18,6 +19,7 @@ export default {
                 await gatheringsService.getAllGatherings()
             } catch (error) {
                 Pop.error(error.message)
+                logger.error(error.message)
             }
         }
         onMounted(() => {

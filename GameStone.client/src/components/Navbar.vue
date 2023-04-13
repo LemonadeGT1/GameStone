@@ -1,17 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand text-info d-flex" :to="{ name: 'Home' }">
+      <img src="../assets/img/icons8-carrom-64 2.svg" alt="">
       <h1>GameStone</h1>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -21,7 +15,7 @@
             About
           </router-link>
           <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase">
-          Games
+            Games
           </router-link>
         </li>
       </ul>
@@ -61,5 +55,4 @@ a:hover {
     height: 64px;
   }
 }
-
 </style>

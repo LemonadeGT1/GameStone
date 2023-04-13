@@ -1,8 +1,4 @@
-<template>
-    <div>
-        
-    </div>
-</template>
+<template></template>
 
 
 <script>
@@ -37,5 +33,7 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.siteText {
+    color: #008291;
+}
 </style>

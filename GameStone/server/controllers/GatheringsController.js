@@ -8,7 +8,7 @@ export class GatheringsController extends BaseController {
         super('api/gatherings')
         this.router
             .get("", this.getAllGatherings)
-            .get(":/id", this.getGatheringById)
+            .get("/:id", this.getGatheringById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post("", this.createGathering)
     }
@@ -31,6 +31,8 @@ export class GatheringsController extends BaseController {
         try {
             let gatheringId = req.params.id
             let gathering = await gatheringsService.getGatheringById(gatheringId)
+            res.send(gathering)
+
         } catch (error) {
             next(error)
         }

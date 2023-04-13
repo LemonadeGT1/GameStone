@@ -12,4 +12,6 @@ export const GameSchema = new Schema({
   categories: { type: String },
   mechanics: { type: String }
 
-})
+},
+  { timestamps: true, toJSON: { virtuals: true } })
+

@@ -40,6 +40,26 @@
     },
     "[vue]": {
       "editor.defaultFormatter": "Vue.volar"
-    }
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#45fce8",
+      "activityBar.background": "#45fce8",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#ec62fc",
+      "activityBarBadge.foreground": "#15202b",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#45fce8",
+      "statusBar.background": "#13fbe2",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#04d7c1",
+      "statusBarItem.remoteBackground": "#13fbe2",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#13fbe2",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#13fbe299",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#13fbe2"
   }
 }

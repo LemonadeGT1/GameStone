@@ -20,6 +20,8 @@
         <div class="col-9 text-end my-4">
             <button v-if="!gathering?.isCanceled && !isPlayer && account.id" @click="becomePlayer(gathering?.id)"
                 class="btn btn-info border rounded-pill">Become Player</button>
+            <button v-if="!gathering?.isCanceled && isPlayer && account.id" @click="quit(player?.id)"
+                class="btn btn-danger rounded-pill">Quit</button>
         </div>
         <div class="col-11">
             <div>
@@ -31,7 +33,7 @@
             </div>
             <div class="text-end">
                 <div class="m-3">
-                    <button v-if="!gathering?.isCanceled && account?.id" class="btn btn-info rounded-pill">Edit
+                    <button v-if="!gathering?.isCanceled && account?.id" class="btn btn-info border rounded-pill">Edit
                         Gathering</button>
                 </div>
                 <div class="m-2">
@@ -89,6 +91,7 @@ export default {
 
             gathering: computed(() => AppState.activeGathering),
             players: computed(() => AppState.players),
+            player: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             isPlayer: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             account: computed(() => AppState.account),
 
@@ -106,6 +109,17 @@ export default {
                 try {
                     if (await Pop.confirm('Are you sure you want to archive this gathering'))
                         await gatheringsService.deleteGathering(gatheringId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
+            async quit(playerId) {
+                try {
+                    if (await Pop.confirm("Are you sure you want to quit"))
+                        logger.log(playerId)
+                    await playersService.quit(playerId)
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)

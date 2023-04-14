@@ -20,6 +20,13 @@ class PlayersService {
         AppState.players = res.data.map(p => new Player(p))
         logger.log(AppState.players, 'all players')
     }
+
+    async quit(playerId) {
+        logger.log(playerId)
+        const res = await api.delete(`api/players/${playerId}`)
+        logger.log(res.data)
+        AppState.players = AppState.players.filter(p => p.id != playerId)
+    }
 }
 
 export const playersService = new PlayersService()

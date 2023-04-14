@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <h1>Local Groups</h1>
             <div class="d-flex">
-                <input class="rounded-pill px-3" type="text">
+                <input class="rounded-pill px-3 border-dark" type="text">
                 <button class="btn btn-border"><i class="mdi mdi-magnify"></i></button>
             </div>
         </div>
@@ -12,9 +12,9 @@
             <p>filter bar</p>
         </div>
     </section>
-    <section class="row">
-        <div class="col-11">
-
+    <section class="row justify-content-center">
+        <div v-for="g in groups" class="col-md-9">
+            <GroupCard :group="g" />
         </div>
     </section>
 </template>
@@ -26,6 +26,8 @@ import { computed, reactive, onMounted } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { groupsService } from '../services/GroupsService.js';
+import GroupCard from '../components/GroupCard.vue'
+
 export default {
     setup() {
 
@@ -42,8 +44,10 @@ export default {
 
         return {
 
+            groups: computed(() => AppState.groups)
+
         }
-    }
+    }, components: { GroupCard }
 };
 </script>
 

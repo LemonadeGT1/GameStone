@@ -9,6 +9,7 @@ export class GroupMemberController extends BaseController {
         this.router
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.createMember)
+        .delete('/:id', this.deleteMember)
     }
 
     async createMember(req, res, next) {
@@ -17,6 +18,17 @@ export class GroupMemberController extends BaseController {
             memberData.profileId = req.userInfo.id
             let member = await groupMemberService.createMember(memberData)
             res.send(member)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async deleteMember(req, res, next) {
+        try {
+            let userId = req.userInfo.id
+            let groupMemberId = req.params.id
+            let message = await groupMemberService.deleteGroupMember(groupMemberId, userId)
+            res.send(message)
         } catch (error) {
             next(error)
         }

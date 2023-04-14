@@ -26,6 +26,11 @@ class GatheringsService {
         AppState.activeGathering = new Gathering(res.data)
         logger.log(AppState.activeGathering, 'active gathering')
     }
+
+    async createGathering(gatheringData) {
+        const res = await api.post('api/gatherings', gatheringData)
+        logger.log('created gathering', res.data)
+    }
 }
 
 export const gatheringsService = new GatheringsService()

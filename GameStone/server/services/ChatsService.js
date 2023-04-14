@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext"
+import { BadRequest, Forbidden } from "../utils/Errors"
 
 
 class ChatsService {
@@ -13,6 +14,18 @@ class ChatsService {
         let chats = await dbContext.Chat.find({gatheringId})
         .populate("profile")
         return chats
+    }
+
+    async deleteChat(chatId, userId) {
+        let chat = await dbContext.Chat.findById(chatId)
+        if (chat == null) {
+            throw new BadRequest("There are no messages to delete.")
+        }
+        if (userId != chat.profileId) {
+            throw new Forbidden("You are not allowed to delete this.")
+        }
+        await chat.remove()
+        return 'Deleted Message.'
     }
 }
 

@@ -11,16 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
       </ul>
-      <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase">
+      <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase mx-2">
         About
       </router-link>
-      <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase">
+      <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase mx-2">
         Games
       </router-link>
-      <router-link :to="{ name: 'Groups' }" class="btn text-light selectable text-uppercase">
+      <router-link :to="{ name: 'Groups' }" class="btn text-light selectable text-uppercase mx-2">
         Groups
       </router-link>
-      <router-link :to="{ name: 'Gatherings' }" class="btn text-light selectable text-uppercase">
+      <router-link :to="{ name: 'Gatherings' }" class="btn text-light selectable text-uppercase mx-2">
         Gatherings
       </router-link>
       <!-- LOGIN COMPONENT HERE -->

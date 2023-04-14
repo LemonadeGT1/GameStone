@@ -1,26 +1,40 @@
 <template>
     <section class="row justify-content-center m-5">
-        <div class="col-10 d-flex justify-content-between p-0 bg-secondary rounded">
-            <div class="mx-5 my-2">
-                <h1>{{ gathering?.name }}</h1>
-                <h2>{{ gathering?.date }}</h2>
-                <h5>{{ gathering?.description }}</h5>
-                <p>Capacity: {{ gathering?.capacity }}</p>
-            </div>
-            <div>
-                <img class="img-fluid gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
-            </div>
+        <div class="col-md-10 p-0 bg-secondary rounded">
+            <section class="row">
+                <div class="col-md-8 py-3 px-5">
+                    <h1>{{ gathering?.name }}</h1>
+                    <h2>Host: {{ gathering?.creator.name }}</h2>
+                    <h2>{{ gathering?.date }}</h2>
+                    <h5>{{ gathering?.description }}</h5>
+                    <p>Capacity: {{ gathering?.capacity }}</p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
+                </div>
+            </section>
+
+
         </div>
         <div class="col-9 text-end my-4">
             <button @click="becomePlayer(gathering?.id)" class="btn btn-info border rounded-pill">Become Player</button>
         </div>
         <div class="col-11">
-            <h2>Current Players</h2>
-            <div class="d-flex">
-                <img v-for="p in players" class="m-2 profile-img" :title="p.profile.name" :src="p.profile.picture"
-                    :alt="p.profile.name">
+            <div>
+                <h2>Current Players</h2>
+                <div class="d-flex flex-wrap">
+                    <img v-for="p in players" class="m-2 profile-img" :title="p.profile.name" :src="p.profile.picture"
+                        :alt="p.profile.name">
+                </div>
             </div>
-
+            <div class="text-end">
+                <div class="m-3">
+                    <button class="btn btn-info rounded-pill">Edit Gathering</button>
+                </div>
+                <div class="m-2">
+                    <button class="btn btn-danger rounded-pill">Delete Gathering</button>
+                </div>
+            </div>
         </div>
 
     </section>
@@ -76,6 +90,7 @@ export default {
                 try {
                     if (await Pop.confirm('Become a Player?'))
                         await playersService.becomePlayer({ gatheringId })
+                    this.gathering.capacity--
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)

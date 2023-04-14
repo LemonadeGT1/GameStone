@@ -8,7 +8,8 @@ export class AccountController extends BaseController {
     super('account')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/players', this.getUserAccount)
+      .get('', this.getUserAccount)
+      .get('/players', this.getGatheringsPlayingIn)
   }
 
   async getUserAccount(req, res, next) {

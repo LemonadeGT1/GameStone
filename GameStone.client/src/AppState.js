@@ -18,6 +18,9 @@ export const AppState = reactive({
   /** @type {import('./models/Game.js').Game} */
   games: [],
 
+  /** @type {import('./models/Player.js').Player[]} */
+  players: [],
+
   /** @type {import('./models/Group.js').Group[]} */
   groups: [],
 
@@ -28,6 +31,8 @@ export const AppState = reactive({
   activeGroup: null,
 
   activeGame: {},
+  activeCategories: [],
+  activeMechanics: [],
 
   query: null,
 

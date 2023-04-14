@@ -3,6 +3,7 @@ import BaseController from "../utils/BaseController.js";
 import { gatheringsService } from "../services/GatheringsService.js";
 import { playersService } from "../services/PlayersService.js";
 import { chatsService } from "../services/ChatsService.js";
+import { gatheringGamesService } from "../services/GatheringGamesService.js";
 
 
 export class GatheringsController extends BaseController {
@@ -11,6 +12,7 @@ export class GatheringsController extends BaseController {
         this.router
             .get("", this.getAllGatherings)
             .get("/:id", this.getGatheringById)
+            .get("/:id/gatheringGames")
             .get("/:id/chats", this.getGatheringChats)
             .get("/:id/players", this.getGatheringPlayers)
             .use(Auth0Provider.getAuthorizedUserInfo)
@@ -100,6 +102,16 @@ export class GatheringsController extends BaseController {
             let gatheringId = req.params.id
             let chats = await chatsService.getGatheringChats(gatheringId)
             return res.send(chats)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getGatheringGames(req, res, next) {
+        try {
+            let gatheringId = req.params.id
+            let games = await gatheringGamesService.getGatheringGames(gatheringId)
+            return res.send(games)
         } catch (error) {
             next(error)
         }

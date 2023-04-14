@@ -1,5 +1,5 @@
 <template>
-    <form @submit="handleSubmit()">
+    <form @submit.prevent="handleSubmit()">
         <h5>Create Gathering!</h5>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -31,7 +31,7 @@
             <input v-model="editable.date" type="date" required class="form-control" id="date">
         </div>
 
-        <button type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick"></i></button>
+        <button type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick" data-bs-dismiss="modal"></i></button>
     </form>
 </template>
 
@@ -51,7 +51,7 @@ export default {
     props: {
         gathering: {
             type: Gathering,
-            default: {}
+            default: true
         }
     },
 

@@ -10,10 +10,20 @@ export class GatheringsController extends BaseController {
         this.router
             .get("", this.getAllGatherings)
             .get("/:id", this.getGatheringById)
+            .get("/:id/players", this.getGatheringPlayers)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .put("/:id", this.editGathering)
             .post("", this.createGathering)
             .delete("/:id", this.cancelGathering)
+    }
+    async getGatheringPlayers(req, res, next) {
+        try {
+            let gatheringId = req.params.id
+            let players = await playersService.getGatheringPlayers(gatheringId)
+            res.send(players)
+        } catch (error) {
+            next(error)
+        }
     }
 
 

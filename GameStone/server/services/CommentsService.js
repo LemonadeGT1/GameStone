@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext"
-import { BadRequest } from "../utils/Errors"
+import { BadRequest, Forbidden } from "../utils/Errors"
 import { groupsService } from "./GroupsService"
 
 
@@ -25,8 +25,10 @@ class CommentsService {
             throw new BadRequest("There are no comments to delete.")
         }
         if (userId != comment.creatorId) {
-            
+            throw new Forbidden("You cannot delete this.")
         }
+        const groupId = comment.groupId
+        await comment.remove()
     }
 }
 

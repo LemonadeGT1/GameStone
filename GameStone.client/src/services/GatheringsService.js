@@ -14,10 +14,15 @@ class GatheringsService {
     }
 
     async searchGatherings(query) {
-        const res = await api.get('api/gatherings', { params: query })
+        const res = await api.get('api/gatherings', { params: { query: query } })
         logger.log('[searched posts]', res.data)
         AppState.query = query.query
         AppState.gatherings = res.data.map(g => new Gathering(g))
+    }
+
+    async getGatheringById(gatheringId) {
+        const res = await api.get(`api/gatherings/${gatheringId}`)
+        logger.log(res.data)
     }
 }
 

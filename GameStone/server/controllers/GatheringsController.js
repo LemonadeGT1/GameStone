@@ -33,7 +33,8 @@ export class GatheringsController extends BaseController {
     //Get All Gatherings
     async getAllGatherings(req, res, next) {
         try {
-            let query = req.query
+            // let query = req.query
+            let query = req.query.query
             let gatherings = await gatheringsService.getAllGatherings(query)
             res.send(gatherings)
         } catch (error) {

@@ -8,9 +8,16 @@ class GroupsService {
 
     async getAllGroups() {
         const res = await api.get('api/groups')
-        logger.log(res.data)
+        // logger.log(res.data)
         AppState.groups = res.data.map(g => new Group(g))
-        logger.log(AppState.groups)
+        logger.log(AppState.groups, 'appstate group')
+    }
+
+    async getGroupById(groupId) {
+        const res = await api.get(`api/groups/${groupId}`)
+        // logger.log(res.data)
+        AppState.activeGroup = new Group(res.data)
+        logger.log(AppState.activeGroup, 'appstate active group')
     }
 
 }

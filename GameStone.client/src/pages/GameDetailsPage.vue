@@ -27,10 +27,13 @@
         <div class="row">
             <div class="col-4 offset-2">
                 <p>Categories: <span class="text-secondary" id="gameCategories" v-for="c in activeCategories"
-                        :key="c.name"></span></p>
+                        :key="c.id"><br />{{
+                            c.name }}</span></p>
             </div>
             <div class="col-4">
-                <p>Mechanics: <span class="text-secondary" id="gameMechanics">{{ activeMechanics }}</span></p>
+                <p>Mechanics: <span class="text-secondary" id="gameMechanics" v-for="m in activeMechanics"
+                        :key="m.id"><br />{{
+                            m.name }}</span></p>
             </div>
         </div>
         <div class="row justify-content-center my-4">
@@ -63,29 +66,10 @@ export default {
             try {
                 const gameId = route.params.gameId
                 await gamesService.getGameById(gameId)
-                await getCategories()
-                await getMechanics()
             } catch (error) {
                 logger.log(error)
                 Pop.error(error.message)
             }
-        }
-
-        function getCategories() {
-            let categoriesList = []
-            for (let i = 0; i < AppState.activeGame.categories.length; i++) {
-                AppState.activeCategories = categoriesList.push(AppState.gameCategories?.find(c => AppState.activeGame?.categories[i].id == c.id).name)
-            }
-            logger.log('categories', categoriesList)
-        }
-
-        function getMechanics() {
-            let mechanicsList = []
-            for (let i = 0; i < AppState.activeGame.mechanics.length; i++) {
-                AppState.activeMechanics = mechanicsList.push(AppState.gameMechanics?.find(c => AppState.activeGame?.mechanics[i].id == c.id).name)
-            }
-            logger.log('mechanics', mechanicsList)
-
         }
 
         onMounted(() => {
@@ -93,8 +77,25 @@ export default {
         })
         return {
             game: computed(() => AppState.activeGame),
-            activeCategories: computed(() => AppState?.activeCategories),
-            activeMechanics: computed(() => AppState?.activeMechanics)
+            activeCategories: computed(() => {
+                const game = AppState.activeGame
+                const categories = []
+                game.categories?.forEach(c => {
+                    let foundCategory = AppState.gameCategories.find(gc => gc.id == c.id)
+                    categories.push(foundCategory)
+                })
+                return categories
+            }),
+            activeMechanics: computed(() => {
+                const game = AppState.activeGame
+                const mechanics = []
+                game.mechanics?.forEach(m => {
+                    let foundMechanic = AppState.gameMechanics.find(gm => gm.id == m.id)
+                    mechanics.push(foundMechanic)
+                })
+                return mechanics
+            })
+            // , activeMechanics: computed(() => AppState?.activeMechanics)
             // gameDescription: computed(() => AppState.activeGame.description?.replace(/<[^>]+>|&quot;/g, ' ')),
             // gameCategories: computed(() => AppState.gameCategories),
         }

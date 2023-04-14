@@ -6,10 +6,8 @@
                 <h1 class="text-secondary">Games</h1>
             </div>
             <div class="col-6 p-3">
-                <button class="btn btn-info border rounded-pill">Search</button>
-            </div>
-            <div class="col-6 text-end p-3">
-                <button class="btn btn-info border rounded-pill">Filter</button>
+                <button class="btn btn-info border rounded-pill">Previous Page</button>
+                <button class="btn btn-info border rounded-pill mx-2">Next Page</button>
             </div>
         </section>
         <!-- SECTION GAME CARDS -->

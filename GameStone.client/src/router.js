@@ -46,6 +46,11 @@ const routes = [
     path: '/gatherings',
     name: 'Gatherings',
     component: loadPage('GatheringSearchPage')
+  },
+  {
+    path: '/gatherings/:gatheringId',
+    name: 'GatheringDetails',
+    component: loadPage('GatheringDetailsPage')
   }
 ]
 

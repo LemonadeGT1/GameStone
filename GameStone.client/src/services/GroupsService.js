@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Group } from "../models/Group.js"
+import { GroupMember } from "../models/GroupMember.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
@@ -18,6 +19,13 @@ class GroupsService {
         // logger.log(res.data)
         AppState.activeGroup = new Group(res.data)
         logger.log(AppState.activeGroup, 'appstate active group')
+    }
+
+    async becomeMember(groupId) {
+        const res = await api.post('api/groupMembers', groupId)
+        logger.log(res.data)
+        AppState.groupMembers.push(new GroupMember(res.data))
+        logger.log(AppState.groupMembers, 'group members')
     }
 
 }

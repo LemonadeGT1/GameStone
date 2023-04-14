@@ -18,6 +18,9 @@ export const AppState = reactive({
   /** @type {import('./models/Group.js').Group[]} */
   groups: [],
 
+  /** @type {import('./models/Group.js').Group|null} */
+  activeGroup: null,
+
   activeGame: {},
 
   query: null,

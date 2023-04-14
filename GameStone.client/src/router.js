@@ -38,6 +38,11 @@ const routes = [
     component: loadPage('GroupSearchPage')
   },
   {
+    path: '/groups/:groupId',
+    name: 'GroupDetails',
+    component: loadPage('GroupDetailsPage')
+  },
+  {
     path: '/gatherings',
     name: 'Gatherings',
     component: loadPage('GatheringSearchPage')

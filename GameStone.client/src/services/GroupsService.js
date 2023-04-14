@@ -13,6 +13,11 @@ class GroupsService {
         logger.log(AppState.groups)
     }
 
+    async getGroupById(groupId) {
+        const res = await api.get(`api/groups/${groupId}`)
+        logger.log(res.data)
+    }
+
 }
 
 export const groupsService = new GroupsService()

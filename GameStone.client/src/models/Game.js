@@ -10,5 +10,6 @@ export class Game{
         this.max_playtime = data.max_playtime
         this.mechanics = data.mechanics
         this.categories = data.categories
+        this.min_age = data.min_age
     }
 }

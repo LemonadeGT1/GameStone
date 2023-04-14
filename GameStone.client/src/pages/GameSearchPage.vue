@@ -13,8 +13,10 @@
             </div>
         </section>
         <!-- SECTION GAME CARDS -->
-        <section class="row justify-content-center p-3">
-            <div class="col-md-4"></div>
+        <section class="row justify-content-center p-3 align-items-center">
+            <div class="col-md-3" v-for="g in games" :key="g.id">
+                <GameCard :game="g"/>
+            </div>
         </section>
     </div>
 </template>

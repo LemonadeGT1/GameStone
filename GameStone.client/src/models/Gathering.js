@@ -11,6 +11,7 @@ export class Gathering {
         this.location = data.location
         this.capacity = data.capacity
         this.isPublic = data.isPublic
+        this.isCanceled = data.isCanceled
         this.type = data.type
         this.date = new Date(data.date).toLocaleDateString()
     }

@@ -34,6 +34,11 @@ class GatheringsService {
         AppState.gatherings.push(newGathering)
         return newGathering
     }
+
+    async deleteGathering(gatheringId) {
+        const res = await api.delete(`api/gatherings/${gatheringId}`)
+        logger.log(res.data)
+    }
 }
 
 export const gatheringsService = new GatheringsService()

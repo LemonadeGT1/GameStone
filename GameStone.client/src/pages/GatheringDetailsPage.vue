@@ -4,6 +4,7 @@
             <section class="row">
                 <div class="col-md-8 py-3 px-5">
                     <h1>{{ gathering?.name }}</h1>
+                    <h1 v-if="gathering?.isCanceled" class="cancel-color">Cancelled</h1>
                     <h2>Host: {{ gathering?.creator.name }}</h2>
                     <h2>{{ gathering?.date }}</h2>
                     <h5>{{ gathering?.description }}</h5>
@@ -17,26 +18,28 @@
 
         </div>
         <div class="col-9 text-end my-4">
-            <button @click="becomePlayer(gathering?.id)" class="btn btn-info border rounded-pill">Become Player</button>
+            <button v-if="!gathering.isCanceled" @click="becomePlayer(gathering?.id)"
+                class="btn btn-info border rounded-pill">Become Player</button>
         </div>
         <div class="col-11">
             <div>
                 <h2>Current Players</h2>
                 <div class="d-flex flex-wrap">
-                    <img v-for="p in players" class="m-2 profile-img" :title="p.profile.name" :src="p.profile.picture"
-                        :alt="p.profile.name">
+                    <img v-if="!gathering.isCanceled" v-for="p in players" class="m-2 profile-img" :title="p.profile.name"
+                        :src="p.profile.picture" :alt="p.profile.name">
                 </div>
             </div>
             <div class="text-end">
                 <div class="m-3">
-                    <button class="btn btn-info rounded-pill">Edit Gathering</button>
+                    <button v-if="!gathering.isCanceled" class="btn btn-info rounded-pill">Edit Gathering</button>
                 </div>
                 <div class="m-2">
-                    <button class="btn btn-danger rounded-pill">Delete Gathering</button>
+                    <button v-if="!gathering.isCanceled" @click="deleteGathering(gathering?.id)"
+                        class="btn btn-danger rounded-pill">Delete
+                        Gathering</button>
                 </div>
             </div>
         </div>
-
     </section>
 </template>
 
@@ -95,6 +98,15 @@ export default {
                     logger.error(error.message)
                     Pop.error(error.message)
                 }
+            },
+            async deleteGathering(gatheringId) {
+                try {
+                    if (await Pop.confirm('Are you sure you want to archive this gathering'))
+                        await gatheringsService.deleteGathering(gatheringId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
             }
         }
     }
@@ -114,6 +126,10 @@ export default {
     height: 8vh;
     width: 8vh;
     border-radius: 50%;
+}
+
+.cancel-color {
+    color: red;
 }
 
 .bg-grey {

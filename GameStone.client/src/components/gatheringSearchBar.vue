@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="searchGatherings()">
-        <input type="text" v-model="editable.name" class="col-6" id="gatheringsSearch">
+        <input type="text" v-model="editable.query" class="col-5" id="gatheringsSearch" placeholder="Search">
         <button type="submit"><i class="mdi mdi-magnify"></i></button>
     </form>
 </template>

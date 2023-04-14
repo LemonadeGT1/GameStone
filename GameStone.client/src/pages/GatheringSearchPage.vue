@@ -9,8 +9,7 @@
             </div>
             <div class="col-12">
                 <div class="row">
-                    <h5>Search</h5>
-                    <gatheringSearchBar />
+                    <GatheringSearchBar />
                     <div class="col-6">
                         <h5>Filter Bar</h5>
                     </div>

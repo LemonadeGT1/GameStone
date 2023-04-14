@@ -12,11 +12,17 @@ export const AppState = reactive({
   /** @type {import('./models/Gathering.js').Gathering[]} */
   gatherings: [],
 
+  /** @type {import('./models/Gathering.js').Gathering|null} */
+  activeGathering: null,
+
   /** @type {import('./models/Game.js').Game} */
   games: [],
 
   /** @type {import('./models/Group.js').Group[]} */
   groups: [],
+
+  /** @type {import('./models/GroupMember.js').GroupMember[]} */
+  groupMembers: [],
 
   /** @type {import('./models/Group.js').Group|null} */
   activeGroup: null,

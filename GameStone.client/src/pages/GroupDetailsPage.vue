@@ -18,7 +18,7 @@
     <section class="row justify-content-end m-3">
         <div class="col-md-4">
             <button class="btn btn-info border rounded-pill mx-3">View our games</button>
-            <button class="btn btn-info border rounded-pill mx-3">Join Us!</button>
+            <button @click="becomeMember()" class="btn btn-info border rounded-pill mx-3">Join Us!</button>
         </div>
         <div class="col-10 m-3">
             <p>Group Members here</p>
@@ -59,7 +59,17 @@ export default {
         onMounted(() => getGroupById())
         return {
 
-            group: computed(() => AppState.activeGroup)
+            group: computed(() => AppState.activeGroup),
+
+            async becomeMember() {
+                try {
+                    let groupId = route.params.groupId
+                    await groupsService.becomeMember({ groupId })
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            }
         }
     }
 };

@@ -1,14 +1,16 @@
 <template>
-    <div class="row  justify-content-evenly">
-        <div class="col-md-5 d-flex align-items-center">
-            <img class="elevation-4 img-fluid" :src="gathering.coverImg" :alt="gathering.name">
+    <router-link :to="{ name: 'GatheringDetails', params: { gatheringId: gathering.id } }">
+        <div class="row  justify-content-evenly">
+            <div class="col-md-5 d-flex align-items-center">
+                <img class="elevation-4 img-fluid" :src="gathering.coverImg" :alt="gathering.name">
+            </div>
+            <div class="col-md-7">
+                <h5>{{ gathering.name }}</h5>
+                <p>{{ gathering.description }}</p>
+                <p>{{ gathering.date }}</p>
+            </div>
         </div>
-        <div class="col-md-7">
-            <h5>{{ gathering.name }}</h5>
-            <p>{{ gathering.description }}</p>
-            <p>{{ gathering.date }}</p>
-        </div>
-    </div>
+    </router-link>
 </template>
 
 

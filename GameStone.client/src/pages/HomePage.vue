@@ -15,10 +15,15 @@
     <!-- SECTION GROUPS -->
     <section class="row justify-content-center p-2 my-3">
       <div class="col-7 card elevation-5">
-        <h3>Find a Group</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti veritatis voluptatem illum
-          inventore rerum. Unde omnis quasi doloremque, veritatis tempora qui maiores quibusdam ratione officia enim
-          aperiam ad laboriosam?</p>
+        <div>
+          <h3>Find a Group</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti veritatis voluptatem illum
+            inventore rerum. Unde omnis quasi doloremque, veritatis tempora qui maiores quibusdam ratione officia enim
+            aperiam ad laboriosam?</p>
+        </div>
+        <div>
+          <button class="btn">Go to Group Page...</button>
+        </div>
       </div>
       <div class="col-4 d-flex justify-content-center">
         <img class="img-fluid elevation-5 rounded group-img"

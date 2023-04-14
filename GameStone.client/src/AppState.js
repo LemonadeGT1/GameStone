@@ -12,6 +12,9 @@ export const AppState = reactive({
   /** @type {import('./models/Gathering.js').Gathering[]} */
   gatherings: [],
 
+  /** @type {import('./models/Gathering.js').Gathering|null} */
+  activeGathering: null,
+
   /** @type {import('./models/Game.js').Game} */
   games: [],
 

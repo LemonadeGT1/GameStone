@@ -19,6 +19,11 @@ class GatheringsService {
         AppState.query = query.query
         AppState.gatherings = res.data.map(g => new Gathering(g))
     }
+
+    async getGatheringById(gatheringId) {
+        const res = await api.get(`api/gatherings/${gatheringId}`)
+        logger.log(res.data)
+    }
 }
 
 export const gatheringsService = new GatheringsService()

@@ -17,18 +17,17 @@
                 </div>
             </div>
         </section>
-        <section class="row justify-content-center ">
-            <div class="col-10">
-                <div class="row justify-content-center">
-                    <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card  my-3 mx-4 py-2">
-                        <GatheringCard :gathering="g" />
-                    </div>
-                    <div class="col-5 mx-4"></div>
-                </div>
-            </div>
-
-        </section>
     </div>
+    <section class="row justify-content-center container-fluid">
+        <div class="col-10">
+            <div class="row justify-content-center">
+                <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card  my-3 mx-4 py-2">
+                    <GatheringCard :gathering="g" />
+                </div>
+                <div class="col-5 mx-4"></div>
+            </div>
+        </div>
+    </section>
 
     <Modal id="gatheringModal">
 
@@ -77,9 +76,11 @@ export default {
     border-radius: 30px;
     background-color: #d9d9d9;
     // height: 130px;
-}
 
-// .titleText {
-//     color: ;
-// }
+    .title-look {
+        background-color: #060235;
+    }
+
+
+}
 </style>

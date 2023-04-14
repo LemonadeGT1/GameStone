@@ -12,7 +12,7 @@ import { GroupMemberSchema } from '../models/GroupMember';
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
-  Groups = mongoose.model('Groups', GroupSchema)
+  Groups = mongoose.model('Group', GroupSchema)
   Gatherings = mongoose.model('Gathering', GatheringSchema);
   Games = mongoose.model('Game', GameSchema);
   Comments = mongoose.model('Comment', CommentSchema)

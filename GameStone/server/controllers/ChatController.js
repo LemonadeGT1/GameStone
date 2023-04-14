@@ -9,6 +9,7 @@ export class ChatController extends BaseController {
         this.router
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.createChat)
+        .delete('/:id', this.deleteChat)
     }
 
     async createChat(req, res, next) {
@@ -22,5 +23,14 @@ export class ChatController extends BaseController {
         }
     }
 
-
+    async deleteChat(req, res, next) {
+        try {
+            let chatId = req.params.id
+            let userId = req.userInfo.id
+            let chat = await chatsService.deleteChat(chatId, userId)
+            return res.send(chat)
+        } catch (error) {
+            next(error)
+        }
+    }
 }

@@ -1,6 +1,6 @@
 <template>
-    <form @submit.prevent="handleSubmit()">
-
+    <form @submit="handleSubmit()">
+        <h5>Create Gathering!</h5>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input v-model="editable.name" type="text" required class="form-control" id="name">
@@ -14,8 +14,9 @@
             <input v-model="editable.capacity" type="number" min="2" required class="form-control" id="capacity">
         </div>
         <div class="mb-3">
-            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Option 1
-            <label class="form-check-label" for="radio1"></label>
+            <input type="radio" class="form-check-input" id="isPublic" name="isPublic" value="option1"
+                v-model="editable.isPublic">Private?
+            <label class="form-check-label" for="isPublic"></label>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
@@ -25,31 +26,76 @@
             <label for="coverImg" class="form-label">Image</label>
             <input v-model="editable.coverImg" type="url" required class="form-control" id="coverImg">
         </div>
-        <select v-model="editable.engineType" required class="form-select form-select-lg mb-3"
-            aria-label=".form-select-lg example">
-            <option v-for="engineType in engineTypes" :key="engineType" :value="engineType">{{ engineType }}</option>
-        </select>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input v-model="editable.date" type="date" required class="form-control" id="date">
+        </div>
+
+        <button type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick"></i></button>
     </form>
 </template>
-
-<!-- constructor(data) {
-    this.id = data.id
-    this.creatorId = data.creatorId
-    this.creator = data.creator ? new Profile(data.creator) : null
-    this.isPublic = data.isPublic
-    this.type = data.type
-    this.date = data.date
-}
-} -->
 
 
 
 
 
 <script>
+import { computed, reactive, onMounted, ref } from 'vue';
+import { Gathering } from '../models/Gathering.js';
+import { useRouter } from 'vue-router';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { gatheringsService } from '../services/GatheringsService.js';
+
 export default {
-    setup() {
-        return {};
+    props: {
+        gathering: {
+            type: Gathering,
+            default: {}
+        }
+    },
+
+    setup(props) {
+
+
+        const editable = ref({ ...props.gathering })
+
+        const router = useRouter()
+
+        return {
+            editable,
+
+
+            handleSubmit() {
+                if (props.gathering.id) {
+                    this.editGathering()
+                } else {
+                    this.createGathering()
+                }
+            },
+
+
+            async createGathering() {
+                try {
+                    const gatheringData = editable.value
+                    const gathering = await gatheringsService.createGathering(gatheringData)
+                    router.push({ name: 'GatheringDetails', params: { gatheringId: gathering.id } })
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
+            async editGathering() {
+                try {
+                    const gatheringData = editable.value
+                    await gatheringsService.editGathering(gatheringData)
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            }
+        };
     },
 };
 </script>

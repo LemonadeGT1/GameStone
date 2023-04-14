@@ -18,23 +18,24 @@
 
         </div>
         <div class="col-9 text-end my-4">
-            <button v-if="!gathering.isCanceled" @click="becomePlayer(gathering?.id)"
+            <button v-if="!gathering?.isCanceled && !isPlayer && account.id" @click="becomePlayer(gathering?.id)"
                 class="btn btn-info border rounded-pill">Become Player</button>
         </div>
         <div class="col-11">
             <div>
                 <h2>Current Players</h2>
                 <div class="d-flex flex-wrap">
-                    <img v-if="!gathering.isCanceled" v-for="p in players" class="m-2 profile-img" :title="p.profile.name"
+                    <img v-if="!gathering?.isCanceled" v-for="p in players" class="m-2 profile-img" :title="p.profile.name"
                         :src="p.profile.picture" :alt="p.profile.name">
                 </div>
             </div>
             <div class="text-end">
                 <div class="m-3">
-                    <button v-if="!gathering.isCanceled" class="btn btn-info rounded-pill">Edit Gathering</button>
+                    <button v-if="!gathering?.isCanceled && account?.id" class="btn btn-info rounded-pill">Edit
+                        Gathering</button>
                 </div>
                 <div class="m-2">
-                    <button v-if="!gathering.isCanceled" @click="deleteGathering(gathering?.id)"
+                    <button v-if="!gathering?.isCanceled && account?.id" @click="deleteGathering(gathering?.id)"
                         class="btn btn-danger rounded-pill">Delete
                         Gathering</button>
                 </div>
@@ -88,6 +89,8 @@ export default {
 
             gathering: computed(() => AppState.activeGathering),
             players: computed(() => AppState.players),
+            isPlayer: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
+            account: computed(() => AppState.account),
 
             async becomePlayer(gatheringId) {
                 try {

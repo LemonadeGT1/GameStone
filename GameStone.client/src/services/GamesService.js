@@ -15,6 +15,13 @@ class GamesService {
         logger.log('Games from AppState', AppState.games)
     }
 
+    async getGameById(gameId) {
+        const res = await atlasApi.get(`search?ids=${gameId}`)
+        logger.log('res.data', res.data)
+        AppState.activeGame = res.data.games[0]
+        return AppState.activeGame
+    }
+
 }
 
 export const gamesService = new GamesService()

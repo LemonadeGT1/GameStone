@@ -2,6 +2,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { gatheringsService } from '../services/GatheringsService.js'
+import { groupMemberService } from '../services/GroupMembersService'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -9,6 +10,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/groupMembers', this.getMyGroups)
       .get('/players', this.getGatheringsPlayingIn)
   }
 
@@ -26,6 +28,16 @@ export class AccountController extends BaseController {
       let accountId = req.userInfo.id
       let gatherings = await gatheringsService.getGatheringsPlayingIn(accountId)
       res.send(gatherings)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getMyGroups(req, res, next) {
+    try {
+      let profileId = req.userInfo.id
+      let groups = await groupMemberService.getMyGroups(profileId)
+      res.send(groups)
     } catch (error) {
       next(error)
     }

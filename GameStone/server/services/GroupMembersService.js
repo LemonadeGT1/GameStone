@@ -11,7 +11,7 @@ class GroupMemberService {
             throw new BadRequest("You can't take up another spot.")
         }
         const group = await groupsService.getGroupById(memberData.groupId)
-        if (group.isPublic !== false) {
+        if (group.isPublic == false) {
             throw new Forbidden("This is a private group.")
         }
         await member.populate("profile", "name picture")
@@ -31,10 +31,29 @@ class GroupMemberService {
         return groups
     }
 
-    async getGroupMembers(profileId) {
-        let members = await dbContext.GroupMember.find({ profileId })
+    async getGroupMembers(groupId) {
+        let members = await dbContext.GroupMember.find({ groupId })
         .populate('profile', 'name picture')
         return members
+    }
+
+    async getGroupMemberById(groupMemberId) {
+        const groupMember = await dbContext.GroupMember.findById(groupMemberId)
+        .populate("profile", "name picture")
+        if (groupMember == null) {
+            throw new BadRequest("ERROR ERROR")
+        }
+        return groupMember
+    }
+
+    async deleteGroupMember(groupMemberId, userId) {
+        let groupMember = await this.getGroupMemberById(groupMemberId)
+        if (groupMember.profileId != userId) {
+            throw new Forbidden("You are not allowed to delete this.")
+        }
+        groupMember.isRestricted == true
+        await groupMember.save()
+        return groupMember
     }
 }
 

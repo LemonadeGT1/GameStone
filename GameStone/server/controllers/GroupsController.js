@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { groupsService } from "../services/GroupsService";
 import BaseController from "../utils/BaseController";
+import { commentsService } from "../services/CommentsService";
 
 
 export class GroupsController extends BaseController {
@@ -9,6 +10,7 @@ export class GroupsController extends BaseController {
         this.router
         .get("", this.getAllGroups)
         .get("/:id", this.getGroupById)
+        .get("/:id/comments", this.getGroupComments)
         .use(Auth0Provider.getAuthorizedUserInfo)
         .put("/:id", this.editGroup)
         .delete("/:id", this.deleteGroup)
@@ -61,6 +63,16 @@ export class GroupsController extends BaseController {
             let groupId = req.params.id
             let message = await groupsService.deleteGroup(groupId, userId)
             res.send(message)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getGroupComments(req, res, next) {
+        try {
+            let groupId = req.params.id
+            let comments = await commentsService.getGroupComments(groupId)
+            return res.send(comments)
         } catch (error) {
             next(error)
         }

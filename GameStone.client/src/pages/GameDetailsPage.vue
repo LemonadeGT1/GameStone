@@ -1,11 +1,13 @@
 <template>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-10 py-3">
-                <h2>{{ game.name }}</h2>
-                <div class="">
-                    <p class="siteText" id="gameDescription"><img :src="game.image_url" class="imgContainer ms-4 mb-3"
-                            style="float:right">{{ gameDescription }}</p>
+            <div class="col-11 py-3">
+                <div class="row">
+                    <h2>{{ game.name }}</h2>
+                    <div class="siteText col-8" v-html="game.description"></div>
+                    <div class="col-4">
+                        <img :src="game.image_url" class="imgContainer ms-4 mb-3">
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center mt-2">
@@ -24,10 +26,10 @@
         </div>
         <div class="row">
             <div class="col-4 offset-2">
-                <p>Categories: <span class="siteText">{{ game.categories.length }}</span></p>
+                <p>Categories: <span class="siteText">{{ game.categories }}</span></p>
             </div>
             <div class="col-4">
-                <p>Mechanics: <span class="siteText">{{ game.mechanics.length }}</span></p>
+                <p>Mechanics: <span class="siteText">{{ game.mechanics }}</span></p>
             </div>
         </div>
         <div class="row justify-content-center my-4">
@@ -59,7 +61,7 @@ export default {
         async function getGameById() {
             try {
                 const gameId = route.params.gameId
-                const game = await gamesService.getGameById(gameId)
+                await gamesService.getGameById(gameId)
             } catch (error) {
                 logger.log(error)
                 Pop.error(error.message)

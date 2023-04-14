@@ -16,6 +16,10 @@
         </div>
         <div class="col-11">
             <h2>Current Players</h2>
+            <div class="d-flex">
+                <img v-for="p in players" class="m-2 profile-img" :title="p.profile.name" :src="p.profile.picture"
+                    :alt="p.profile.name">
+            </div>
 
         </div>
 
@@ -48,11 +52,25 @@ export default {
             }
         }
 
-        onMounted(() => getGatheringById())
+        async function getGatheringPlayers() {
+            try {
+                let gatheringId = route.params.gatheringId
+                await playersService.getGatheringPlayers(gatheringId)
+            } catch (error) {
+                logger.error(error.message)
+                Pop.error(error.message)
+            }
+        }
+
+        onMounted(() => {
+            getGatheringById()
+            getGatheringPlayers()
+        })
 
         return {
 
             gathering: computed(() => AppState.activeGathering),
+            players: computed(() => AppState.players),
 
             async becomePlayer(gatheringId) {
                 try {
@@ -75,6 +93,12 @@ export default {
     width: 40vh;
     object-fit: cover;
     object-position: center;
+}
+
+.profile-img {
+    height: 8vh;
+    width: 8vh;
+    border-radius: 50%;
 }
 
 .bg-grey {

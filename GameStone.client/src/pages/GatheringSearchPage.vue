@@ -4,7 +4,8 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between">
                     <h1 class="text-secondary">Gatherings</h1>
-                    <button class="btn btn-info border rounded-pill">Create a Gathering</button>
+                    <button class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#gatheringModal">Create a Gathering</button>
                 </div>
             </div>
             <div class="col-12">
@@ -28,6 +29,14 @@
 
         </section>
     </div>
+
+    <Modal id="gatheringModal">
+
+        <template #modalBody>
+            <CreateGatheringForm />
+        </template>
+
+    </Modal>
 </template>
 
 
@@ -38,6 +47,7 @@ import Pop from '../utils/Pop';
 import { gatheringsService } from '../services/GatheringsService';
 import { logger } from '../utils/Logger';
 import GatheringCard from '../components/GatheringCard.vue'
+import CreateGatheringForm from '../components/CreateGatheringForm.vue';
 
 export default {
     setup() {
@@ -55,7 +65,7 @@ export default {
         return {
             gatherings: computed(() => AppState.gatherings)
         }
-    }, components: { GatheringCard }
+    }, components: { GatheringCard, CreateGatheringForm }
 };
 </script>
 

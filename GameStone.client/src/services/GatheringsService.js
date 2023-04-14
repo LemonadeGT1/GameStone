@@ -30,6 +30,9 @@ class GatheringsService {
     async createGathering(gatheringData) {
         const res = await api.post('api/gatherings', gatheringData)
         logger.log('created gathering', res.data)
+        const newGathering = new Gathering(res.data)
+        AppState.gatherings.push(newGathering)
+        return newGathering
     }
 }
 

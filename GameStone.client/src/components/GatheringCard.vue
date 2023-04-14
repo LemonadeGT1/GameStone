@@ -1,6 +1,6 @@
 <template>
     <router-link :to="{ name: 'GatheringDetails', params: { gatheringId: gathering.id } }">
-        <div class="row  justify-content-evenly">
+        <div class="row  justify-content-evenly text-dark">
             <div class="col-md-5 d-flex align-items-center">
                 <img class="elevation-4 img-fluid" :src="gathering.coverImg" :alt="gathering.name">
             </div>

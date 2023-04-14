@@ -6,8 +6,8 @@
                 <h1 class="text-secondary">Games</h1>
             </div>
             <div class="col-6 p-3">
-                <button class="btn btn-info border rounded-pill">Previous Page</button>
-                <button class="btn btn-info border rounded-pill mx-2">Next Page</button>
+                <button @click="changePage(-20)" class="btn btn-info border rounded-pill">Previous Page</button>
+                <button @click="changePage(20)" class="btn btn-info border rounded-pill mx-2">Next Page</button>
             </div>
         </section>
         <!-- SECTION GAME CARDS -->
@@ -45,8 +45,19 @@ export default {
     return { 
 
         games: computed(() => AppState.games),
+        gameSkip: computed(() => AppState.gameSkip),
+
+        async changePage(num) {
+            try {
+                await gamesService.changePage(num)
+            } catch (error) {
+                logger.error(error.message)
+                Pop.error(error.message)
+            }
+        }
     }
     }
+
 };
 </script>
 

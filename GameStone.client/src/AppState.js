@@ -18,6 +18,8 @@ export const AppState = reactive({
   /** @type {import('./models/Game.js').Game} */
   games: [],
 
+  gameSkip: 0,
+
   /** @type {import('./models/Player.js').Player[]} */
   players: [],
 

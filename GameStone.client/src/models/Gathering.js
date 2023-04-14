@@ -12,6 +12,6 @@ export class Gathering {
         this.capacity = data.capacity
         this.isPublic = data.isPublic
         this.type = data.type
-        this.date = data.date
+        this.date = new Date(data.date).toLocaleDateString()
     }
 }

@@ -9,7 +9,7 @@ import { Game } from "../models/Game.js"
 class GamesService {
 
     async getGames() {
-        const res = await atlasApi.get('')
+        const res = await atlasApi.get('search')
         logger.log('[GETTING GAMES]', res.data)
         AppState.games = res.data.games.map(g => new Game(g))
         logger.log('Games from AppState', AppState.games)

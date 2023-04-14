@@ -18,9 +18,14 @@ class GatheringsService {
     }
 
 
+    // i says make all lowercase, g says look everywhere
+    // $xor, if both match then dont bring back, cool note XD
+    async getAllGatherings(query = '') {
+        const filter = new RegExp(query, 'ig')
+        const gatherings = await dbContext.Gatherings.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }] })
 
-    async getAllGatherings(query) {
-        const gatherings = await dbContext.Gatherings.find(query)
+
+            // const gatherings = await dbContext.Gatherings.find({ name: { $regex: `${query}` } })
             .populate("creator", "name picture")
         return gatherings
     }

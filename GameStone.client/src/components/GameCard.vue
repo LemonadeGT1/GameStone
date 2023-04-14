@@ -1,5 +1,27 @@
 <template>
-    <img class="img-fluid elevation-3 rounded p-2 my-2 bg-white game-card" :src="game.image_url" :alt="game.name">
+    <router-link :to="{ name: 'GameDetails', params: { gameId: game.id } }">
+        <div class="elevation-3 rounded my-2 bg-white">
+            <img class="img-fluid p-2 bg-white game-card" :src="game.image_url" :alt="game.name">
+            <h5 class="text-black bg-white p-1 mb-0">{{ game.name }}</h5>
+            <div class="row mx-1 mb-0 text-secondary justify-content-center">
+                
+                    <div class="col-4 p-1">
+                        <i class="mdi mdi-account-group text-black"></i>
+                            <span class="mx-1" v-text="game.min_players == game.max_players ? game.max_players : game.min_players + '-' + game.max_players"></span>
+                        </div>
+                    <!-- <span> | </span>  -->
+                    <div class="col-4 py-1 px-0 text-center">
+                        <i class="mdi mdi-clock-outline text-black"></i>
+                        <span class="mx-1" v-text="game.min_playtime == game.max_playtime ? game.max_playtime : game.min_playtime + '-' + game.max_playtime"></span>
+                    </div>
+                    <!-- <span> | </span> -->
+                    <div class="col-4 p-1 text-end">
+                        <i class="mdi mdi-account-supervisor text-black mx-1"></i>{{ game.min_age }}+
+                    </div>
+                
+            </div>
+        </div>
+    </router-link>
 </template>
 
 
@@ -14,7 +36,9 @@ export default {
     },
 
     setup(){
-    return {  }
+    return { 
+        games: computed(() => AppState.games)
+     }
     }
 };
 </script>

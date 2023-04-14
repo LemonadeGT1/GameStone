@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { gatheringsService } from "../services/GatheringsService.js";
 import { playersService } from "../services/PlayersService.js";
+import { chatsService } from "../services/ChatsService.js";
 
 
 export class GatheringsController extends BaseController {
@@ -10,6 +11,7 @@ export class GatheringsController extends BaseController {
         this.router
             .get("", this.getAllGatherings)
             .get("/:id", this.getGatheringById)
+            .get("/:id/chats", this.getGatheringChats)
             .get("/:id/players", this.getGatheringPlayers)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .put("/:id", this.editGathering)
@@ -31,7 +33,8 @@ export class GatheringsController extends BaseController {
     //Get All Gatherings
     async getAllGatherings(req, res, next) {
         try {
-            let query = req.query
+            // let query = req.query
+            let query = req.query.query
             let gatherings = await gatheringsService.getAllGatherings(query)
             res.send(gatherings)
         } catch (error) {
@@ -92,5 +95,13 @@ export class GatheringsController extends BaseController {
         }
     }
 
-
+    async getGatheringChats(req, res, next) {
+        try {
+            let gatheringId = req.params.id
+            let chats = await chatsService.getGatheringChats(gatheringId)
+            return res.send(chats)
+        } catch (error) {
+            next(error)
+        }
+    }
 }

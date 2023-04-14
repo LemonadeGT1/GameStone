@@ -1,0 +1,26 @@
+import { Auth0Provider } from "@bcwdev/auth0provider";
+import BaseController from "../utils/BaseController";
+import { chatsService } from "../services/ChatsService";
+
+
+export class ChatController extends BaseController {
+    constructor() {
+        super('api/chats')
+        this.router
+        .use(Auth0Provider.getAuthorizedUserInfo)
+        .post('', this.createChat)
+    }
+
+    async createChat(req, res, next) {
+        try {
+            let chatData = req.body
+            chatData.profileId = req.userInfo.id
+            let chat = await chatsService.createChat(chatData)
+            res.send(chat)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
+}

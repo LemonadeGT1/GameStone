@@ -16,6 +16,13 @@
                 <GameCard :game="g"/>
             </div>
         </section>
+        <!-- SECTION BOTTOM PAGINATION BUTTONS -->
+        <section class="row">
+            <div class="col-12 text-center p-3">
+                <button @click="changePage(-20)" class="btn btn-info border rounded-pill mb-5">Previous Page</button>
+                <button @click="changePage(20)" class="btn btn-info border rounded-pill mx-2 mb-5">Next Page</button>
+            </div>
+        </section>
     </div>
 </template>
 

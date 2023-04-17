@@ -1,6 +1,5 @@
 <template>
     <form @submit.prevent="handleSubmit()">
-        <h5>Create Gathering!</h5>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input v-model="editable.name" type="text" required class="form-control" id="name">
@@ -13,11 +12,7 @@
             <label for="capacity" class="form-label">Capacity</label>
             <input v-model="editable.capacity" type="number" min="2" required class="form-control" id="capacity">
         </div>
-        <div class="mb-3">
-            <input type="radio" class="form-check-input" id="isPublic" name="isPublic" value="option1"
-                v-model="editable.isPublic">Private?
-            <label class="form-check-label" for="isPublic"></label>
-        </div>
+
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <input v-model="editable.description" type="text" required class="form-control" id="description">
@@ -30,7 +25,11 @@
             <label for="date" class="form-label">Date</label>
             <input v-model="editable.date" type="date" required class="form-control" id="date">
         </div>
-
+        <div class="mb-3">
+            <input type="radio" class="form-check-input " id="isPublic" name="isPublic" value="option1"
+                v-model="editable.isPublic"> Private?
+            <label class="form-check-label" for="isPublic"></label>
+        </div>
         <button type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick" data-bs-dismiss="modal"></i></button>
     </form>
 </template>

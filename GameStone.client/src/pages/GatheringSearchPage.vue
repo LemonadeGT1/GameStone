@@ -19,9 +19,9 @@
         </section>
     </div>
     <section class="row justify-content-center container-fluid">
-        <div class="col-10">
+        <div class="col-12">
             <div class="row justify-content-center">
-                <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card  my-3 mx-4 py-2">
+                <div v-for="g in gatherings" :key="g.id" class="col-md-4 gathering-card  my-3 mx-4 py-2">
                     <GatheringCard :gathering="g" />
                 </div>
                 <div class="col-5 mx-4"></div>
@@ -30,6 +30,10 @@
     </section>
 
     <Modal id="gatheringModal">
+
+        <template #header>
+            <h5>Create Gathering!</h5>
+        </template>
 
         <template #modalBody>
             <CreateGatheringForm />
@@ -70,17 +74,14 @@ export default {
 
 
 <style lang="scss" scoped>
-.gathering-card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-    transition: 0.3s;
-    border-radius: 30px;
-    background-color: #d9d9d9;
-    // height: 130px;
+// .gathering-card {
+//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+//     transition: 0.3s;
+//     border-radius: 30px;
+//     background-color: #d9d9d9;
+// }
 
-    .title-look {
-        background-color: #060235;
-    }
-
-
-}
+// .title-look {
+//     background-color: #060235;
+// }
 </style>

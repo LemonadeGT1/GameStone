@@ -4,7 +4,7 @@ import { Schema } from "mongoose";
 export const GatheringSchema = new Schema({
     name: { type: String, required: true, default: "New Gathering", minLength: 2, maxLength: 50 },
     description: { type: String, require: true, default: "Please add a description of gathering", minLength: 10, maxLength: 1000 },
-    coverImg: { type: String, maxLength: 1000, default: "https://cdn2.iconfinder.com/data/icons/indoor-club-games-and-recreational-activities/366/indoor-game-001-256.png" },
+    coverImg: { type: String, maxLength: 1000, default: "https://mykindofmeeple.com/wp-content/uploads/2019/03/board-game-pieces-1602-27042020.jpg.webp" },
     location: { type: String, maxLength: 200, required: true, default: "tbd" },
     capacity: { type: Number, min: 2, max: 10000, default: 1 },
     date: { type: Date, required: true, default: new Date },

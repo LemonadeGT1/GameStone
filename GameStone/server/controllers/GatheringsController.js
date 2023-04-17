@@ -63,7 +63,8 @@ export class GatheringsController extends BaseController {
         try {
             const gatheringEdits = req.body
             const gatheringId = req.params.id
-            const editedGathering = await gatheringsService.editGathering(gatheringEdits, gatheringId)
+            const userId = req.userInfo.id
+            const editedGathering = await gatheringsService.editGathering(gatheringEdits, gatheringId, userId)
             res.send(editedGathering)
         } catch (error) {
             next(error)

@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input v-model="editable.date" type="date" required class="form-control" id="date">
+            <input v-model="editable.date" type="date" class="form-control" id="date">
         </div>
         <div class="mb-3">
             <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""

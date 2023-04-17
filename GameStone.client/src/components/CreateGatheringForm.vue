@@ -26,7 +26,7 @@
             <input v-model="editable.date" type="date" required class="form-control" id="date">
         </div>
         <div class="mb-3">
-            <input type="radio" class="form-check-input " id="isPublic" name="isPublic" value="option1"
+            <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value="option1"
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
         </div>

@@ -74,9 +74,15 @@ export default {
             },
 
 
+
             async createGathering() {
                 try {
                     const gatheringData = editable.value
+                    for (const [key, value] of Object.entries(gatheringData)) {
+                        if (value == '') {
+                            delete gatheringData[key]
+                        }
+                    }
                     logger.log(gatheringData)
                     const gathering = await gatheringsService.createGathering(gatheringData)
                     logger.log(gathering)

@@ -12,6 +12,16 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .get('/groupMembers', this.getMyGroups)
       .get('/players', this.getGatheringsPlayingIn)
+      .get('/gatherings', this.getMyGatherings)
+  }
+  async getMyGatherings(req, res, next) {
+    try {
+      let accountId = req.userInfo.id
+      const gatherings = await gatheringsService.getMyGatherings(accountId)
+      res.send(gatherings)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getUserAccount(req, res, next) {

@@ -9,6 +9,7 @@ import { CommentSchema } from '../models/Comment';
 import { ChatSchema } from '../models/Chat';
 import { GroupMemberSchema } from '../models/GroupMember';
 import { GatheringGamesSchema } from '../models/GatheringGames';
+import { AccountGamesSchema } from '../models/AccountGames';
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
@@ -21,6 +22,7 @@ class DbContext {
   Chat = mongoose.model('Chat', ChatSchema)
   GroupMember = mongoose.model('GroupMember', GroupMemberSchema)
   GatheringGames = mongoose.model('GatheringGames', GatheringGamesSchema)
+  AccountGames = mongoose.model('AccountGames', AccountGamesSchema)
 }
 
 export const dbContext = new DbContext()

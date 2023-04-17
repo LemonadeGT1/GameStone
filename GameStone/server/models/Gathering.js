@@ -7,7 +7,7 @@ export const GatheringSchema = new Schema({
     coverImg: { type: String, required: true, maxLength: 1000, default: "https://mykindofmeeple.com/wp-content/uploads/2019/03/board-game-pieces-1602-27042020.jpg.webp" },
     location: { type: String, required: true, maxLength: 200, default: "tbd" },
     capacity: { type: Number, required: true, min: 2, max: 500, },
-    date: { type: Date },
+    date: { type: Date, required: true, default: new Date },
     isPublic: { type: Boolean, default: true },
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
     isCanceled: { type: Boolean, default: false },

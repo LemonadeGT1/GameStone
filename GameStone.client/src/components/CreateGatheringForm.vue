@@ -30,7 +30,7 @@
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
         </div>
-        <button type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick" data-bs-dismiss="modal"></i></button>
+        <button data-bs-dismiss="modal" type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick"></i></button>
     </form>
 </template>
 

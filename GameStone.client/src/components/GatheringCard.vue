@@ -12,12 +12,12 @@
         </div> -->
 
         <div class="row row my-3 bg-grey rounded selectable elevation-3 justify-content-start">
-            <div class="col-md-4 ps-0">
+            <div class="col-md-3 px-0">
                 <img class="elevation-4 img-fluid gathering-img rounded-start" :src="gathering.coverImg"
                     :alt="gathering.name">
             </div>
 
-            <div class="col-md-7 pt-2">
+            <div class="col-md-8 pt-2">
                 <h6>{{ gathering.name }}</h6>
                 <p>{{ gathering.description }}</p>
                 <p>{{ gathering.date }}</p>

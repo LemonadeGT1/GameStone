@@ -18,15 +18,15 @@ class AccountGamesService {
         return games
     }
 
-    async deleteAccountGame(accountGameId) {
+    async deleteAccountGame(accountGameId, userId) {
         let accountGame = await dbContext.AccountGames.findById(accountGameId)
         if (accountGame == null) {
             throw new BadRequest("This game does not exist.")
         }
 
-        // if (!accountGame.accountId) {
-        //     throw new Forbidden("You are not allowed to delete this.")
-        // }
+        if (accountGame.accountId != userId) {
+            throw new Forbidden("You are not allowed to delete this.")
+        }
         await accountGame.remove()
     }
 }

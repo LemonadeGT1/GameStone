@@ -7,15 +7,17 @@ class GroupMemberService {
 
     async createMember(memberData) {
         const member = await dbContext.GroupMember.create(memberData)
-        // if (member.id) {
-        //     throw new BadRequest("You can't take up another spot.")
-        // }
+        if (member.isRestricted == true) {
+            throw new BadRequest("You can't take up another spot.")
+        }
         const group = await groupsService.getGroupById(memberData.groupId)
         if (group.isPublic == false) {
             throw new Forbidden("This is a private group.")
         }
         await member.populate("profile", "name picture")
         await member.populate("group")
+        member.isRestricted = true
+        await member.save()
         return member
     }
 
@@ -51,7 +53,10 @@ class GroupMemberService {
         if (groupMember.profileId != userId) {
             throw new Forbidden("You are not allowed to delete this.")
         }
-        groupMember.isRestricted == true
+        if (groupMember.isRestricted == true) {
+            throw new BadRequest("You cannot access this group.")
+        }
+        groupMember.isRestricted = true
         await groupMember.save()
         return groupMember
     }

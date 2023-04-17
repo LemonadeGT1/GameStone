@@ -52,7 +52,8 @@ export class GroupsController extends BaseController {
         try {
             const groupEdit = req.body
             const groupId = req.params.id
-            const editedGroup = await groupsService.editGroup(groupEdit, groupId)
+            const userId = req.userInfo.id
+            const editedGroup = await groupsService.editGroup(groupEdit, groupId, userId)
             res.send(editedGroup)
         } catch (error) {
             next(error)

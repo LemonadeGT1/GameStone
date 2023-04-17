@@ -14,15 +14,17 @@
     </section>
     <!-- SECTION GROUPS -->
     <section class="row justify-content-center p-2 my-3">
-      <div class="col-7 card elevation-5">
+      <div class="col-7 card elevation-5 d-flex flex-column justify-content-between py-2">
         <div>
-          <h3>Find a Group</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti veritatis voluptatem illum
-            inventore rerum. Unde omnis quasi doloremque, veritatis tempora qui maiores quibusdam ratione officia enim
-            aperiam ad laboriosam?</p>
+          <h3 class="pb-2">Find a Group</h3>
+          <p>Wanting to find a people to start playing with? Search through our 100's of local playgroups that are open to
+            new players! Make new friends and find new games. Imagine what new adventures are awaiting you! Hit the link
+            below to start your journey and find a group.</p>
         </div>
         <div>
-          <button class="btn">Go to Group Page...</button>
+          <router-link :to="{ name: 'Groups' }">
+            <p>Go to Group Page...</p>
+          </router-link>
         </div>
       </div>
       <div class="col-4 d-flex justify-content-center">
@@ -38,14 +40,26 @@
           src="https://images.unsplash.com/photo-1677188010559-0667a1ed33a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1113&q=80"
           alt="gathering-img">
       </div>
-      <div class="col-7 card rounded elevation-5 ">
-        <h3>Join a Gathering</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quo quae laboriosam architecto. Necessitatibus
-          sapiente accusantium dolor dolorem nulla laudantium, reiciendis deserunt, ipsa molestiae odit laborum laboriosam
-          corporis harum repellat?</p>
+      <div class="col-7 card rounded elevation-5 d-flex flex-column justify-content-between py-2">
+        <div>
+          <h3 class="pb-2">Join a Gathering</h3>
+          <p>Looking for a specific game to play? Bored of your old games and want to try some new one? Hit the link below
+            and search through our local gatherings of people playing game! Meet some new friends and start up your own
+            group, the opportunities are endless!</p>
+        </div>
+        <div>
+          <router-link :to="{ name: 'Gatherings' }">
+            <p>Go to Gatherings Page...</p>
+          </router-link>
+        </div>
+
       </div>
+
     </section>
   </div>
+  <footer class="container-fluid mt-3">
+    <p class="text-white">Made with 😭 by The DC Room</p>
+  </footer>
 </template>
 
 <script>
@@ -112,4 +126,12 @@ export default {
 .card {
   background-color: rgb(247 244 241) !important;
 }
+
+footer {
+  background-color: #0e0d0d;
+}
+
+// .text-white {
+
+// }
 </style>

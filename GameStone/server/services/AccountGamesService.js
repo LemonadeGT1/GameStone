@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext"
-import { BadRequest } from "../utils/Errors"
+import { BadRequest, Forbidden } from "../utils/Errors"
 
 
 class AccountGamesService {
@@ -23,6 +23,10 @@ class AccountGamesService {
         if (accountGame == null) {
             throw new BadRequest("This game does not exist.")
         }
+
+        // if (!accountGame.accountId) {
+        //     throw new Forbidden("You are not allowed to delete this.")
+        // }
         await accountGame.remove()
     }
 }

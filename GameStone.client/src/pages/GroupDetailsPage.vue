@@ -21,8 +21,9 @@
                 <button class="btn btn-info border rounded-pill mx-3">View our games</button>
                 <button @click="becomeMember()" class="btn btn-info border rounded-pill mx-3">Join Us!</button>
             </div>
-            <div class="col-10 m-3 d-flex" v-for="gm in groupMembers" :key="gm.id">
-                <img :src="gm.profile?.picture" class="profilePic" :title="gm.profile?.name">
+            <div class="col-10 m-3">
+                <img :src="gm.profile?.picture" class="profilePic" :title="gm.profile?.name" v-for="gm in groupMembers"
+                    :key="gm.id">
             </div>
         </section>
         <section class="row justify-content-center">

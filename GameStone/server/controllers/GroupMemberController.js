@@ -15,7 +15,7 @@ export class GroupMemberController extends BaseController {
     async createMember(req, res, next) {
         try {
             let memberData = req.body
-            memberData.accountId = req.userInfo.id
+            memberData.profileId = req.userInfo.id
             let member = await groupMemberService.createMember(memberData)
             res.send(member)
         } catch (error) {

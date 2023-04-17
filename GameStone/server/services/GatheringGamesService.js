@@ -12,6 +12,7 @@ class GatheringGamesService {
     async addGame(gameData) {
         const game = await dbContext.GatheringGames.create(gameData)
         await game.populate("gathering")
+        await game.populate("game")
         return game
     }
 

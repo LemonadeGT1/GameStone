@@ -14,3 +14,10 @@ GatheringGamesSchema.virtual("gathering", {
     justOne: true,
     ref: "Gathering"
 })
+
+GatheringGamesSchema.virtual("game", {
+    localField: "gameId", 
+    foreignField: "_id",
+    justOne: true,
+    ref: "Game"
+})

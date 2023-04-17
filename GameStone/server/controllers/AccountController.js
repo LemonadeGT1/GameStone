@@ -15,6 +15,7 @@ export class AccountController extends BaseController {
       .get('/groupMembers', this.getMyGroups)
       .get('/players', this.getGatheringsPlayingIn)
       .get('/gatherings', this.getMyGatherings)
+      .delete ("/accountGames/:id", this.deleteAccountGame)
   }
   async getMyGatherings(req, res, next) {
     try {
@@ -24,7 +25,6 @@ export class AccountController extends BaseController {
     } catch (error) {
       next(error)
     }
-      .delete ("/accountGames/:id", this.deleteAccountGame)
   }
 
   async getUserAccount(req, res, next) {

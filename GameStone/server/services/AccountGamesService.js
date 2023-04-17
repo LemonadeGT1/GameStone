@@ -6,6 +6,9 @@ class AccountGamesService {
 
     async addAccountGame(gameData) {
         const game = await dbContext.AccountGames.create(gameData)
+        if (game[0]) {
+            throw new BadRequest("Game is already in your Account.")
+        }
         await game.populate("account", "name picture")
         return game
     }

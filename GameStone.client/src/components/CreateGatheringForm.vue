@@ -2,31 +2,31 @@
     <form @submit.prevent="handleSubmit()">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input v-model="editable.name" type="text" required class="form-control" id="name">
+            <input placeholder="New Gathering" v-model="editable.name" type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
-            <input v-model="editable.location" type="text" required class="form-control" id="location">
+            <input v-model="editable.location" type="text" class="form-control" id="location">
         </div>
         <div class="mb-3">
             <label for="capacity" class="form-label">Capacity</label>
-            <input v-model="editable.capacity" type="number" min="2" required class="form-control" id="capacity">
+            <input v-model="editable.capacity" type="number" min="2" class="form-control" id="capacity">
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input v-model="editable.description" type="text" required class="form-control" id="description">
+            <input v-model="editable.description" type="text" class="form-control" id="description">
         </div>
         <div class="mb-3">
             <label for="coverImg" class="form-label">Image</label>
-            <input v-model="editable.coverImg" type="url" required class="form-control" id="coverImg">
+            <input v-model="editable.coverImg" type="url" class="form-control" id="coverImg">
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Date</label>
             <input v-model="editable.date" type="date" required class="form-control" id="date">
         </div>
         <div class="mb-3">
-            <input type="radio" class="form-check-input " id="isPublic" name="isPublic" value="option1"
+            <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value="option1"
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
         </div>

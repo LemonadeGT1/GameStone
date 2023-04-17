@@ -21,25 +21,25 @@ class GroupMemberService {
 
     async getMyGroups(groupId) {
         let groups = await dbContext.Groups.find({ groupId })
-        .populate({
-            path: "group",
-            populate: {
-                path: "profile",
-                select: "name picture"
-            }
-        })
+            .populate({
+                path: "group",
+                populate: {
+                    path: "profile",
+                    select: "name picture"
+                }
+            })
         return groups
     }
 
     async getGroupMembers(groupId) {
         let members = await dbContext.GroupMember.find({ groupId })
-        .populate('profile', 'name picture')
+            .populate('profile', 'name picture')
         return members
     }
 
     async getGroupMemberById(groupMemberId) {
         const groupMember = await dbContext.GroupMember.findById(groupMemberId)
-        .populate("profile", "name picture")
+            .populate("profile", "name picture")
         if (groupMember == null) {
             throw new BadRequest("ERROR ERROR")
         }
@@ -51,7 +51,12 @@ class GroupMemberService {
         if (groupMember.profileId != userId) {
             throw new Forbidden("You are not allowed to delete this.")
         }
-        groupMember.isRestricted == true
+        if (groupMember == null) {
+            throw new BadRequest('That member is not found.')
+        }
+        await groupMember.remove()
+
+        // groupMember.isRestricted == true
         await groupMember.save()
         return groupMember
     }

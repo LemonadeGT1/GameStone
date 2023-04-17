@@ -5,9 +5,11 @@
             <div class="col-md-9">
                 <section class="row my-3 justify-content-between bg-secondary rounded">
                     <div class="col-md-8 p-4 px-5">
-                        <div class="py-2">
+                        <div class="py-2" style="position:absolute">
                             <h1>{{ group?.name }}</h1>
                             <h3>{{ group?.description }}</h3>
+                            <img :src="group?.creator.picture" class="profilePic" :title="group?.creator.name"
+                                style="position:relative; bottom: 0px; left: 0px;">
                         </div>
                     </div>
                     <div class="col-md-3 p-0">
@@ -21,7 +23,10 @@
         <section class="row justify-content-end m-3">
             <div class="col-md-4">
                 <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
-                <button @click="becomeMember()" class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
+                <button v-if="!isMember" @click="becomeMember()"
+                    class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
+                <button v-else="isMember" @click="leaveGroup()"
+                    class="btn btn-danger border selectable rounded-pill mx-3">Leave Us!</button>
             </div>
         </section>
         <!-- SECTION - Profile Images -->
@@ -74,15 +79,25 @@ export default {
 
             group: computed(() => AppState.activeGroup),
             groupMembers: computed(() => AppState.groupMembers),
+            isMember: computed(() => AppState.groupMembers.find(a => a.accountId == AppState.account.id)),
 
             async becomeMember() {
                 try {
-                    debugger
                     let groupId = route.params.groupId
                     await groupsService.becomeMember({ groupId })
                 } catch (error) {
                     logger.log(error.message)
                     Pop.error(error.message)
+                }
+            },
+
+            async leaveGroup() {
+                try {
+                    logger.log('Leaving Group')
+                    let groupId = route.params.groupId
+                    await groupsService.leaveGroup(groupId)
+                } catch (error) {
+
                 }
             },
 

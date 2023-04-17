@@ -33,6 +33,14 @@ class GroupsService {
         logger.log(AppState.groupMembers, 'group members')
     }
 
+    async leaveGroup(groupId) {
+        const res = await api.delete(`api/groupMembers/${groupId}`)
+        logger.log(res.data)
+        // TODO - find index of member to slice
+        AppState.groupMembers.push(new GroupMember(res.data))
+        logger.log(AppState.groupMembers, 'group members')
+    }
+
 }
 
 export const groupsService = new GroupsService()

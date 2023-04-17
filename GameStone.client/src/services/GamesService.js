@@ -23,6 +23,24 @@ class GamesService {
         logger.log('appstate query', query)
     }
 
+    async filterByCategory(categoryQuery) {
+        const res = await atlasApi.get(`search?categories=${categoryQuery}`)
+        logger.log('[SEARCHED BY CATEGORY]', res.data)
+        AppState.categoryQuery = categoryQuery
+        AppState.games = res.data.games.map(g => new Game(g))
+        logger.log('appstate categoryQuery', categoryQuery)
+
+    }
+
+    async filterByMechanic(mechanicQuery) {
+        const res = await atlasApi.get(`search?mechanics=${mechanicQuery}`)
+        logger.log('[SEARCHED BY MECHANIC]', res.data)
+        AppState.mechanicQuery = mechanicQuery
+        AppState.games = res.data.games.map(g => new Game(g))
+        logger.log('appstate mechanicQuery', mechanicQuery)
+
+    }
+
     async getGameById(gameId) {
         const res = await atlasApi.get(`search?ids=${gameId}`)
         logger.log('res.data', res.data)

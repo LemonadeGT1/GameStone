@@ -31,7 +31,7 @@ class PlayersService {
         return "You quit this game"
     }
     async becomePlayer(playerData) {
-        const aPlayer = dbContext.Players.find(playerData)
+        const aPlayer = await dbContext.Players.find(playerData)
         if (aPlayer[0]) {
             throw new BadRequest("You can't take up more than one spot")
         }

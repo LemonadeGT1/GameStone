@@ -45,10 +45,13 @@ class GatheringsService {
 
     }
 
-    async editGathering(gatheringEdits, gatheringId) {
+    async editGathering(gatheringEdits, gatheringId, userId) {
         const originalGathering = await this.getGatheringById(gatheringId)
         if (originalGathering.isCanceled == true) {
             throw new BadRequest(`Gathering: ${originalGathering.name} is canceled and cannot be edited`)
+        }
+        if (originalGathering.creatorId != userId) {
+            throw new Forbidden("You are not allowed to edit this.")
         }
         originalGathering.name = gatheringEdits.name ? gatheringEdits.name : originalGathering.name
         originalGathering.description = gatheringEdits.description ? gatheringEdits.description : originalGathering.description

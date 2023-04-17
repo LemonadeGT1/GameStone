@@ -8,6 +8,9 @@
             <div class="col-12">
                 <GameSearchBar/>
             </div>
+            <div class="col-12">
+                <GameFilterBar/>
+            </div>
             <div class="col-6 p-3">
                 <button @click="changePage(-20)" class="btn btn-info border rounded-pill">Previous Page</button>
                 <button @click="changePage(20)" class="btn btn-info border rounded-pill mx-2">Next Page</button>

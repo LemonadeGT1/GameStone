@@ -21,7 +21,7 @@
     <section class="row justify-content-center container-fluid">
         <div class="col-12">
             <div class="row justify-content-center">
-                <div v-for="g in gatherings" :key="g.id" class="col-md-4 gathering-card  my-3 mx-4 py-2">
+                <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
                     <GatheringCard :gathering="g" />
                 </div>
                 <div class="col-5 mx-4"></div>

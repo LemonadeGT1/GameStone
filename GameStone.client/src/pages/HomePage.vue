@@ -4,7 +4,7 @@
     <section class="row justify-content-center">
       <div class="col-12 p-0">
         <img class="img-fluid position-relative hero-img"
-          src="https://images.unsplash.com/photo-1615806647582-53fea422c9b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
+          src="https://images.pexels.com/photos/5691866/pexels-photo-5691866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="hero-img">
       </div>
       <div class="col-10 position-absolute mt-5 image-text">
@@ -57,7 +57,7 @@
 
     </section>
   </div>
-  <footer class="container-fluid mt-3">
+  <footer class="container-fluid mt-3 pt-2">
     <p class="text-white">Made with 😭 by The DC Room</p>
   </footer>
 </template>
@@ -130,8 +130,4 @@ export default {
 footer {
   background-color: #0e0d0d;
 }
-
-// .text-white {
-
-// }
 </style>

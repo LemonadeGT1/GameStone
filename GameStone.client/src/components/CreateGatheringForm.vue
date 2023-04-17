@@ -86,7 +86,7 @@ export default {
                     logger.log(gatheringData)
                     const gathering = await gatheringsService.createGathering(gatheringData)
                     logger.log(gathering)
-                    router.push({ name: 'GatheringDetails', params: { gatheringId: gathering.id } })
+                    await router.push({ name: 'GatheringDetails', params: { gatheringId: gathering.id } })
                 } catch (error) {
                     logger.log(error.message)
                     Pop.error(error.message)

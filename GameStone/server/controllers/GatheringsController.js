@@ -12,7 +12,7 @@ export class GatheringsController extends BaseController {
         this.router
             .get("", this.getAllGatherings)
             .get("/:id", this.getGatheringById)
-            .get("/:id/gatheringGames")
+            .get("/:id/gatheringGames", this.getGatheringGames)
             .get("/:id/chats", this.getGatheringChats)
             .get("/:id/players", this.getGatheringPlayers)
             .use(Auth0Provider.getAuthorizedUserInfo)

@@ -7,9 +7,20 @@ export class GatheringGamesController extends BaseController {
     constructor() {
         super('api/gatheringGames')
         this.router
-        .get("/:id", this.getAGame)
-        .use(Auth0Provider.getAuthorizedUserInfo)
-        .post("", this.addGame)
+            .get("/:id", this.getAGame)
+            .use(Auth0Provider.getAuthorizedUserInfo)
+            .post("", this.addGame)
+            .delete("/:id", this.deleteGatheringGame)
+    }
+
+    async deleteGatheringGame(req, res, next) {
+        try {
+            let gatheringGameId = req.params.id
+            let message = gatheringGamesService.deleteGatheringGame(gatheringGameId)
+            res.send(message)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async addGame(req, res, next) {

@@ -7,15 +7,15 @@ export class GroupMemberController extends BaseController {
     constructor() {
         super('api/groupMembers')
         this.router
-        .use(Auth0Provider.getAuthorizedUserInfo)
-        .post('', this.createMember)
-        .delete('/:id', this.deleteMember)
+            .use(Auth0Provider.getAuthorizedUserInfo)
+            .post('', this.createMember)
+            .delete('/:id', this.deleteMember)
     }
 
     async createMember(req, res, next) {
         try {
             let memberData = req.body
-            memberData.profileId = req.userInfo.id
+            memberData.accountId = req.userInfo.id
             let member = await groupMemberService.createMember(memberData)
             res.send(member)
         } catch (error) {

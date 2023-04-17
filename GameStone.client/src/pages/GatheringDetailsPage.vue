@@ -10,7 +10,7 @@
                     <h5>{{ gathering?.description }}</h5>
                     <p>Capacity: {{ gathering?.capacity }}</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-end">
                     <img class="img-fluid gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
                 </div>
             </section>

@@ -29,6 +29,7 @@ class CommentsService {
         }
         const groupId = comment.groupId
         await comment.remove()
+        return "Comment has been deleted."
     }
 }
 

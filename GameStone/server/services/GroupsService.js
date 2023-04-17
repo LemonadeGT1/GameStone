@@ -25,10 +25,13 @@ class GroupsService {
         return group
     }
 
-    async editGroup(groupEdit, groupId) {
+    async editGroup(groupEdit, groupId, userId) {
         const originalGroup = await this.getGroupById(groupId)
         if (originalGroup.isPublic == false) {
             throw new Forbidden(`${originalGroup.name} is a private group.`)
+        }
+        if (userId != originalGroup.creatorId) {
+            throw new Forbidden("You cannot edit this.")
         }
         originalGroup.name = groupEdit.name ? groupEdit.name : originalGroup.name
         originalGroup.description = groupEdit.description ? groupEdit.description : originalGroup.description

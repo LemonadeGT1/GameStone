@@ -69,7 +69,8 @@ export class AccountController extends BaseController {
   async deleteAccountGame(req, res, next) {
     try {
       let accountGameId = req.params.id
-      let message = accountGamesService.deleteAccountGame(accountGameId)
+      let userId = req.userInfo.id
+      let message = accountGamesService.deleteAccountGame(accountGameId, userId)
       res.send(message)
     } catch (error) {
       next(error)

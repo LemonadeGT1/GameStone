@@ -7,9 +7,9 @@ class GroupMemberService {
 
     async createMember(memberData) {
         const member = await dbContext.GroupMember.create(memberData)
-        if (member[0]) {
-            throw new BadRequest("You can't take up another spot.")
-        }
+        // if (member.id) {
+        //     throw new BadRequest("You can't take up another spot.")
+        // }
         const group = await groupsService.getGroupById(memberData.groupId)
         if (group.isPublic == false) {
             throw new Forbidden("This is a private group.")

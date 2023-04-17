@@ -10,7 +10,7 @@
         </div>
         <div class="mb-3">
             <label for="capacity" class="form-label">Capacity</label>
-            <input v-model="editable.capacity" type="number" min="2" class="form-control" id="capacity">
+            <input v-model="editable.capacity" type="number" required min="2" class="form-control" id="capacity">
         </div>
 
         <div class="mb-3">
@@ -26,7 +26,7 @@
             <input v-model="editable.date" type="date" required class="form-control" id="date">
         </div>
         <div class="mb-3">
-            <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value="option1"
+            <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
         </div>
@@ -77,7 +77,9 @@ export default {
             async createGathering() {
                 try {
                     const gatheringData = editable.value
+                    logger.log(gatheringData)
                     const gathering = await gatheringsService.createGathering(gatheringData)
+                    logger.log(gathering)
                     router.push({ name: 'GatheringDetails', params: { gatheringId: gathering.id } })
                 } catch (error) {
                     logger.log(error.message)

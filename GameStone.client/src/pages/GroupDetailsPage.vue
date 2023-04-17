@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid">
+        <!-- SECTION - Banner / Group Image -->
         <section class="row justify-content-center my-4">
             <div class="col-md-9">
                 <section class="row my-3 justify-content-between bg-secondary rounded">
@@ -16,16 +17,21 @@
                 </section>
             </div>
         </section>
+        <!-- SECTION - Buttons -->
         <section class="row justify-content-end m-3">
             <div class="col-md-4">
                 <button class="btn btn-info border rounded-pill mx-3">View our games</button>
                 <button @click="becomeMember()" class="btn btn-info border rounded-pill mx-3">Join Us!</button>
             </div>
-            <div class="col-10 m-3">
-                <img :src="gm.profile?.picture" class="profilePic" :title="gm.profile?.name" v-for="gm in groupMembers"
-                    :key="gm.id">
+        </section>
+        <!-- SECTION - Profile Images -->
+        <section class="row justify-content-center">
+            <div class="col-9 m-3">
+                <img :src="gm.profile?.picture" class="profilePic" :title="gm.profile?.name + ': ' + gm.profile?.id"
+                    v-for="gm in groupMembers" :key="gm.id">
             </div>
         </section>
+        <!-- SECTION - Chat -->
         <section class="row justify-content-center">
             <div class="col-10">
                 <div class="d-flex justify-content-center">

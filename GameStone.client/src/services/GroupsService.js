@@ -21,6 +21,11 @@ class GroupsService {
         logger.log(AppState.activeGroup, 'appstate active group')
     }
 
+    async getMembersByGroupId(groupId) {
+        const res = await api.get(`api/groups/${groupId}/groupMembers`)
+        AppState.groupMembers = res.data
+    }
+
     async becomeMember(groupId) {
         const res = await api.post('api/groupMembers', groupId)
         logger.log(res.data)

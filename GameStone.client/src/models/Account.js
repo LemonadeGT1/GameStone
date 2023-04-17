@@ -3,6 +3,7 @@ export class Profile {
     this.id = data.id
     this.name = data.name
     this.picture = data.picture
+    this.coverImg = data.coverImg ? data.coverImg : "https://www.colorhexa.com/008291.png"
     // TODO add additional properties if needed
   }
 }
@@ -10,6 +11,6 @@ export class Profile {
 export class Account extends Profile {
   constructor(data) {
     super(data)
-        this.email = data.email
+    this.email = data.email
   }
 }

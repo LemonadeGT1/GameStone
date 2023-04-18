@@ -2,7 +2,8 @@
     <div class="container-fluid px-0">
         <section class="d-flex justify-content-start banner-size">
             <img class="hero-img mx-0 elevation-3" :src="account.coverImg" :alt="account.name">
-            <img class="img-relative profile-picture img-fluid selectable" :src="account.picture" :alt="account.name.id">
+            <img class="img-relative profile-picture img-fluid selectable" :src="account.picture"
+                :alt="account.name + account.id">
         </section>
     </div>
     <div class="container-fluid test-trans">

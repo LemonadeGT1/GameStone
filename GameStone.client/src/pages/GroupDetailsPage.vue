@@ -8,13 +8,14 @@
                         <div class="py-2" style="position:absolute">
                             <h1>{{ group?.name }}</h1>
                             <h3>{{ group?.description }}</h3>
-                            <img :src="group?.creator.picture" class="profilePic" :title="group?.creator.name"
-                                style="position:relative; bottom: 0px; left: 0px;">
+                            <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator.name"
+                                style="position:relative; bottom: 0px; left: 0px;" @click="gotoProfile(group?.creator.id)">
                         </div>
                     </div>
                     <div class="col-md-3 p-0">
                         <img class="group-img img-fluid rounded-end"
-                            src="https://th.bing.com/th/id/OIP.J4UNEFHLiHXZikZ3ngJ5MwHaHa?pid=ImgDet&rs=1" alt="">
+                            src="https://th.bing.com/th/id/OIP.J4UNEFHLiHXZikZ3ngJ5MwHaHa?pid=ImgDet&rs=1"
+                            alt="Group Image">
                     </div>
                 </section>
             </div>
@@ -44,6 +45,11 @@
                     <button class="btn btn-info border selectable rounded-pill mx-3">Submit</button>
                 </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="col-10" v-for="gc in activeGroupComments" :key="gc?.id">
+                    <img :src="gc.creator.picture" class="profilePic pe-1" :title="gc?.creator.name">{{ gc.body }}
+                </div>
+            </div>
         </section>
     </div>
 </template>
@@ -67,7 +73,7 @@ export default {
                 let groupId = route.params.groupId
                 await groupsService.getGroupById(groupId)
                 await groupsService.getMembersByGroupId(groupId)
-                logger.log('Group Members', AppState.groupMembers)
+                await groupsService.getCommentsByGroupId(groupId)
             } catch (error) {
                 logger.log(error.message)
                 Pop.error(error.message)
@@ -81,10 +87,9 @@ export default {
             groupMembers: computed(() => AppState.groupMembers),
             isMember: computed(() => {
                 const res = AppState.groupMembers.find(a => a.profileId == AppState.account.id)
-                logger.log('computed res', res)
-                logger.log('AppState.account.id computed', AppState.account.id)
                 return res
             }),
+            activeGroupComments: computed(() => AppState.activeGroupComments),
 
             async becomeMember() {
                 try {
@@ -99,12 +104,7 @@ export default {
             async leaveGroup() {
                 try {
                     const groupId = route.params.groupId
-                    // find group member id
-                    // appstate.groupmembers profileID = account.id
                     const groupMember = AppState.groupMembers.find(gm => gm.profileId == AppState.account.id)
-                    logger.log('AppState.account.id leaveGroup', AppState.account.id)
-                    logger.log('groupMember', groupMember)
-                    logger.log('Leaving Group groupId', groupId)
                     await groupsService.leaveGroup(groupMember.id)
                 } catch (error) {
 

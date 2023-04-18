@@ -21,9 +21,7 @@ class GroupsService {
 
     async getGroupById(groupId) {
         const res = await api.get(`api/groups/${groupId}`)
-        // logger.log(res.data)
         AppState.activeGroup = new Group(res.data)
-        logger.log(AppState.activeGroup, 'appstate active group')
     }
 
     async getMembersByGroupId(groupId) {
@@ -33,18 +31,20 @@ class GroupsService {
 
     async becomeMember(groupId) {
         const res = await api.post('api/groupMembers', groupId)
-        logger.log(res.data)
         AppState.groupMembers.push(res.data)
-        logger.log(AppState.groupMembers, 'group members')
     }
 
-    async leaveGroup(groupId) {
-        logger.log('leaveGroup in Service', groupId)
-        const res = await api.delete(`api/groupMembers/${groupId}`)
-        logger.log(res.data)
-        // TODO - find index of member to slice
-        AppState.groupMembers.push(new GroupMember(res.data))
-        logger.log(AppState.groupMembers, 'group members')
+    async leaveGroup(groupMemberId) {
+        const res = await api.delete(`api/groupMembers/${groupMemberId}`)
+        AppState.groupMembers = AppState.groupMembers.filter(gm => gm.id != groupMemberId)
+    }
+
+    async getCommentsByGroupId(groupId) {
+        logger.log('getting group comments', groupId)
+        const res = await api.get(`/api/groups/${groupId}/comments`)
+        logger.log('res.data', res.data)
+        AppState.activeGroupComments = res.data
+        logger.log('AppState.activeGroupComments', AppState.activeGroupComments)
     }
 
 }

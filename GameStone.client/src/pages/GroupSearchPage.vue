@@ -2,9 +2,8 @@
     <section class="row my-3 justify-content-center">
         <div class="col-md-5">
             <h1>Local Groups</h1>
-            <div class="d-flex">
-                <input class="rounded-pill px-3 border-dark" type="text">
-                <button class="btn btn-border"><i class="mdi mdi-magnify"></i></button>
+            <div>
+                <GroupSearchBar/>
             </div>
         </div>
         <div class="col-md-5 text-end">

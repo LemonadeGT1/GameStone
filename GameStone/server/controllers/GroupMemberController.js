@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController";
 import { groupMemberService } from "../services/GroupMembersService";
+import { logger } from "../utils/Logger.js";
 
 
 export class GroupMemberController extends BaseController {
@@ -25,6 +26,7 @@ export class GroupMemberController extends BaseController {
 
     async deleteMember(req, res, next) {
         try {
+            logger.log('deleteMember Controller', req)
             let userId = req.userInfo.id
             let groupMemberId = req.params.id
             let message = await groupMemberService.deleteGroupMember(groupMemberId, userId)

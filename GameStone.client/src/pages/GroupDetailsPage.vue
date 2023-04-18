@@ -79,7 +79,12 @@ export default {
 
             group: computed(() => AppState.activeGroup),
             groupMembers: computed(() => AppState.groupMembers),
-            isMember: computed(() => AppState.groupMembers.find(a => a.accountId == AppState.account.id)),
+            isMember: computed(() => {
+                const res = AppState.groupMembers.find(a => a.profileId == AppState.account.id)
+                logger.log('computed res', res)
+                logger.log('AppState.account.id computed', AppState.account.id)
+                return res
+            }),
 
             async becomeMember() {
                 try {
@@ -93,9 +98,14 @@ export default {
 
             async leaveGroup() {
                 try {
-                    logger.log('Leaving Group')
-                    let groupId = route.params.groupId
-                    await groupsService.leaveGroup(groupId)
+                    const groupId = route.params.groupId
+                    // find group member id
+                    // appstate.groupmembers profileID = account.id
+                    const groupMember = AppState.groupMembers.find(gm => gm.profileId == AppState.account.id)
+                    logger.log('AppState.account.id leaveGroup', AppState.account.id)
+                    logger.log('groupMember', groupMember)
+                    logger.log('Leaving Group groupId', groupId)
+                    await groupsService.leaveGroup(groupMember.id)
                 } catch (error) {
 
                 }

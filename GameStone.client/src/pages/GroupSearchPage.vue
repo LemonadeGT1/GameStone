@@ -8,7 +8,6 @@
         </div>
         <div class="col-md-5 text-end">
             <button class="btn btn-info border rounded-pill">Create A Group</button>
-            <p>filter bar</p>
         </div>
     </section>
     <section class="row justify-content-center">

@@ -82,7 +82,7 @@ export class AccountController extends BaseController {
     try {
       let accountGameId = req.params.id
       let userId = req.userInfo.id
-      let message = accountGamesService.deleteAccountGame(accountGameId, userId)
+      let message = await accountGamesService.deleteAccountGame(accountGameId, userId)
       res.send(message)
     } catch (error) {
       next(error)

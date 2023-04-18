@@ -51,7 +51,6 @@ import { gatheringsService } from '../services/GatheringsService';
 import { logger } from '../utils/Logger';
 import GatheringCard from '../components/GatheringCard.vue'
 import CreateGatheringForm from '../components/CreateGatheringForm.vue';
-import moment from 'moment'
 
 export default {
     setup() {

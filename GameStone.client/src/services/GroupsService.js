@@ -14,6 +14,11 @@ class GroupsService {
         logger.log(AppState.groups, 'appstate group')
     }
 
+    async searchGroups(query) {
+        const res = await api.get ('api/groups', { params: { query: query}})
+        logger.log('[Searching Groups]', res.data)
+    }
+
     async getGroupById(groupId) {
         const res = await api.get(`api/groups/${groupId}`)
         // logger.log(res.data)

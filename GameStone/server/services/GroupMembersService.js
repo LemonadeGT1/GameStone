@@ -7,14 +7,15 @@ import { groupsService } from "./GroupsService"
 class GroupMemberService {
 
     async createMember(memberData) {
-        const member = await dbContext.GroupMember.create(memberData)
-        if (member.isRestricted == true) {
-            throw new BadRequest("You can't take up another spot.")
+        const memberCheck = await dbContext.GroupMember.exists(memberData);
+        if (memberCheck) {
+            throw new BadRequest("You can't take another spot.")
         }
         const group = await groupsService.getGroupById(memberData.groupId)
         if (group.isPublic == false) {
             throw new Forbidden("This is a private group.")
         }
+        const member = await dbContext.GroupMember.create(memberData)
         await member.populate("profile", "name picture")
         await member.populate("group")
         member.isRestricted = true

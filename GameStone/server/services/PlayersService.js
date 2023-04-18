@@ -16,11 +16,11 @@ class PlayersService {
             throw new BadRequest("Player doesn't exist")
         }
 
-        await player.remove()
-
         if (userId != player.accountId) {
             throw new Forbidden("You can't make other people quit")
         }
+        await player.remove()
+
 
         let gathering = await gatheringsService.getGatheringById(player.gatheringId)
         if (gathering == null) {

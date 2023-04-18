@@ -14,7 +14,8 @@
                     </div>
                     <div class="col-md-3 p-0">
                         <img class="group-img img-fluid rounded-end"
-                            src="https://th.bing.com/th/id/OIP.J4UNEFHLiHXZikZ3ngJ5MwHaHa?pid=ImgDet&rs=1" alt="">
+                            src="https://th.bing.com/th/id/OIP.J4UNEFHLiHXZikZ3ngJ5MwHaHa?pid=ImgDet&rs=1"
+                            alt="Group Image">
                     </div>
                 </section>
             </div>
@@ -44,6 +45,11 @@
                     <button class="btn btn-info border selectable rounded-pill mx-3">Submit</button>
                 </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="col-10" v-for="gc in activeGroupComments" :key="gc?.id">
+                    <img :src="gc.creator.picture" class="profilePic pe-1" :title="gc?.creator.name">{{ gc.body }}
+                </div>
+            </div>
         </section>
     </div>
 </template>
@@ -67,6 +73,7 @@ export default {
                 let groupId = route.params.groupId
                 await groupsService.getGroupById(groupId)
                 await groupsService.getMembersByGroupId(groupId)
+                await groupsService.getCommentsByGroupId(groupId)
             } catch (error) {
                 logger.log(error.message)
                 Pop.error(error.message)
@@ -82,6 +89,7 @@ export default {
                 const res = AppState.groupMembers.find(a => a.profileId == AppState.account.id)
                 return res
             }),
+            activeGroupComments: computed(() => AppState.activeGroupComments),
 
             async becomeMember() {
                 try {

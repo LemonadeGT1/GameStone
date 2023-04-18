@@ -39,6 +39,14 @@ class GroupsService {
         AppState.groupMembers = AppState.groupMembers.filter(gm => gm.id != groupMemberId)
     }
 
+    async getCommentsByGroupId(groupId) {
+        logger.log('getting group comments', groupId)
+        const res = await api.get(`/api/groups/${groupId}/comments`)
+        logger.log('res.data', res.data)
+        AppState.activeGroupComments = res.data
+        logger.log('AppState.activeGroupComments', AppState.activeGroupComments)
+    }
+
 }
 
 export const groupsService = new GroupsService()

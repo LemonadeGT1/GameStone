@@ -16,7 +16,7 @@ class PlayersService {
 
     async getGatheringPlayers(gatheringId) {
         const res = await api.get(`api/gatherings/${gatheringId}/players`)
-        logger.log(res.data)
+        logger.log("GETTING PLAYER", res.data)
         AppState.players = res.data.map(p => new Player(p))
         logger.log(AppState.players, 'all players')
     }

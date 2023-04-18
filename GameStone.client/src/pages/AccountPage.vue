@@ -11,6 +11,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-8 p-3 bio-background">
+        <h3 class="pb-3">Name: {{ account.name }}</h3>
         <h6>Biography:</h6>
         <p>{{ account.bio }}</p>
       </div>
@@ -20,7 +21,6 @@
       <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGatherings()">My Gatherings</div>
       <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
       <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGroups()">My Groups</div>
-
     </section>
   </div>
 
@@ -45,6 +45,8 @@ import { gatheringsService } from '../services/GatheringsService.js'
 import { gamesService } from '../services/GamesService.js'
 import { groupsService } from '../services/GroupsService.js'
 import EditAccountForm from '../components/EditAccountForm.vue'
+import Pop from '../utils/Pop.js'
+import { logger } from '../utils/Logger.js'
 
 
 export default {
@@ -57,8 +59,8 @@ export default {
           await gamesService.getMyGames(profileId);
         }
         catch (error) {
-          logger.error(error.message);
-          Pop.error(error.message);
+          logger.log(error.message)
+          Pop.error(error.message)
         }
       },
       async getMyGatherings() {

@@ -20,7 +20,7 @@ class GamesService {
         AppState.categoryQuery = ''
         AppState.mechanicQuery = ''
         AppState.gameSkip = 0
-        this.getGames() 
+        this.getGames()
     }
 
     async searchGames(query) {
@@ -62,9 +62,9 @@ class GamesService {
         const mechanicQuery = AppState.mechanicQuery
         if (num > 0 && AppState.gameSkip <= 152947) {
             AppState.gameSkip += num
-        } else if (num <= 0) { 
+        } else if (num <= 0) {
             AppState.gameSkip += num
-            if (AppState.gameSkip < 0) AppState.gameSkip =0
+            if (AppState.gameSkip < 0) AppState.gameSkip = 0
         }
         // this.getGames()
         logger.log('appstate query', query)
@@ -72,6 +72,10 @@ class GamesService {
         logger.log('[GETTING SEARCH GAMES]', res.data)
         AppState.games = res.data.games.map(g => new Game(g))
         logger.log('Games from AppState', AppState.games)
+    }
+
+    async getMyGames(profileId) {
+
     }
 
 }

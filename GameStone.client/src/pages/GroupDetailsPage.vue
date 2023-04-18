@@ -124,7 +124,7 @@ export default {
 <style lang="scss" scoped>
 .profilePic {
     border-radius: 50%;
-    height: 7vh;
+    height: 6vh;
     width: auto;
 }
 </style>

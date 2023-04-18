@@ -5,8 +5,9 @@ import { logger } from "../utils/Logger.js"
 
 class GroupsService {
 
-    async getAllGroups() {
-        const groups = await dbContext.Groups.find()
+    async getAllGroups(query = '') {
+        const filter = new RegExp(query, 'ig')
+        const groups = await dbContext.Groups.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }]})
             .populate("creator", "name picture")
         return groups
     }

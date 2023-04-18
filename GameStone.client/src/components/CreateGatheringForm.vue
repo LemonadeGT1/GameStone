@@ -26,8 +26,13 @@
             <input required v-model="editable.date" type="datetime-local" class="form-control" id="date">
         </div>
         <div class="mb-3">
-            <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""
+            <input type="radio" class="form-check-input" id="isPublic" name="isPublic" value=false
                 v-model="editable.isPublic"> Private?
+            <label class="form-check-label" for="isPublic"></label>
+        </div>
+        <div class="mb-3">
+            <input type="radio" class="form-check-input" id="isPublic" name="isPublic" value="true"
+                v-model="editable.isPublic"> Public?
             <label class="form-check-label" for="isPublic"></label>
         </div>
         <button data-bs-dismiss="modal" type="submit" class="btn btn-success">Submit</button>
@@ -51,7 +56,6 @@ import { AppState } from '../AppState.js';
 export default {
     props: {
         gathering: {
-            type: Gathering,
             default: {}
         }
     },
@@ -91,6 +95,7 @@ export default {
                             delete gatheringData[key]
                         }
                     }
+                    logger.log(gatheringData, '[GATHERING DATA]')
                     const gathering = await gatheringsService.createGathering(gatheringData)
                     await router.push({ name: 'GatheringDetails', params: { gatheringId: gathering.id } })
                 } catch (error) {

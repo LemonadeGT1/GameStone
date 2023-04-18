@@ -5,10 +5,11 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 class AccountGamesService {
 
     async addAccountGame(gameData) {
-        const game = await dbContext.AccountGames.create(gameData)
-        if (game[0]) {
+        const gameCheck = await dbContext.AccountGames.exists(gameData)
+        if (gameCheck) {
             throw new BadRequest("Game is already in your Account.")
         }
+        const game = await dbContext.AccountGames.create(gameData)
         await game.populate("account", "name picture")
         return game
     }

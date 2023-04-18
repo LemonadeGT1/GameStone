@@ -9,18 +9,19 @@ export class GroupsController extends BaseController {
     constructor() {
         super('api/groups')
         this.router
-        .get("", this.getAllGroups)
-        .get("/:id", this.getGroupById)
-        .get("/:id/groupMembers", this.getGroupMembers)
-        .get("/:id/comments", this.getGroupComments)
-        .use(Auth0Provider.getAuthorizedUserInfo)
-        .put("/:id", this.editGroup)
-        .delete("/:id", this.deleteGroup)
-        .post("", this.createGroup)
+            .get("", this.getAllGroups)
+            .get("/:id", this.getGroupById)
+            .get("/:id/groupMembers", this.getGroupMembers)
+            .get("/:id/comments", this.getGroupComments)
+            .use(Auth0Provider.getAuthorizedUserInfo)
+            .put("/:id", this.editGroup)
+            .delete("/:id", this.deleteGroup)
+            .post("", this.createGroup)
     }
 
     async getAllGroups(req, res, next) {
         try {
+            // req.query.name = req.query.query
             let groups = await groupsService.getAllGroups()
             res.send(groups)
         } catch (error) {

@@ -38,6 +38,9 @@
 import { computed, ref, watchEffect } from 'vue';
 import { Account } from '../models/Account.js';
 import { AppState } from '../AppState.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { accountService } from '../services/AccountService.js';
 
 export default {
 
@@ -50,6 +53,18 @@ export default {
             editable,
             account: computed(() => AppState.account),
 
+
+
+            async editAccount() {
+                try {
+                    const accountData = editable.value
+                    // logger.log('checking the value', accountData)
+                    await accountService.editAccount(accountData)
+                } catch (error) {
+                    logger.log(error)
+                    Pop.error(error)
+                }
+            }
         };
     },
 };

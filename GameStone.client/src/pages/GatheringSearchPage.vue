@@ -12,7 +12,7 @@
                 <div class="row">
                     <GatheringSearchBar />
                     <div class="col-6">
-                        <h5>Ideal: Location Filtering</h5>
+                        <!-- <h5>Ideal: Location Filtering</h5> -->
                     </div>
                 </div>
             </div>

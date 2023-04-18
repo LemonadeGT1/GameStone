@@ -1,12 +1,13 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { logger } from "../utils/Logger.js"
 
 
 class GroupsService {
 
     async getAllGroups() {
         const groups = await dbContext.Groups.find()
-        .populate("creator", "name picture")
+            .populate("creator", "name picture")
         return groups
     }
 
@@ -18,7 +19,7 @@ class GroupsService {
 
     async getGroupById(groupId) {
         const group = await dbContext.Groups.findById(groupId)
-        .populate("creator", "name picture")
+            .populate("creator", "name picture")
         if (group == null) {
             throw new BadRequest('This Group does not exist.')
         }

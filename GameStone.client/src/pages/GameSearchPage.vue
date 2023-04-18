@@ -8,10 +8,13 @@
             <div class="col-12">
                 <GameSearchBar/>
             </div>
-            <div class="col-12">
+            <div class="col-12 p-2">
                 <GameFilterBar/>
             </div>
-            <div class="col-6 p-3">
+            <div class="col-12 p-2">
+                <button @click="clearAll()" class="btn btn-danger border rounded-pill"> Clear All</button>
+            </div>
+            <div class="col-12 p-2 text-center">
                 <button @click="changePage(-20)" class="btn btn-info border rounded-pill">Previous Page</button>
                 <button @click="changePage(20)" class="btn btn-info border rounded-pill mx-2">Next Page</button>
             </div>
@@ -59,6 +62,15 @@ export default {
 
         games: computed(() => AppState.games),
         gameSkip: computed(() => AppState.gameSkip),
+
+        async clearAll() {
+            try {
+                await gamesService.clearAll()
+            } catch (error) {
+                logger.error(error.message)
+                Pop.error(error.message)
+            }
+        },
 
         async changePage(num) {
             try {

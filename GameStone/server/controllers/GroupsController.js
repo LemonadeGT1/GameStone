@@ -21,8 +21,8 @@ export class GroupsController extends BaseController {
 
     async getAllGroups(req, res, next) {
         try {
-            // req.query.name = req.query.query
-            let groups = await groupsService.getAllGroups()
+            let query = req.query.query
+            let groups = await groupsService.getAllGroups(query)
             res.send(groups)
         } catch (error) {
             next(error)

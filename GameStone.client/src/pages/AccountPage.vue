@@ -107,12 +107,12 @@ export default {
 .img-relative {
   position: relative;
   bottom: -267px;
-  left: 111px;
+  left: 100px;
 }
 
 .profile-picture {
-  height: 20vh;
-  width: auto;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   border-style: solid;
   border-color: #0e0d0d;

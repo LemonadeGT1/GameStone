@@ -25,7 +25,7 @@ export class PlayersController extends BaseController {
     async becomePlayer(req, res, next) {
         try {
             let playerData = req.body
-            playerData.accountId = req.userInfo.id
+            playerData.profileId = req.userInfo.id
             let player = await playersService.becomePlayer(playerData)
             res.send(player)
         } catch (error) {

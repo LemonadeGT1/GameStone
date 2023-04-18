@@ -5,12 +5,12 @@ import { playersService } from "./PlayersService.js"
 
 
 class GatheringsService {
-    async getMyGatherings(accountId) {
-        let gatherings = await dbContext.Gatherings.find({ creatorId: accountId })
+    async getMyGatherings(profileId) {
+        let gatherings = await dbContext.Gatherings.find({ creatorId: profileId })
         return gatherings
     }
-    async getGatheringsPlayingIn(accountId) {
-        let gatherings = await dbContext.Players.find({ accountId })
+    async getGatheringsPlayingIn(profileId) {
+        let gatherings = await dbContext.Players.find({ profileId })
             .populate({
                 path: "gathering",
                 populate: {
@@ -26,7 +26,7 @@ class GatheringsService {
     // $xor, if both match then dont bring back, cool note XD
     async getAllGatherings(query = '') {
         const filter = new RegExp(query, 'ig')
-        const gatherings = await dbContext.Gatherings.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }], date: { $gte: Date.now() }, isCanceled: false })
+        const gatherings = await dbContext.Gatherings.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }], date: { $gte: Date.now() }, isCanceled: false, isPublic: true })
 
 
             // const gatherings = await dbContext.Gatherings.find({ name: { $regex: `${query}` } })

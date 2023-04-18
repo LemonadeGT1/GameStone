@@ -58,7 +58,7 @@ export default {
             async editAccount() {
                 try {
                     const accountData = editable.value
-                    // logger.log('checking the value', accountData)
+                    logger.log('checking the value', accountData)
                     await accountService.editAccount(accountData)
                 } catch (error) {
                     logger.log(error)

@@ -27,7 +27,7 @@ class GatheringGamesService {
             throw new BadRequest("game is already added")
         }
 
-        // const foundGame = await dbContext.GatheringGames.find({ gameId: gameData.gameId, gatheringId: gameData.gatheringId })
+        const foundGame = await dbContext.GatheringGames.find({ gameId: gameData.gameId, gatheringId: gameData.gatheringId })
 
         const gathering = await gatheringsService.getGatheringById(gameData.gatheringId)
 

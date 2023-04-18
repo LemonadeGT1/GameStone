@@ -6,12 +6,13 @@
                     <h1>{{ gathering?.name }}</h1>
                     <h1 v-if="gathering?.isCanceled" class="cancel-color">Cancelled</h1>
                     <h2>Host: {{ gathering?.creator.name }}</h2>
-                    <h2>{{ gathering?.date }}</h2>
+                    <h4>{{ gathering?.date }}</h4>
+                    <h4>{{ gathering?.time }}</h4>
                     <h5>{{ gathering?.description }}</h5>
                     <p>Capacity: {{ gathering?.capacity }}</p>
                 </div>
                 <div class="col-md-4 text-end">
-                    <img class="img-fluid gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
+                    <img class="gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
                 </div>
             </section>
 
@@ -133,8 +134,8 @@ export default {
 
 <style lang="scss" scoped>
 .gathering-img {
-    height: 28vh;
-    width: 40vh;
+    height: 40vh;
+    width: 100%;
     object-fit: cover;
     object-position: center;
 }

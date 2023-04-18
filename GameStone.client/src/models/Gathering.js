@@ -14,5 +14,6 @@ export class Gathering {
         this.isCanceled = data.isCanceled
         this.type = data.type
         this.date = new Date(data.date).toLocaleDateString()
+        this.time = new Date(data.date).toLocaleTimeString()
     }
 }

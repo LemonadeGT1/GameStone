@@ -11,6 +11,7 @@
             <div class="col-md-3">
             </div>
             <div class="col-md-8 p-3 bio-background">
+                <h3 class="pb-3">Name: {{ profile?.name }}</h3>
                 <h6>Biography:</h6>
                 <p>{{ profile?.bio }}</p>
             </div>

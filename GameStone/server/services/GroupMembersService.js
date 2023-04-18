@@ -41,22 +41,22 @@ class GroupMemberService {
         return members
     }
 
-    async getGroupMemberById(groupMemberId) {
-        const groupMember = await dbContext.GroupMember.findById(groupMemberId)
-            .populate("profile", "name picture")
-        if (groupMember == null) {
-            throw new BadRequest("ERROR ERROR")
-        }
-        return groupMember
-    }
+    // async getGroupMemberById(groupMemberId) {
+    //     const groupMember = await dbContext.GroupMember.findById(groupMemberId)
+    //         .populate("profile", "name picture")
+    //     if (groupMember == null) {
+    //         throw new BadRequest("ERROR ERROR")
+    //     }
+    //     return groupMember
+    // }
 
     async deleteGroupMember(groupMemberId, userId) {
-        let groupMember = await this.getGroupMemberById(groupMemberId)
-        if (groupMember.profileId != userId) {
-            throw new Forbidden("You are not allowed to delete this.")
-        }
+        let groupMember = await dbContext.GroupMember.findById(groupMemberId)
         if (groupMember == null) {
             throw new BadRequest('That member is not found.')
+        }
+        if (groupMember.profileId != userId) {
+            throw new Forbidden("You are not allowed to delete this.")
         }
         
         // if (groupMember.isRestricted == true) {

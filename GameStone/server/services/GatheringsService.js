@@ -26,7 +26,7 @@ class GatheringsService {
     // $xor, if both match then dont bring back, cool note XD
     async getAllGatherings(query = '') {
         const filter = new RegExp(query, 'ig')
-        const gatherings = await dbContext.Gatherings.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }] })
+        const gatherings = await dbContext.Gatherings.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }], date: { $gte: Date.now() }, isCanceled: false })
 
 
             // const gatherings = await dbContext.Gatherings.find({ name: { $regex: `${query}` } })

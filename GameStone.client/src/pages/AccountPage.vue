@@ -3,11 +3,11 @@
     <section class="d-flex justify-content-start banner-size">
       <img class="hero-img mx-0 elevation-3"
         src="https://i.pinimg.com/originals/8e/60/a8/8e60a84fa7f4e85fa16f08d074778c63.jpg" :alt="account.name">
-      <img class="img-relative profile-picture img-fluid selectable" :src="account.picture" :alt="account.name.id"
-        title="Edit Profile" @click="editAccount()">
+      <img class="img-relative profile-picture img-fluid selectable" :src="account.picture"
+        :alt="account.name + account.id" title="Edit Profile" data-bs-toggle="modal" data-bs-target="#editAccountModal">
     </section>
   </div>
-  <div class="container-fluid test-trans">
+  <div class="container-fluid">
     <section class="row p-3">
       <div class="col-md-3">
       </div>
@@ -21,21 +21,21 @@
       <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGatherings()">My Gatherings</div>
       <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
       <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGroups()">My Groups</div>
-      <!-- <button class="btn btn-outline-black col-md-3">My Games</button>
-      <button class="btn btn-outline-black col-md-3">My Gatherings</button>
-      <button class="btn btn-outline-black col-md-3">Gatherings I'm Hosting</button>
-      <button class="btn btn-outline-black col-md-3">My Groups</button> -->
+
     </section>
   </div>
 
+  <Modal id="editAccountModal">
 
+    <template #header>
+      <h5>Edit Account!</h5>
+    </template>
 
+    <template #modalBody>
+      <EditAccountForm />
+    </template>
 
-  <!-- <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div> -->
+  </Modal>
 </template>
 
 <script>
@@ -45,60 +45,58 @@ import { useRoute } from 'vue-router'
 import { gatheringsService } from '../services/GatheringsService.js'
 import { gamesService } from '../services/GamesService.js'
 import { groupsService } from '../services/GroupsService.js'
+import EditAccountForm from '../components/EditAccountForm.vue'
 
 
 export default {
   setup() {
     return {
       account: computed(() => AppState.account),
-
-
       async getMyGames() {
         try {
-          const profileId = this.account.id
-          await gamesService.getMyGames(profileId)
-        } catch (error) {
-          logger.error(error.message)
-          Pop.error(error.message)
+          const profileId = this.account.id;
+          await gamesService.getMyGames(profileId);
+        }
+        catch (error) {
+          logger.error(error.message);
+          Pop.error(error.message);
         }
       },
-
       async getMyGatherings() {
         try {
-          const profileId = this.account.id
-          await gatheringsService.getMyGatherings(profileId)
-        } catch (error) {
-          logger.error(error.message)
-          Pop.error(error.message)
+          const profileId = this.account.id;
+          await gatheringsService.getMyGatherings(profileId);
+        }
+        catch (error) {
+          logger.error(error.message);
+          Pop.error(error.message);
         }
       },
-
       async getGatheringsIOwn() {
         try {
-          const profileId = this.account.id
-          await gatheringsService.getGatheringsIOwn(profileId)
-        } catch (error) {
-          logger.error(error.message)
-          Pop.error(error.message)
+          const profileId = this.account.id;
+          await gatheringsService.getGatheringsIOwn(profileId);
+        }
+        catch (error) {
+          logger.error(error.message);
+          Pop.error(error.message);
         }
       },
-
       async getMyGroups() {
         try {
-          const profileId = this.account.id
-          await groupsService.getMyGroups(profileId)
-        } catch (error) {
-          logger.error(error.message)
-          Pop.error(error.message)
+          const profileId = this.account.id;
+          await groupsService.getMyGroups(profileId);
+        }
+        catch (error) {
+          logger.error(error.message);
+          Pop.error(error.message);
         }
       },
-
       async editAccount() {
-
       }
-
-    }
-  }
+    };
+  },
+  components: { EditAccountForm }
 }
 </script>
 

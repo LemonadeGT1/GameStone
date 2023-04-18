@@ -18,7 +18,7 @@ class GroupMemberService {
         const member = await dbContext.GroupMember.create(memberData)
         await member.populate("profile", "name picture")
         await member.populate("group")
-        member.isRestricted = true
+        member.isRestricted = false
         await member.save()
         return member
     }
@@ -58,14 +58,13 @@ class GroupMemberService {
         if (groupMember == null) {
             throw new BadRequest('That member is not found.')
         }
-        await groupMember.remove()
-
-        // groupMember.isRestricted == true
+        
         // if (groupMember.isRestricted == true) {
-        //     throw new BadRequest("You cannot access this group.")
-        // }
-        // groupMember.isRestricted = true
-        // await groupMember.save()
+            //     throw new BadRequest("You cannot access this group.")
+            // }
+            // groupMember.isRestricted = true
+        await groupMember.remove()
+        await groupMember.save()
         return groupMember
     }
 }

@@ -1,3 +1,4 @@
+import { Logger } from "sass"
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 import { groupsService } from "./GroupsService"
@@ -59,11 +60,11 @@ class GroupMemberService {
         await groupMember.remove()
 
         // groupMember.isRestricted == true
-        if (groupMember.isRestricted == true) {
-            throw new BadRequest("You cannot access this group.")
-        }
-        groupMember.isRestricted = true
-        await groupMember.save()
+        // if (groupMember.isRestricted == true) {
+        //     throw new BadRequest("You cannot access this group.")
+        // }
+        // groupMember.isRestricted = true
+        // await groupMember.save()
         return groupMember
     }
 }

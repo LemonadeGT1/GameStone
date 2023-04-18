@@ -1,8 +1,7 @@
 <template>
   <div class="container-fluid px-0">
     <section class="d-flex justify-content-start banner-size">
-      <img class="hero-img mx-0 elevation-3"
-        src="https://i.pinimg.com/originals/8e/60/a8/8e60a84fa7f4e85fa16f08d074778c63.jpg" :alt="account.name">
+      <img class="hero-img mx-0 elevation-3" :src="account.coverImg" :alt="account.name">
       <img class="img-relative profile-picture img-fluid selectable" :src="account.picture"
         :alt="account.name + account.id" title="Edit Profile" data-bs-toggle="modal" data-bs-target="#editAccountModal">
     </section>

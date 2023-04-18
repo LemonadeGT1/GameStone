@@ -16,7 +16,7 @@ export class GatheringGamesController extends BaseController {
     async deleteGatheringGame(req, res, next) {
         try {
             let gatheringGameId = req.params.id
-            let message = gatheringGamesService.deleteGatheringGame(gatheringGameId)
+            let message = await gatheringGamesService.deleteGatheringGame(gatheringGameId)
             res.send(message)
         } catch (error) {
             next(error)

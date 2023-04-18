@@ -22,12 +22,12 @@ class GatheringGamesService {
     }
 
     async addGame(gameData) {
-        const gameCheck = await dbContext.GatheringGames.exists(gameData)
+        // const gameCheck = await dbContext.GatheringGames.exists(gameData)
+        
+        const gameCheck = await dbContext.GatheringGames.exists({ gameId: gameData.gameId, gatheringId: gameData.gatheringId })
         if (gameCheck) {
             throw new BadRequest("game is already added")
         }
-
-        const foundGame = await dbContext.GatheringGames.find({ gameId: gameData.gameId, gatheringId: gameData.gatheringId })
 
         const gathering = await gatheringsService.getGatheringById(gameData.gatheringId)
 

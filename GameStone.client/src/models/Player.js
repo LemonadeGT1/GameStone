@@ -6,7 +6,7 @@ export class Player {
         this.gatheringId = data.gatheringId
         this.isInvited = data.isInvited
         this.accepted = data.accepted
-        this.accountId = data.accountId
+        this.accountId = data.profileId
         this.profile = new Profile(data.profile)
     }
 }

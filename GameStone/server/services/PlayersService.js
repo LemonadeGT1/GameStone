@@ -5,7 +5,7 @@ import { gatheringsService } from "./GatheringsService.js"
 
 class PlayersService {
     async getGatheringPlayers(gatheringId) {
-        let players = await dbContext.Players.find({ gatheringId })
+        let players = await dbContext.Players.find({ gatheringId }).populate("profile", 'name picture')
             .populate({
                 path: "gathering",
                 populate: {

@@ -49,9 +49,18 @@
                 </form>
             </div>
             <div class="row justify-content-center">
-                <div class="col-10 my-1" v-for="gc in activeGroupComments" :key="gc?.id">
+                <!-- <div class="col-10 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
-                    <span class="bg-grey p-2 ps-4 pe-3 comText">{{ gc?.body }}</span>
+                    <span class="pt-2 pb-3 ps-4 pe-3 comText">{{ gc?.body }}</span>
+                </div> -->
+                <div class="col-10 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-2">
+                            <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
+                        </div>
+                        <div class="col-sm-10 col-md-11 ps-4"><span class="pt-2 pb-3 pe-3 comText">{{ gc?.body }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -142,15 +151,21 @@ export default {
 
 <style lang="scss" scoped>
 .profilePic {
-    border-radius: 50%;
+    border-radius: 30px;
     height: 6vh;
     width: auto;
     z-index: 700 !important;
     position: relative;
 }
 
+.comContainer {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
 .comText {
-    margin-left: -22px;
     z-index: 600 !important;
     position: relative;
     border-bottom-right-radius: 20px;

@@ -8,8 +8,8 @@
                         <div class="py-2" style="position:absolute">
                             <h1>{{ group?.name }}</h1>
                             <h3>{{ group?.description }}</h3>
-                            <img :src="group?.creator.picture" class="profilePic" :title="group?.creator.name"
-                                style="position:relative; bottom: 0px; left: 0px;">
+                            <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator.name"
+                                style="position:relative; bottom: 0px; left: 0px;" @click="gotoProfile(group?.creator.id)">
                         </div>
                     </div>
                     <div class="col-md-3 p-0">
@@ -67,7 +67,6 @@ export default {
                 let groupId = route.params.groupId
                 await groupsService.getGroupById(groupId)
                 await groupsService.getMembersByGroupId(groupId)
-                logger.log('Group Members', AppState.groupMembers)
             } catch (error) {
                 logger.log(error.message)
                 Pop.error(error.message)
@@ -81,8 +80,6 @@ export default {
             groupMembers: computed(() => AppState.groupMembers),
             isMember: computed(() => {
                 const res = AppState.groupMembers.find(a => a.profileId == AppState.account.id)
-                logger.log('computed res', res)
-                logger.log('AppState.account.id computed', AppState.account.id)
                 return res
             }),
 
@@ -99,12 +96,7 @@ export default {
             async leaveGroup() {
                 try {
                     const groupId = route.params.groupId
-                    // find group member id
-                    // appstate.groupmembers profileID = account.id
                     const groupMember = AppState.groupMembers.find(gm => gm.profileId == AppState.account.id)
-                    logger.log('AppState.account.id leaveGroup', AppState.account.id)
-                    logger.log('groupMember', groupMember)
-                    logger.log('Leaving Group groupId', groupId)
                     await groupsService.leaveGroup(groupMember.id)
                 } catch (error) {
 

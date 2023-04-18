@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 
 export const PlayerSchema = new Schema({
     gatheringId: { type: Schema.Types.ObjectId, required: true },
-    accountId: { type: Schema.Types.ObjectId, required: true },
+    profileId: { type: Schema.Types.ObjectId, required: true },
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 
@@ -15,7 +15,7 @@ PlayerSchema.virtual('gathering', {
 })
 
 PlayerSchema.virtual('profile', {
-    localField: 'accountId',
+    localField: 'profileId',
     foreignField: '_id',
     justOne: true,
     ref: 'Account'

@@ -6,7 +6,13 @@ import { gatheringsService } from "./GatheringsService.js"
 class PlayersService {
     async getGatheringPlayers(gatheringId) {
         let players = await dbContext.Players.find({ gatheringId })
-            .populate('profile', 'name picture')
+            .populate({
+                path: "gathering",
+                populate: {
+                    path: "creator",
+                    select: "name picture"
+                }
+            })
         return players
     }
 
@@ -17,7 +23,7 @@ class PlayersService {
             throw new BadRequest("Player doesn't exist")
         }
 
-        if (userId != player.accountId) {
+        if (userId != player.profileId) {
             throw new Forbidden("You can't make other people quit")
         }
         await player.remove()

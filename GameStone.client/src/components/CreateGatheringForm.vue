@@ -6,7 +6,7 @@
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
-            <input v-model="editable.location" type="text" class="form-control" id="location">
+            <input v-model="editable.location" type="text" placeholder="" class="form-control" id="location">
         </div>
         <div class="mb-3">
             <label for="capacity" class="form-label">Capacity</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input v-model="editable.date" type="date" class="form-control" id="date">
+            <input required v-model="editable.date" type="datetime-local" class="form-control" id="date">
         </div>
         <div class="mb-3">
             <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""

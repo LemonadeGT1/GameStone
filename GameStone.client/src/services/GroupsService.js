@@ -14,6 +14,11 @@ class GroupsService {
         logger.log(AppState.groups, 'appstate group')
     }
 
+    async searchGroups(query) {
+        const res = await api.get ('api/groups', { params: { query: query}})
+        logger.log('[Searching Groups]', res.data)
+    }
+
     async getGroupById(groupId) {
         const res = await api.get(`api/groups/${groupId}`)
         // logger.log(res.data)
@@ -29,11 +34,12 @@ class GroupsService {
     async becomeMember(groupId) {
         const res = await api.post('api/groupMembers', groupId)
         logger.log(res.data)
-        AppState.groupMembers.push(new GroupMember(res.data))
+        AppState.groupMembers.push(res.data)
         logger.log(AppState.groupMembers, 'group members')
     }
 
     async leaveGroup(groupId) {
+        logger.log('leaveGroup in Service', groupId)
         const res = await api.delete(`api/groupMembers/${groupId}`)
         logger.log(res.data)
         // TODO - find index of member to slice

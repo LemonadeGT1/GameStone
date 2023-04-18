@@ -30,7 +30,7 @@
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
         </div>
-        <button data-bs-dismiss="modal" type="submit" class="btn btn-success"><i class="mdi mdi-plus-thick"></i></button>
+        <button data-bs-dismiss="modal" type="submit" class="btn btn-success">Submit</button>
     </form>
 </template>
 
@@ -39,34 +39,42 @@
 
 
 <script>
-import { computed, reactive, onMounted, ref } from 'vue';
+import { computed, reactive, onMounted, ref, watchEffect } from 'vue';
 import { Gathering } from '../models/Gathering.js';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { gatheringsService } from '../services/GatheringsService.js';
+import { AppState } from '../AppState.js';
+
 
 export default {
     props: {
         gathering: {
             type: Gathering,
-            default: true
+            default: {}
         }
     },
 
     setup(props) {
 
 
-        const editable = ref({ ...props.gathering })
+        const editable = ref({})
+
+        watchEffect(() => {
+            editable.value = { ...AppState.activeGathering }
+        })
 
         const router = useRouter()
+        const route = useRoute()
 
         return {
             editable,
+            route,
 
 
             handleSubmit() {
-                if (props.gathering.id) {
+                if (AppState.activeGathering) {
                     this.editGathering()
                 } else {
                     this.createGathering()
@@ -83,9 +91,7 @@ export default {
                             delete gatheringData[key]
                         }
                     }
-                    logger.log(gatheringData)
                     const gathering = await gatheringsService.createGathering(gatheringData)
-                    logger.log(gathering)
                     await router.push({ name: 'GatheringDetails', params: { gatheringId: gathering.id } })
                 } catch (error) {
                     logger.log(error.message)

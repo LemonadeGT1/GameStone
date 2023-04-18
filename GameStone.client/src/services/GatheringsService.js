@@ -39,6 +39,12 @@ class GatheringsService {
         const res = await api.delete(`api/gatherings/${gatheringId}`)
         logger.log(res.data)
     }
+
+    async editGathering(gatheringData) {
+        const res = await api.put(`api/gatherings/${gatheringData.id}`, gatheringData)
+        logger.log(res.data, 'edited gathering')
+        AppState.activeGathering = new Gathering(res.data)
+    }
 }
 
 export const gatheringsService = new GatheringsService()

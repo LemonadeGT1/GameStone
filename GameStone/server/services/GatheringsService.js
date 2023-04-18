@@ -55,7 +55,7 @@ class GatheringsService {
         }
         originalGathering.name = gatheringEdits.name ? gatheringEdits.name : originalGathering.name
         originalGathering.description = gatheringEdits.description ? gatheringEdits.description : originalGathering.description
-        originalGathering.coverImg = gatheringEdits.coverImg ? gatheringEdits.image_url : originalGathering.coverImg
+        originalGathering.coverImg = gatheringEdits.coverImg ? gatheringEdits.coverImg : originalGathering.coverImg
         originalGathering.location = gatheringEdits.location ? gatheringEdits.location : originalGathering.location
         originalGathering.capacity = gatheringEdits.capacity ? gatheringEdits.capacity : originalGathering.capacity
         originalGathering.date = gatheringEdits.date ? gatheringEdits.date : originalGathering.date

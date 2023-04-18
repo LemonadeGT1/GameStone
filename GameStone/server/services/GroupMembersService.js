@@ -64,7 +64,6 @@ class GroupMemberService {
             // }
             // groupMember.isRestricted = true
         await groupMember.remove()
-        await groupMember.save()
         return groupMember
     }
 }

@@ -2,8 +2,8 @@ import { Schema } from "mongoose";
 
 
 export const PlayerSchema = new Schema({
-    gatheringId: { type: Schema.Types.ObjectId, required: true },
-    profileId: { type: Schema.Types.ObjectId, required: true },
+    gatheringId: { type: Schema.Types.ObjectId, required: true, ref: "Gathering" },
+    profileId: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 

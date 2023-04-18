@@ -35,19 +35,17 @@
 
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { Account } from '../models/Account.js';
 import { AppState } from '../AppState.js';
 
 export default {
-    props: {
-        account: {
-            type: Account,
-            default: {}
-        }
-    },
-    setup(props) {
-        const editable = ref({ ...props.account })
+
+    setup() {
+        const editable = ref({})
+        watchEffect(() => {
+            editable.value = { ...AppState.account }
+        })
         return {
             editable,
             account: computed(() => AppState.account),

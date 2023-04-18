@@ -34,11 +34,12 @@ class GroupsService {
     async becomeMember(groupId) {
         const res = await api.post('api/groupMembers', groupId)
         logger.log(res.data)
-        AppState.groupMembers.push(new GroupMember(res.data))
+        AppState.groupMembers.push(res.data)
         logger.log(AppState.groupMembers, 'group members')
     }
 
     async leaveGroup(groupId) {
+        logger.log('leaveGroup in Service', groupId)
         const res = await api.delete(`api/groupMembers/${groupId}`)
         logger.log(res.data)
         // TODO - find index of member to slice

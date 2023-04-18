@@ -39,17 +39,7 @@ export default {
     },
     setup(props) {
 
-        let todaysDate = new Date().toLocaleDateString()
         return {
-            todaysDate,
-            inThePast: computed(() => {
-                const todaysDate = Date.now()
-                const gatheringDate = new Date(props.gathering.date).getTime()
-                if (todaysDate > gatheringDate) {
-                    return true
-                }
-                return false
-            })
         }
     }
 }

@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid px-0">
         <section class="d-flex justify-content-start banner-size">
-            <img class="hero-img mx-0 elevation-3" :src="account.coverImg" :alt="account.name">
-            <img class="img-relative profile-picture img-fluid selectable" :src="account.picture"
-                :alt="account.name + account.id">
+            <img class="hero-img mx-0 elevation-3" :src="profile?.coverImg" :alt="profile?.name">
+            <img class="img-relative profile-picture img-fluid selectable" :src="profile?.picture"
+                :alt="profile?.name + profile?.id">
         </section>
     </div>
     <div class="container-fluid test-trans">
@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-8 p-3 bio-background">
                 <h6>Biography:</h6>
-                <p>{{ account.bio }}</p>
+                <p>{{ profile?.bio }}</p>
             </div>
         </section>
         <section class="row pt-3">
@@ -25,18 +25,44 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { gatheringsService } from '../services/GatheringsService.js'
 import { gamesService } from '../services/GamesService.js'
 import { groupsService } from '../services/GroupsService.js'
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { profilesService } from '../services/ProfilesService.js'
+
+
 
 
 export default {
     setup() {
+
+        const route = useRoute()
+
+        async function getProfileById() {
+            try {
+                const profileId = route.params.accountId
+                logger.log("[logging profile Id]", profileId)
+                await profilesService.getProfileById(profileId)
+            } catch (error) {
+                logger.log(error.message)
+                Pop.error(error.message)
+            }
+        }
+
+        onMounted(() => {
+            getProfileById()
+        })
+
+
+
         return {
             account: computed(() => AppState.account),
+            profile: computed(() => AppState.activeProfile),
 
 
             async getMyGames() {

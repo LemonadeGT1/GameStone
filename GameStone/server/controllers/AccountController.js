@@ -15,7 +15,19 @@ export class AccountController extends BaseController {
       .get('/groupMembers', this.getMyGroups)
       .get('/players', this.getGatheringsPlayingIn)
       .get('/gatherings', this.getMyGatherings)
-      .delete ("/accountGames/:id", this.deleteAccountGame)
+      .put('', this.updateAccount)
+      .delete("/accountGames/:id", this.deleteAccountGame)
+  }
+
+  async updateAccount(req, res, next) {
+    try {
+      let user = req.userInfo
+      let body = req.body
+      const account = await accountService.updateAccount(user, body)
+      res.send(account)
+    } catch (error) {
+      next(error)
+    }
   }
   async getMyGatherings(req, res, next) {
     try {

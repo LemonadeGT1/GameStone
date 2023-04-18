@@ -4,9 +4,9 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 
 class GroupsService {
 
-    async getAllGroups() {
-        const groups = await dbContext.Groups.find()
-        .populate("creator", "name picture")
+    async getAllGroups(query) {
+        const groups = await dbContext.Groups.find({ name: query.query })
+            .populate("creator", "name picture")
         return groups
     }
 
@@ -18,7 +18,7 @@ class GroupsService {
 
     async getGroupById(groupId) {
         const group = await dbContext.Groups.findById(groupId)
-        .populate("creator", "name picture")
+            .populate("creator", "name picture")
         if (group == null) {
             throw new BadRequest('This Group does not exist.')
         }

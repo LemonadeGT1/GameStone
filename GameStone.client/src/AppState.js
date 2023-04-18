@@ -31,6 +31,7 @@ export const AppState = reactive({
 
   /** @type {import('./models/Group.js').Group|null} */
   activeGroup: null,
+  activeGroupComments: null,
 
   /** @type {import('./models/Account.js').Profile|null} */
   activeProfile: null,

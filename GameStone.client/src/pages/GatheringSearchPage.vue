@@ -56,6 +56,7 @@ export default {
     setup() {
         async function getAllGatherings() {
             try {
+                AppState.activeGathering = null
                 await gatheringsService.getAllGatherings()
             } catch (error) {
                 Pop.error(error.message)

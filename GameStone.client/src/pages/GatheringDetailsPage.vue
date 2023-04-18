@@ -133,8 +133,7 @@ export default {
             async quit(playerId) {
                 try {
                     if (await Pop.confirm("Are you sure you want to quit"))
-                        logger.log(playerId)
-                    await playersService.quit(playerId)
+                        await playersService.quit(playerId)
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)

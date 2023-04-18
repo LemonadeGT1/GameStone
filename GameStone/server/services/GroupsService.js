@@ -1,11 +1,12 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { logger } from "../utils/Logger.js"
 
 
 class GroupsService {
 
-    async getAllGroups(query) {
-        const groups = await dbContext.Groups.find({ name: query.query })
+    async getAllGroups() {
+        const groups = await dbContext.Groups.find()
             .populate("creator", "name picture")
         return groups
     }

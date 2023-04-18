@@ -34,17 +34,31 @@
             </div>
             <div class="text-end">
                 <div class="m-3">
-                    <button v-if="!gathering?.isCanceled && account?.id" class="btn btn-info border rounded-pill">Edit
+                    <button v-if="!gathering?.isCanceled && account?.id == gathering?.creatorId"
+                        class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#gatheringModal">Edit
                         Gathering</button>
                 </div>
                 <div class="m-2">
-                    <button v-if="!gathering?.isCanceled && account?.id" @click="deleteGathering(gathering?.id)"
-                        class="btn btn-danger rounded-pill">Delete
+                    <button v-if="!gathering?.isCanceled && account?.id == gathering?.creatorId"
+                        @click="deleteGathering(gathering?.id)" class="btn btn-danger rounded-pill">Cancel
                         Gathering</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <Modal id="gatheringModal">
+
+        <template #header>
+            <h5>Create Gathering!</h5>
+        </template>
+
+        <template #modalBody>
+            <CreateGatheringForm />
+        </template>
+
+    </Modal>
 </template>
 
 

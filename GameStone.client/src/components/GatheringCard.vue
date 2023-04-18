@@ -28,15 +28,29 @@
 
 
 <script>
+import { computed } from '@vue/reactivity';
 import { Gathering } from '../models/Gathering.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
 
     props: {
         gathering: { type: Gathering, required: true }
     },
-    setup() {
-        return {}
+    setup(props) {
+
+        let todaysDate = new Date().toLocaleDateString()
+        return {
+            todaysDate,
+            inThePast: computed(() => {
+                const todaysDate = Date.now()
+                const gatheringDate = new Date(props.gathering.date).getTime()
+                if (todaysDate > gatheringDate) {
+                    return true
+                }
+                return false
+            })
+        }
     }
 }
 </script>
@@ -47,6 +61,7 @@ export default {
     object-fit: cover;
     object-position: center;
     height: 15vh;
+    width: 100%;
 }
 
 .bg-grey {

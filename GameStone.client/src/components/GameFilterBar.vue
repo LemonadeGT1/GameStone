@@ -61,6 +61,7 @@ export default {
         async filterByCategory(id) {
             try {
                 const categoryQuery = id
+                Pop.toast('Filtering Games!', 'success', 'top', 10000)
                 await gamesService.filterByCategory(categoryQuery)
             } catch (error) {
                 logger.log(error.message)
@@ -71,6 +72,7 @@ export default {
         async filterByMechanic(id) {
             try {
                 const mechanicQuery = id
+                Pop.toast('Filtering Games!', 'success', 'top', 10000)
                 await gamesService.filterByMechanic(mechanicQuery)
             } catch (error) {
                 logger.log(error.message)

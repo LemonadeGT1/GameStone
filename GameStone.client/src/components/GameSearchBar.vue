@@ -26,6 +26,7 @@ export default {
             try {
                 const query = search.query
             logger.log(query)
+            Pop.toast('Searching Games!', 'success', 'top', 10000)
             await gamesService.searchGames(query)
             } catch (error) {
                 logger.log(error.message)

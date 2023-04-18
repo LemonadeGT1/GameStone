@@ -15,6 +15,14 @@ class GamesService {
         logger.log('Games from AppState', AppState.games)
     }
 
+    async clearAll() {
+        AppState.query = ''
+        AppState.categoryQuery = ''
+        AppState.mechanicQuery = ''
+        AppState.gameSkip = 0
+        this.getGames() 
+    }
+
     async searchGames(query) {
         const res = await atlasApi.get(`search?name=${query}`)
         logger.log('[SEARCHED GAME]', res.data)
@@ -50,6 +58,8 @@ class GamesService {
 
     async changePage(num) {
         const query = AppState.query
+        const categoryQuery = AppState.categoryQuery
+        const mechanicQuery = AppState.mechanicQuery
         if (num > 0 && AppState.gameSkip <= 152947) {
             AppState.gameSkip += num
         } else if (num <= 0) { 
@@ -58,7 +68,7 @@ class GamesService {
         }
         // this.getGames()
         logger.log('appstate query', query)
-        const res = await atlasApi.get(`search?skip=${AppState.gameSkip}&name=${query}`)
+        const res = await atlasApi.get(`search?skip=${AppState.gameSkip}&name=${query}&categories=${categoryQuery}&mechanics=${mechanicQuery}`)
         logger.log('[GETTING SEARCH GAMES]', res.data)
         AppState.games = res.data.games.map(g => new Game(g))
         logger.log('Games from AppState', AppState.games)

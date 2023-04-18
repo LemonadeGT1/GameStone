@@ -9,6 +9,7 @@ class PlayersService {
             .populate('profile', 'name picture')
         return players
     }
+
     async quit(playerId, userId) {
         let player = await dbContext.Players.findById(playerId)
 
@@ -31,10 +32,11 @@ class PlayersService {
         return "You quit this game"
     }
     async becomePlayer(playerData) {
-        const aPlayer = await dbContext.Players.find(playerData)
-        if (aPlayer[0]) {
+        const playerCheck = await dbContext.Players.exists(playerData)
+        if (playerCheck) {
             throw new BadRequest("You can't take up more than one spot")
         }
+        // const aPlayer = await dbContext.Players.find(playerData)
         const gathering = await gatheringsService.getGatheringById(playerData.gatheringId)
 
         if (gathering.isCanceled) {

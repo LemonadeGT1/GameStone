@@ -8,7 +8,7 @@
                         <div class="py-2" style="position:absolute">
                             <h1>{{ group?.name }}</h1>
                             <h3>{{ group?.description }}</h3>
-                            <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator.name"
+                            <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator?.name"
                                 style="position:relative; bottom: 0px; left: 0px;" @click="gotoProfile(group?.creator.id)">
                         </div>
                     </div>
@@ -40,14 +40,18 @@
         <!-- SECTION - Chat -->
         <section class="row justify-content-center">
             <div class="col-10">
-                <div class="d-flex justify-content-center">
-                    <input placeholder="Let's Discuss" class="w-50 border-dark px-3 p-2" type="text">
-                    <button class="btn btn-info border selectable rounded-pill mx-3">Submit</button>
-                </div>
+                <form @submit.prevent="addGroupComment()">
+                    <div class="d-flex justify-content-center my-3">
+                        <input placeholder="Let's Discuss" class="w-50 border-dark px-3 p-2" type="text"
+                            v-model="editable.body">
+                        <button class="btn btn-info border selectable rounded-pill mx-3" type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
             <div class="row justify-content-center">
-                <div class="col-10" v-for="gc in activeGroupComments" :key="gc?.id">
-                    <img :src="gc.creator.picture" class="profilePic pe-1" :title="gc?.creator.name">{{ gc.body }}
+                <div class="col-10 my-1" v-for="gc in activeGroupComments" :key="gc?.id">
+                    <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
+                    <span class="bg-grey p-2 ps-4 pe-3 comText">{{ gc?.body }}</span>
                 </div>
             </div>
         </section>
@@ -57,16 +61,18 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, ref } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { groupsService } from '../services/GroupsService.js';
 import { useRoute, useRouter } from 'vue-router';
 import { Account } from "../models/Account.js";
+import { commentsService } from "../services/CommentsService.js";
 export default {
     setup() {
-        let route = useRoute()
-        let router = useRouter()
+        const route = useRoute()
+        const editable = ref({})
+        const router = useRouter()
 
         async function getGroupById() {
             try {
@@ -82,7 +88,7 @@ export default {
 
         onMounted(() => getGroupById())
         return {
-
+            editable,
             group: computed(() => AppState.activeGroup),
             groupMembers: computed(() => AppState.groupMembers),
             isMember: computed(() => {
@@ -114,6 +120,19 @@ export default {
             gotoProfile(profileId) {
                 logger.log(profileId)
                 router.push({ name: 'Profile', params: { accountId: profileId } })
+            },
+
+            async addGroupComment() {
+                try {
+                    logger.log('addGroupComment')
+                    let commentData = editable.value
+                    commentData.groupId = route.params.groupId
+                    logger.log('add group comment commentData', commentData)
+                    await commentsService.addGroupComment(commentData)
+                    editable.value = {}
+                } catch (error) {
+                    Pop.error(error)
+                }
             }
         }
     }
@@ -126,5 +145,15 @@ export default {
     border-radius: 50%;
     height: 6vh;
     width: auto;
+    z-index: 700 !important;
+    position: relative;
+}
+
+.comText {
+    margin-left: -22px;
+    z-index: 600 !important;
+    position: relative;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
 }
 </style>

@@ -83,7 +83,6 @@ class GamesService {
         AppState.profileGames.push(res.data)
         logger.log(AppState.profileGames)
     }
-
 }
 
 

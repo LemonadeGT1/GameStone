@@ -4,6 +4,7 @@ import { atlasApi } from "./AxiosService.js"
 import { Game } from "../models/Game.js"
 import { Profile } from "../models/Account.js"
 import { api } from "./AxiosService"
+import { AccountGame } from "../models/AccountGame.js"
 
 
 
@@ -13,9 +14,11 @@ class GamesService {
     async getProfileGames(accountId) {
         // logger.log(accountId)
         const res = await api.get(`account/${accountId}/accountGames`)
-        logger.log(res.data)
-        // AppState.profileGames.push(res.data)
-        // logger.log(AppState.profileGames)
+        // logger.log(res.data)
+        AppState.profileGames = res.data.map(p => new AccountGame(p))
+        // AppState.profileGames = res.data
+
+        logger.log('the spot we are looking for rn', AppState.profileGames)
     }
 
     async getGames() {

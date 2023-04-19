@@ -10,6 +10,14 @@ import { api } from "./AxiosService"
 
 class GamesService {
 
+    async getProfileGames(accountId) {
+        // logger.log(accountId)
+        const res = await api.get(`account/${accountId}/accountGames`)
+        logger.log(res.data)
+        // AppState.profileGames.push(res.data)
+        // logger.log(AppState.profileGames)
+    }
+
     async getGames() {
         const res = await atlasApi.get(`search?skip=${AppState.gameSkip}`)
         logger.log('[GETTING GAMES]', res.data)
@@ -79,10 +87,7 @@ class GamesService {
     async getMyGames(accountId) {
         logger.log("is this stupid thing working? pls be", accountId)
 
-        const res = await api.get('account/accountGames', accountId)
-        AppState.profileGames.push(res.data)
-        logger.log(AppState.profileGames)
-    }
+
 }
 
 

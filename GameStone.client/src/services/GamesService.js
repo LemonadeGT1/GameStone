@@ -87,7 +87,7 @@ class GamesService {
     async getMyGames(accountId) {
         logger.log("is this stupid thing working? pls be", accountId)
 
-
+    }
 }
 
 

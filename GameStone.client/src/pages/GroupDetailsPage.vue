@@ -16,8 +16,6 @@
                         <img class="group-img img-fluid rounded-end"
                             :src="group?.imgUrl"
                             :alt="group?.name">
-                            :src="group.imgUrl"
-                            :alt="group.name">
                     </div>
                 </section>
             </div>

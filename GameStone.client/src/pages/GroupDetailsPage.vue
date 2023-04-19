@@ -14,14 +14,18 @@
                     </div>
                     <div class="col-md-3 p-0">
                         <img class="group-img img-fluid rounded-end"
-                            :src="group.imgUrl"
-                            :alt="group.name">
+                            :src="group?.imgUrl"
+                            :alt="group?.name">
                     </div>
                 </section>
             </div>
         </section>
         <!-- SECTION - Buttons -->
-        <section class="row justify-content-end m-3">
+        <section class="row justify-content-between m-3">
+            <div class="col-md-4">
+                <button v-if="group?.creatorId == account?.id" class="btn btn-info border selectable rounded-pill mx-3">Edit Group</button>
+                <button v-if="group?.creatorId == account?.id" @click="deleteGroup()" class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
+            </div>
             <div class="col-md-4">
                 <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
                 <button v-if="!isMember" @click="becomeMember()"
@@ -89,6 +93,7 @@ export default {
                 await groupsService.getGroupById(groupId)
                 await groupsService.getMembersByGroupId(groupId)
                 await groupsService.getCommentsByGroupId(groupId)
+                logger.log(AppState.account.id, AppState.activeGroup.creatorId)
             } catch (error) {
                 logger.log(error.message)
                 Pop.error(error.message)
@@ -98,6 +103,7 @@ export default {
         onMounted(() => getGroupById())
         return {
             editable,
+            account: computed(() => AppState.account),
             group: computed(() => AppState.activeGroup),
             groupMembers: computed(() => AppState.groupMembers),
             isMember: computed(() => {
@@ -105,6 +111,18 @@ export default {
                 return res
             }),
             activeGroupComments: computed(() => AppState.activeGroupComments),
+
+            async deleteGroup(groupId) {
+                try {
+                    logger.log('Group ID', groupId)
+                    if (await Pop.confirm('Are you sure you want to delete this group?')) {
+                        await groupsService.deleteGroup()
+                    }
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            },
 
             async becomeMember() {
                 try {

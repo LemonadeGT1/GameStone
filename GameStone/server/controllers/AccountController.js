@@ -9,8 +9,9 @@ export class AccountController extends BaseController {
   constructor() {
     super('account')
     this.router
-      .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:accountId/accountGames', this.getAccountGames)
+      //NOTE - move back down
+      .use(Auth0Provider.getAuthorizedUserInfo)
       // .get('/profileGames', this.getProfileGames)
       .get('', this.getUserAccount)
       .get('/groupMembers', this.getMyGroups)

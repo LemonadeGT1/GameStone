@@ -22,6 +22,11 @@
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGroups()">My Groups</div>
         </section>
+        <section class="row justify-content-center p-3 align-items-center">
+            <div class="col-md-3" v-for="p in profileGames" :key="p.id">
+                <ProfileGameCard :game="p" />
+            </div>
+        </section>
     </div>
 </template>
 
@@ -55,8 +60,20 @@ export default {
             }
         }
 
+        async function getProfileGames() {
+            try {
+                const accountId = route.params.accountId
+                // logger.log("is this stupid thing working? pls be", accountId)
+                await gamesService.getProfileGames(accountId)
+            } catch (error) {
+                logger.error(error.message)
+                Pop.error(error.message)
+            }
+        }
+
         onMounted(() => {
             getProfileById()
+            getProfileGames()
         })
 
 
@@ -64,18 +81,19 @@ export default {
         return {
             account: computed(() => AppState.account),
             profile: computed(() => AppState.activeProfile),
+            profileGames: computed(() => AppState.profileGames),
 
+            // async getProfileGames() {
+            //     try {
+            //         const accountId = this.profile?.id
+            //         // logger.log("is this stupid thing working? pls be", accountId)
+            //         await gamesService.getProfileGames(accountId)
+            //     } catch (error) {
+            //         logger.error(error.message)
+            //         Pop.error(error.message)
+            //     }
+            // },
 
-            async getProfileGames() {
-                try {
-                    const accountId = this.profile.id
-                    // logger.log("is this stupid thing working? pls be", accountId)
-                    await gamesService.getProfileGames(accountId)
-                } catch (error) {
-                    logger.error(error.message)
-                    Pop.error(error.message)
-                }
-            },
 
             async getProfileGatherings() {
                 try {

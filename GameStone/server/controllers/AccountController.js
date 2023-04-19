@@ -10,7 +10,7 @@ export class AccountController extends BaseController {
     super('account')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/accountGames', this.getAccountGames)
+      .get('/:accountId/accountGames', this.getAccountGames)
       // .get('/profileGames', this.getProfileGames)
       .get('', this.getUserAccount)
       .get('/groupMembers', this.getMyGroups)
@@ -72,7 +72,7 @@ export class AccountController extends BaseController {
 
   async getAccountGames(req, res, next) {
     try {
-      let accountId = req.body.accountId
+      let accountId = req.params.accountId
       let games = await accountGamesService.getAccountGames(accountId)
       res.send(games)
     } catch (error) {

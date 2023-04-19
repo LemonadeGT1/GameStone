@@ -19,7 +19,7 @@ class AccountGamesService {
     }
 
     async getAccountGames(accountId) {
-        let games = await dbContext.AccountGames.find(accountId)
+        let games = await dbContext.AccountGames.find({ accountId })
         return games
     }
 

@@ -1,7 +1,7 @@
 import { AppState } from "../AppState"
 import { Gathering } from "../models/Gathering"
 import { logger } from "../utils/Logger"
-import { api } from "./AxiosService"
+import { api, atlasApi } from "./AxiosService"
 
 
 class GatheringsService {
@@ -45,6 +45,13 @@ class GatheringsService {
         logger.log(res.data, 'edited gathering')
         AppState.activeGathering = new Gathering(res.data)
     }
+
+    // async getGatheringsByGames(gatheringQuery) {
+    //     const res = await api.get(`api/gatherings/${gatheringQuery}`)
+    //     AppState.gatheringQuery = gatheringQuery
+    //     AppState.gatherings = res.data.gatherings.map(g => new Gathering(g))
+    //     logger.log('[find gatherings]', gatheringQuery)
+    // }
 }
 
 export const gatheringsService = new GatheringsService()

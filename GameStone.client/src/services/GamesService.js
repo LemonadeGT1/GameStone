@@ -2,11 +2,21 @@ import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
 import { atlasApi } from "./AxiosService.js"
 import { Game } from "../models/Game.js"
+import { Profile } from "../models/Account.js"
+import { api } from "./AxiosService"
 
 
 
 
 class GamesService {
+
+    async getProfileGames(accountId) {
+        // logger.log(accountId)
+        const res = await api.get(`account/${accountId}/accountGames`)
+        logger.log(res.data)
+        // AppState.profileGames.push(res.data)
+        // logger.log(AppState.profileGames)
+    }
 
     async getGames() {
         const res = await atlasApi.get(`search?skip=${AppState.gameSkip}`)
@@ -74,10 +84,12 @@ class GamesService {
         logger.log('Games from AppState', AppState.games)
     }
 
-    async getMyGames(profileId) {
+    async getMyGames(accountId) {
+        logger.log("is this stupid thing working? pls be", accountId)
 
-    }
 
 }
+
+
 
 export const gamesService = new GamesService()

@@ -38,7 +38,8 @@
         </div>
         <div class="row justify-content-center my-4">
             <div class="col-3">
-                <button class="btn btn-info border rounded-pill">Create a Gathering</button>
+                <button class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                    data-bs-target="#gatheringModal">Create a Gathering</button>
             </div>
             <div class="col-3">
                 <button class="btn btn-info border rounded-pill">Find Gatherings</button>
@@ -48,58 +49,71 @@
             </div>
         </div>
     </div>
+    <Modal id="gatheringModal">
+
+        <template #header>
+            <h5>Create Gathering!</h5>
+        </template>
+
+        <template #modalBody>
+            <CreateGatheringForm />
+        </template>
+
+    </Modal>
 </template>
 
 
 <script>
 import { useRoute } from "vue-router";
 import { AppState } from '../AppState';
+import { gatheringsService } from '../services/GatheringsService'
 import { computed, reactive, onMounted } from 'vue';
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 import { gamesService } from "../services/GamesService.js"
+import Modal from "../components/Modal.vue";
 export default {
     setup() {
-        const route = useRoute()
-
+        const route = useRoute();
         async function getGameById() {
             try {
-                const gameId = route.params.gameId
-                await gamesService.getGameById(gameId)
-            } catch (error) {
-                logger.log(error)
-                Pop.error(error.message)
+                const gameId = route.params.gameId;
+                await gamesService.getGameById(gameId);
+            }
+            catch (error) {
+                logger.log(error);
+                Pop.error(error.message);
             }
         }
-
         onMounted(() => {
-            getGameById()
-        })
+            getGameById();
+        });
         return {
             game: computed(() => AppState.activeGame),
             activeCategories: computed(() => {
-                const game = AppState.activeGame
-                const categories = []
+                const game = AppState.activeGame;
+                const categories = [];
                 game.categories?.forEach(c => {
-                    let foundCategory = AppState.gameCategories.find(gc => gc.id == c.id)
-                    categories.push(foundCategory)
-                })
-                return categories
+                    let foundCategory = AppState.gameCategories.find(gc => gc.id == c.id);
+                    categories.push(foundCategory);
+                });
+                return categories;
             }),
             activeMechanics: computed(() => {
-                const game = AppState.activeGame
-                const mechanics = []
+                const game = AppState.activeGame;
+                const mechanics = [];
                 game.mechanics?.forEach(m => {
-                    let foundMechanic = AppState.gameMechanics.find(gm => gm.id == m.id)
-                    mechanics.push(foundMechanic)
-                })
-                return mechanics
-            })
+                    let foundMechanic = AppState.gameMechanics.find(gm => gm.id == m.id);
+                    mechanics.push(foundMechanic);
+                });
+                return mechanics;
+            }),
             // , activeMechanics: computed(() => AppState?.activeMechanics)
             // gameDescription: computed(() => AppState.activeGame.description?.replace(/<[^>]+>|&quot;/g, ' ')),
             // gameCategories: computed(() => AppState.gameCategories),
-        }
-    }
+        };
+    },
+    components: { Modal }
 };
 </script>
 

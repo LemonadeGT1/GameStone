@@ -45,6 +45,7 @@ export const AppState = reactive({
   query: '',
   categoryQuery: '',
   mechanicQuery: '',
+  gatheringQuery: '',
 
   gameMechanics: [
     {

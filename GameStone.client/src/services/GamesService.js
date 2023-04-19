@@ -87,8 +87,10 @@ class GamesService {
         logger.log('Games from AppState', AppState.games)
     }
 
+    async getMyGames(accountId) {
+        logger.log("is this stupid thing working? pls be", accountId)
 
-
+    }
 }
 
 

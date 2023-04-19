@@ -3,18 +3,24 @@
     <!-- SECTION HERO IMG-->
     <section class="row justify-content-center">
       <div class="col-12 p-0">
-        <img class="img-fluid position-relative hero-img"
+        <!-- <img class="img-fluid position-relative hero-img"
           src="https://images.pexels.com/photos/5691866/pexels-photo-5691866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="hero-img"> -->
+        <!-- <img class="img-fluid position-relative hero-img" src="../../src/assets/img/bannerboards.jpg" alt="hero-img"> -->
+        <img class="img-fluid position-relative hero-img"
+          src="https://images.unsplash.com/photo-1585504198199-20277593b94f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1617&q=80"
           alt="hero-img">
+        <!-- <img class="img-fluid position-relative hero-img" src="../../src/assets/img/bannerboards.jpg" alt="hero-img"> -->
+
       </div>
       <div class="col-10 position-absolute mt-5 image-text">
-        <h1>Welcome to GameStone, the one stop shop for finding players of all kinds to game it out with! Hit one of the
-          above buttons to take a look or click on one of these suggested one!</h1>
+        <h3>Welcome to GameStone, the one stop shop for finding players of all kinds to game it out with! Hit one of the
+          above buttons to take a look or click on one of these suggested one!</h3>
       </div>
     </section>
     <!-- SECTION GROUPS -->
     <section class="row justify-content-center p-2 my-3">
-      <div class="col-7 card elevation-5 d-flex flex-column justify-content-between py-2">
+      <div class="col-md-7 card elevation-5 d-flex flex-column justify-content-between py-2 order-2 order-md-1">
         <div>
           <h3 class="pb-2">Find a Group</h3>
           <p>Wanting to find a people to start playing with? Search through our 100's of local playgroups that are open to
@@ -27,20 +33,18 @@
           </router-link>
         </div>
       </div>
-      <div class="col-4 d-flex justify-content-center">
-        <img class="img-fluid elevation-5 rounded group-img"
-          src="https://images.unsplash.com/photo-1643992356285-6eb7c466f505?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1131&q=80"
+      <div class="col-md-4 d-flex justify-content-center order-md-2 order-1">
+        <img class="img-fluid elevation-5 rounded group-img mb-3" src="../../src/assets/img/Planecrafaters_01.jpg"
           alt="group-img">
       </div>
     </section>
     <!-- SECTION GATHERINGS -->
-    <section class="row justify-content-center p-2">
-      <div class="col-4 d-flex justify-content-center">
-        <img class="img-fluid rounded elevation-5 gathering-img"
-          src="https://images.unsplash.com/photo-1677188010559-0667a1ed33a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1113&q=80"
+    <section class="row justify-content-center p-2 order-4 order-md-3">
+      <div class="col-md-4 d-flex justify-content-center">
+        <img class="img-fluid rounded elevation-5 gathering-img mb-3" src="../../src/assets/img/Planecrafters_03.jpg"
           alt="gathering-img">
       </div>
-      <div class="col-7 card rounded elevation-5 d-flex flex-column justify-content-between py-2">
+      <div class="col-md-7 card rounded elevation-5 d-flex flex-column justify-content-between py-2 order-md-3 order-4">
         <div>
           <h3 class="pb-2">Join a Gathering</h3>
           <p>Looking for a specific game to play? Bored of your old games and want to try some new one? Hit the link below

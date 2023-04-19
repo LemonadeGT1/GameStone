@@ -14,8 +14,8 @@
                     </div>
                     <div class="col-md-3 p-0">
                         <img class="group-img img-fluid rounded-end"
-                            src="https://th.bing.com/th/id/OIP.J4UNEFHLiHXZikZ3ngJ5MwHaHa?pid=ImgDet&rs=1"
-                            alt="Group Image">
+                            :src="group.imgUrl"
+                            :alt="group.name">
                     </div>
                 </section>
             </div>

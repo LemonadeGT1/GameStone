@@ -3,7 +3,7 @@
         <section class="row my-3 bg-grey rounded selectable">
             <div class="col-md-3 p-0">
                 <img class="group-img img-fluid rounded-start"
-                    src="https://th.bing.com/th/id/OIP.J4UNEFHLiHXZikZ3ngJ5MwHaHa?pid=ImgDet&rs=1" alt="">
+                    :src="group?.imgUrl" :alt="group?.name">
             </div>
             <div class="col-md-8 p-3">
                 <div class="py-2">

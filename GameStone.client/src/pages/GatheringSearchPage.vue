@@ -5,7 +5,7 @@
                 <div class="d-flex justify-content-between">
                     <h1 class="text-secondary">Gatherings</h1>
                     <button class="btn btn-info border rounded-pill" data-bs-toggle="modal"
-                        data-bs-target="#gatheringModal">Create a Gathering</button>
+                        data-bs-target="#gatheringModal">Create Gathering</button>
                 </div>
             </div>
             <div class="col-12">

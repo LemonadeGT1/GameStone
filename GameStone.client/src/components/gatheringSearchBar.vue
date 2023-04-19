@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="searchGatherings()">
-        <input type="text" v-model="search.query" class="col-5" id="Search" placeholder="Search">
-        <button type="submit"><i class="mdi mdi-magnify"></i></button>
+        <input type="text" v-model="search.query" class="col-3 rounded-pill border-dark" id="Search" placeholder="  Search">
+        <button class="btn btn-border selectable" type="submit" title="search"><i class="mdi mdi-magnify"></i></button>
     </form>
 </template>
 

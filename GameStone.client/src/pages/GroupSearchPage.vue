@@ -7,7 +7,8 @@
             </div>
         </div>
         <div class="col-md-5 text-end">
-            <button class="btn btn-info border rounded-pill">Create A Group</button>
+            <button class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#groupModal">Create Group</button>
         </div>
     </section>
     <section class="row justify-content-center">
@@ -15,6 +16,18 @@
             <GroupCard :group="g" />
         </div>
     </section>
+
+    <Modal id="groupModal">
+
+<template #header>
+    <h5>Create Group!</h5>
+</template>
+
+<template #modalBody>
+    <CreateGroupForm />
+</template>
+
+</Modal>
 </template>
 
 
@@ -25,6 +38,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { groupsService } from '../services/GroupsService.js';
 import GroupCard from '../components/GroupCard.vue'
+import CreateGroupForm from '../components/CreateGroupForm.vue';
 
 export default {
     setup() {
@@ -45,7 +59,7 @@ export default {
             groups: computed(() => AppState.groups)
 
         }
-    }, components: { GroupCard }
+    }, components: { GroupCard, CreateGroupForm }
 };
 </script>
 

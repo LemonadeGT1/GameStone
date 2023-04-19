@@ -1,7 +1,7 @@
 <template>
             <form @submit.prevent="searchGroups()">
-        <input type="text" v-model="search.query" class="col-md-2 rounded-pill border-dark" id="Search" placeholder="Search Groups">
-        <button class="btn btn-border" type="submit"><i class="mdi mdi-magnify"></i></button>
+        <input type="text" v-model="search.query" class="col-md-4 rounded-pill border-dark" id="Search" placeholder="  Search">
+        <button class="btn btn-border selectable" type="submit" title="search"><i class="mdi mdi-magnify"></i></button>
     </form>
 </template>
 

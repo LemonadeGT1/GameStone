@@ -11,6 +11,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/accountGames', this.getAccountGames)
+      // .get('/profileGames', this.getProfileGames)
       .get('', this.getUserAccount)
       .get('/groupMembers', this.getMyGroups)
       .get('/players', this.getGatheringsPlayingIn)
@@ -18,6 +19,7 @@ export class AccountController extends BaseController {
       .put('', this.updateAccount)
       .delete("/accountGames/:id", this.deleteAccountGame)
   }
+
 
   async updateAccount(req, res, next) {
     try {
@@ -70,13 +72,23 @@ export class AccountController extends BaseController {
 
   async getAccountGames(req, res, next) {
     try {
-      let accountId = req.userInfo.id
+      let accountId = req.body.accountId
       let games = await accountGamesService.getAccountGames(accountId)
       res.send(games)
     } catch (error) {
       next(error)
     }
   }
+
+  // async getProfileGames(req, res, next) {
+  //   try {
+  //     let profileId = req.body.profileId
+  //     let games = await accountGamesService.getProfileGames(profileId)
+  //     res.send(games)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   async deleteAccountGame(req, res, next) {
     try {

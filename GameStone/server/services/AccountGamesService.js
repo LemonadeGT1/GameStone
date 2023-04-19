@@ -3,6 +3,10 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 
 
 class AccountGamesService {
+    async getProfileGames(profileId) {
+        const profileGames = await dbContext.ProfileGames.find({ profileId })
+        return profileGames
+    }
 
     async addAccountGame(gameData) {
         const gameCheck = await dbContext.AccountGames.exists(gameData)

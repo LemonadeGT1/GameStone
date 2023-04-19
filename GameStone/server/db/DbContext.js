@@ -10,6 +10,7 @@ import { ChatSchema } from '../models/Chat';
 import { GroupMemberSchema } from '../models/GroupMember';
 import { GatheringGamesSchema } from '../models/GatheringGames';
 import { AccountGamesSchema } from '../models/AccountGames';
+import { ProfileGamesSchema } from '../models/ProfileGames.js';
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
@@ -23,6 +24,8 @@ class DbContext {
   GroupMember = mongoose.model('GroupMember', GroupMemberSchema)
   GatheringGames = mongoose.model('GatheringGames', GatheringGamesSchema)
   AccountGames = mongoose.model('AccountGames', AccountGamesSchema)
+
+  ProfileGames = mongoose.model('ProfileGames', ProfileGamesSchema)
 }
 
 export const dbContext = new DbContext()

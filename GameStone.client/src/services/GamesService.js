@@ -12,7 +12,7 @@ class GamesService {
 
     async getProfileGames(accountId) {
         // logger.log(accountId)
-        const res = await api.get('account/accountGames', accountId)
+        const res = await api.get(`account/${accountId}/accountGames`)
         logger.log(res.data)
         // AppState.profileGames.push(res.data)
         // logger.log(AppState.profileGames)

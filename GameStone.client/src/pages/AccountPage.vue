@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid px-0">
+    <button @click="gotoProfile(account?.id)">Go to Profile Page...</button>
     <section class="d-flex justify-content-start banner-size">
       <img class="hero-img mx-0 elevation-3" :src="account.coverImg" :alt="account.name">
       <img class="img-relative profile-picture img-fluid selectable" :src="account.picture"
@@ -40,7 +41,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { gatheringsService } from '../services/GatheringsService.js'
 import { gamesService } from '../services/GamesService.js'
 import { groupsService } from '../services/GroupsService.js'
@@ -51,6 +52,8 @@ import { logger } from '../utils/Logger.js'
 
 export default {
   setup() {
+    const router = useRouter()
+
     return {
       account: computed(() => AppState.account),
       async getMyGames() {
@@ -93,8 +96,10 @@ export default {
           Pop.error(error.message);
         }
       },
-      async editAccount() {
-      }
+      gotoProfile(profileId) {
+        logger.log(profileId)
+        router.push({ name: 'Profile', params: { accountId: profileId } })
+      },
     };
   },
   components: { EditAccountForm }

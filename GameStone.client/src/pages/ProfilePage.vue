@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid px-0">
+        <h5>Profile Page</h5>
         <section class="d-flex justify-content-start banner-size">
             <img class="hero-img mx-0 elevation-3" :src="profile?.coverImg" :alt="profile?.name">
-            <img class="img-relative profile-picture img-fluid selectable" :src="profile?.picture"
-                :alt="profile?.name + profile?.id">
+            <img class="img-relative profile-picture img-fluid" :src="profile?.picture" :alt="profile?.name + profile?.id">
         </section>
     </div>
     <div class="container-fluid test-trans">
@@ -68,8 +68,9 @@ export default {
 
             async getMyGames() {
                 try {
-                    const profileId = this.account.id
-                    await gamesService.getMyGames(profileId)
+                    const accountId = this.profile.id
+                    // logger.log("is this stupid thing working? pls be", accountId)
+                    await gamesService.getMyGames(accountId)
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)

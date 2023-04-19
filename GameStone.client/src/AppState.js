@@ -36,6 +36,8 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Profile|null} */
   activeProfile: null,
 
+  profileGames: [],
+
   activeGame: {},
   activeCategories: [],
   activeMechanics: [],

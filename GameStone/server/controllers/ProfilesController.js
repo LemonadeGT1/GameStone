@@ -1,3 +1,4 @@
+import { accountGamesService } from '../services/AccountGamesService.js'
 import { profileService } from '../services/ProfileService.js'
 import BaseController from '../utils/BaseController'
 
@@ -7,6 +8,16 @@ export class ProfilesController extends BaseController {
     this.router
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
+      .get('/:id/games', this.getProfileGames)
+  }
+  async getProfileGames(req, res, next) {
+    try {
+      let accountId = req.params.id
+      let games = await accountGamesService.getAccountGames(accountId)
+      res.send(games)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getProfiles(req, res, next) {

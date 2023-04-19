@@ -46,6 +46,11 @@ class GatheringsService {
         AppState.activeGathering = new Gathering(res.data)
     }
 
+    async getMyGatherings(profileId) {
+        const res = await api.get('account/gatherings')
+        AppState.gathering = res.data.map(g => new Gathering(g))
+
+    }
     // async getGatheringsByGames(gatheringQuery) {
     //     const res = await api.get(`api/gatherings/${gatheringQuery}`)
     //     AppState.gatheringQuery = gatheringQuery

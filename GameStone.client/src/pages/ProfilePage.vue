@@ -88,6 +88,7 @@ export default {
                 AppState.profileGames = []
                 AppState.profileGatherings = []
                 AppState.profileHostedGatherings = []
+                AppState.profileHostedGatherings = []
                 const accountId = route.params.accountId
                 // logger.log("is this stupid thing working? pls be", accountId)
                 await gamesService.getProfileGames(accountId)
@@ -115,6 +116,7 @@ export default {
             async resetOthers() {
                 AppState.profileGames = []
                 AppState.profileGatherings = []
+                AppState.profileHostedGatherings = []
                 AppState.profileHostedGatherings = []
 
             },

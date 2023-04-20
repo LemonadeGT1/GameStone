@@ -1,6 +1,5 @@
 <template>
     <div class="container-fluid px-0">
-        <h5>Profile Page</h5>
         <section class="d-flex justify-content-start banner-size mx-0">
             <img class="hero-img mx-0 elevation-3 w-100" :src="profile?.coverImg" :alt="profile?.name">
             <img class="img-relative profile-picture img-fluid" :src="profile?.picture" :alt="profile?.name + profile?.id">
@@ -10,11 +9,16 @@
         <section class="row p-3">
             <div class="col-md-3">
             </div>
-            <div class="col-md-8 p-3 bio-background">
-                <h3 class="pb-3">Name: {{ profile?.name }}</h3>
-                <h6>Biography:</h6>
-                <p>{{ profile?.bio }}</p>
+            <div class="col-md-8 p-3 bio-background d-flex justify-content-between align-items-end">
+                <div>
+                    <h3 class="pb-3">Name: {{ profile?.name }}</h3>
+                    <h6>Biography:</h6>
+                    <p>{{ profile?.bio }}</p>
+                </div>
+                <button class="btn btn-info"><i class="mdi mdi-pencil text-dark"
+                        @click="gotoAccount(account?.id)"></i></button>
             </div>
+
         </section>
         <section class="row pt-3">
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyProfileGames()">My Games</div>
@@ -59,7 +63,7 @@
 <script>
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { gatheringsService } from '../services/GatheringsService.js'
 import { gamesService } from '../services/GamesService.js'
 import { groupsService } from '../services/GroupsService.js'
@@ -74,6 +78,7 @@ export default {
     setup() {
 
         const route = useRoute()
+        const router = useRouter()
 
 
 
@@ -112,6 +117,7 @@ export default {
 
         return {
             route,
+            router,
             account: computed(() => AppState.account),
             profile: computed(() => AppState.activeProfile),
             profileGames: computed(() => AppState.profileGames),
@@ -171,6 +177,11 @@ export default {
                     logger.error(error.message)
                     Pop.error(error.message)
                 }
+            },
+
+            gotoAccount(profileId) {
+                logger.log(profileId)
+                router.push({ name: 'Account', params: { accountId: profileId } })
             },
         }
     }

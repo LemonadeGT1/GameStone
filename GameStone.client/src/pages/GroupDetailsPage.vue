@@ -130,6 +130,7 @@ export default {
                     logger.log('Group ID', groupId)
                     if (await Pop.confirm('Are you sure you want to delete this group?')) {
                         await groupsService.deleteGroup(groupId)
+                        router.push('/groups')
                     }
                 } catch (error) {
                     logger.log(error.message)

@@ -11,6 +11,7 @@ class SocketService extends SocketHandler {
       .on('error', this.onError)
       .on("s:created:gathering", this.createdGathering)
       .on("s:created:chat", this.createdChat)
+      .on("s:joined:room", this.joiningRoom)
   }
 
   onError(e) {
@@ -32,6 +33,17 @@ class SocketService extends SocketHandler {
   createdChat(payload) {
     const chat = new Chat(payload)
     AppState.chats.push(chat)
+  }
+
+  joiningRoom(payload) {
+    if (payload && AppState.account.id != payload.id) {
+      Pop.toast(
+        `
+        <h5>${payload.name} has joined the chat.</h5>
+        `,
+        null
+      )
+    }
   }
 }
 

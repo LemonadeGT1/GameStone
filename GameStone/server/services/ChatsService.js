@@ -10,11 +10,11 @@ class ChatsService {
         return chat
     }
 
-    async getGatheringChats(gatheringId) {
-        let chats = await dbContext.Chat.find({gatheringId})
-        .populate("profile", 'name picture')
-        return chats
-    }
+    // async getGatheringChats(gatheringId) {
+    //     let chats = await dbContext.Chat.find({gatheringId})
+    //     .populate("profile", 'name picture')
+    //     return chats
+    // }
 
     async deleteChat(chatId, userId) {
         let chat = await dbContext.Chat.findById(chatId)

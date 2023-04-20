@@ -1,11 +1,12 @@
 <template>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-11 py-3">
+            <div class="col-md-11 py-3">
                 <div class="row">
                     <h2>{{ game.name }}</h2>
-                    <div class="text-secondary col-8" v-html="game.description"></div>
-                    <div class="col-4">
+                    <div class="text-secondary col-md-8" v-html="game.description">
+                    </div>
+                    <div class="col-md-4">
                         <img :src="game.image_url" class="imgContainer ms-4 mb-3">
                     </div>
                 </div>
@@ -72,6 +73,7 @@ import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 import { gamesService } from "../services/GamesService.js"
 import Modal from "../components/Modal.vue";
+import { AccountGame } from "../models/AccountGame.js";
 export default {
     setup() {
         const route = useRoute();
@@ -113,8 +115,10 @@ export default {
             // gameCategories: computed(() => AppState.gameCategories),
             async addGame() {
                 try {
-                    logger.log(this.game)
-                    await gamesService.addGame(this.game)
+                    let game = { gameId: this.game.id, gameName: this.game.name, gameImg: this.game.image_url }
+                    // logger.log(game)
+                    await gamesService.addGame(game)
+                    await Pop.toast('Added game to your collection', 'success', 'center')
                 } catch (error) {
                     logger.log(error.message)
                     Pop.error(error.message)
@@ -129,7 +133,7 @@ export default {
 
 <style lang="scss" scoped>
 .imgContainer {
-    height: 40vh;
+    max-height: 40vh;
     width: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;

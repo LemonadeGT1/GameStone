@@ -48,6 +48,11 @@
                 </div>
             </div>
         </section>
+        <section class="row justify-content-center">
+            <div v-for="g in groups" class="col-md-9">
+                <GroupCard :group="g.group" />
+            </div>
+        </section>
     </div>
 </template>
 
@@ -88,7 +93,7 @@ export default {
                 AppState.profileGames = []
                 AppState.profileGatherings = []
                 AppState.profileHostedGatherings = []
-                AppState.profileHostedGatherings = []
+                AppState.profileGroups = []
                 const accountId = route.params.accountId
                 // logger.log("is this stupid thing working? pls be", accountId)
                 await gamesService.getProfileGames(accountId)
@@ -112,12 +117,13 @@ export default {
             profileGames: computed(() => AppState.profileGames),
             gatherings: computed(() => AppState.profileGatherings),
             hostedGatherings: computed(() => AppState.profileHostedGatherings),
+            groups: computed(() => AppState.profileGroups),
 
             async resetOthers() {
                 AppState.profileGames = []
                 AppState.profileGatherings = []
                 AppState.profileHostedGatherings = []
-                AppState.profileHostedGatherings = []
+                AppState.profileGroups = []
 
             },
 
@@ -158,7 +164,7 @@ export default {
 
             async getProfileGroups() {
                 try {
-                    // this.resetOthers()
+                    this.resetOthers()
                     const profileId = this.profile?.id
                     await groupsService.getProfileGroups(profileId)
                 } catch (error) {

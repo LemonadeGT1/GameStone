@@ -17,7 +17,7 @@
             </div>
         </section>
         <section class="row pt-3">
-            <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGames()">My Games</div>
+            <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyProfileGames()">My Games</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGroups()">My Groups</div>
@@ -79,20 +79,21 @@ export default {
 
 
         return {
+            route,
             account: computed(() => AppState.account),
             profile: computed(() => AppState.activeProfile),
             profileGames: computed(() => AppState.profileGames),
 
-            // async getProfileGames() {
-            //     try {
-            //         const accountId = this.profile?.id
-            //         // logger.log("is this stupid thing working? pls be", accountId)
-            //         await gamesService.getProfileGames(accountId)
-            //     } catch (error) {
-            //         logger.error(error.message)
-            //         Pop.error(error.message)
-            //     }
-            // },
+            async getMyProfileGames() {
+                try {
+                    const accountId = route.params.accountId
+                    // logger.log("is this stupid thing working? pls be", accountId)
+                    await gamesService.getProfileGames(accountId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
 
 
             async getProfileGatherings() {

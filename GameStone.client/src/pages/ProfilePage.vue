@@ -1,12 +1,12 @@
 <template>
     <div class="container-fluid px-0">
         <h5>Profile Page</h5>
-        <section class="d-flex justify-content-start banner-size">
-            <img class="hero-img mx-0 elevation-3" :src="profile?.coverImg" :alt="profile?.name">
+        <section class="d-flex justify-content-start banner-size mx-0">
+            <img class="hero-img mx-0 elevation-3 w-100" :src="profile?.coverImg" :alt="profile?.name">
             <img class="img-relative profile-picture img-fluid" :src="profile?.picture" :alt="profile?.name + profile?.id">
         </section>
     </div>
-    <div class="container-fluid test-trans">
+    <div class="container-fluid">
         <section class="row p-3">
             <div class="col-md-3">
             </div>
@@ -17,7 +17,7 @@
             </div>
         </section>
         <section class="row pt-3">
-            <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGames()">My Games</div>
+            <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyProfileGames()">My Games</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGroups()">My Groups</div>
@@ -79,25 +79,26 @@ export default {
 
 
         return {
+            route,
             account: computed(() => AppState.account),
             profile: computed(() => AppState.activeProfile),
             profileGames: computed(() => AppState.profileGames),
 
-            // async getProfileGames() {
-            //     try {
-            //         const accountId = this.profile?.id
-            //         // logger.log("is this stupid thing working? pls be", accountId)
-            //         await gamesService.getProfileGames(accountId)
-            //     } catch (error) {
-            //         logger.error(error.message)
-            //         Pop.error(error.message)
-            //     }
-            // },
+            async getMyProfileGames() {
+                try {
+                    const accountId = route.params.accountId
+                    // logger.log("is this stupid thing working? pls be", accountId)
+                    await gamesService.getProfileGames(accountId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
 
 
             async getProfileGatherings() {
                 try {
-                    const profileId = this.account.id
+                    const profileId = this.profile?.id
                     await gatheringsService.getProfileGatherings(profileId)
                 } catch (error) {
                     logger.error(error.message)
@@ -156,7 +157,7 @@ export default {
     object-fit: cover;
     object-position: center;
     height: 39vh;
-    width: 100vw;
+    /* width: 100vw; */
     border-bottom: #0e0d0d;
     border-style: solid;
     border-width: 2px;
@@ -164,7 +165,7 @@ export default {
 
 .banner-size {
     height: 39vh;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .my-stuff-buttons {

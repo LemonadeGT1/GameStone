@@ -1,10 +1,10 @@
 <template>
-    <!-- <router-link :to="{ name: 'GameDetails', params: { gameId: game.gameId } }"> -->
-    <div class="elevation-3 rounded my-2 bg-white">
-        <img class="img-fluid p-2 bg-white game-card" :src="game.gameImg" :alt="game.gameName">
-        <h5 class="text-black bg-white p-1 mb-0">{{ game.gameName }}</h5>
-    </div>
-    <!-- </router-link> -->
+    <router-link :to="{ name: 'GameDetails', params: { gameId: game.gameId } }">
+        <div class="elevation-3 rounded my-2 bg-white">
+            <img class="img-fluid p-2 bg-white game-card" :src="game.gameImg" :alt="game.gameName">
+            <h5 class="text-black bg-white p-1 mb-0">{{ game.gameName }}</h5>
+        </div>
+    </router-link>
 </template>
 
 

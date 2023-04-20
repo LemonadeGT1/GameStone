@@ -6,6 +6,10 @@ import { api, atlasApi } from "./AxiosService"
 
 class GatheringsService {
 
+    async getProfileGatherings() {
+
+    }
+
     async getAllGatherings() {
         const res = await api.get('api/gatherings')
         logger.log('[ALL GATHERINGS]', res.data)

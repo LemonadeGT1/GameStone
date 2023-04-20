@@ -94,6 +94,7 @@ export default {
         watchEffect(() => {
             route.params.id
             joiningRoom()
+            getChats()
         })
 
         function joiningRoom() {

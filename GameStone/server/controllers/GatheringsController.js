@@ -15,12 +15,24 @@ export class GatheringsController extends BaseController {
             .get("/:id", this.getGatheringById)
             .get("/:id/gatheringGames", this.getGatheringGames)
             .get("/:id/chats", this.getChats)
+            .get("/:id", this.getOne)
             .get("/:id/players", this.getGatheringPlayers)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .put("/:id", this.editGathering)
             .post("", this.createGathering)
             .delete("/:id", this.cancelGathering)
     }
+
+    async getOne(req, res, next) {
+        try {
+            let chatId = req.params.id
+            let chat = await chatsService.getOne(chatId)
+            res.send(chat)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async getGatheringPlayers(req, res, next) {
         try {
             let gatheringId = req.params.id

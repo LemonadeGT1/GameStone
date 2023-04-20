@@ -27,6 +27,14 @@ class ChatsService {
         await chat.remove()
         return 'Deleted Message.'
     }
+
+    async getOne(chatId) {
+        let chat = await dbContext.Chat.findById(chatId).populate("profile", 'name picture')
+        if (chat == null) {
+            throw new BadRequest('This does not exist.')
+        }
+        return chat
+    }
 }
 
 export const chatsService = new ChatsService()

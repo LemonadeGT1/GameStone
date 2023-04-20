@@ -15,7 +15,7 @@
                     <h6>Biography:</h6>
                     <p>{{ profile?.bio }}</p>
                 </div>
-                <button class="btn btn-info"><i class="mdi mdi-pencil text-dark"
+                <button v-if="profile?.id == account?.id" class="btn btn-info"><i class="mdi mdi-pencil text-dark"
                         @click="gotoAccount(account?.id)"></i></button>
             </div>
 

@@ -14,6 +14,9 @@
       <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase mx-2">
         About
       </router-link>
+      <div class="btn text-light selectable text-uppercase mx-2" @click="gotoProfile(account.id)">
+        My Profile
+      </div>
       <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase mx-2">
         Games
       </router-link>
@@ -30,10 +33,26 @@
 </template>
 
 <script>
+import { computed } from 'vue'
 import Login from './Login.vue'
+import { AppState } from '../AppState.js';
+import { useRoute, useRouter } from 'vue-router';
+import { logger } from '../utils/Logger.js';
+
 export default {
   setup() {
-    return {}
+    const router = useRouter()
+
+    return {
+      router,
+      account: computed(() => AppState.account),
+
+
+      async gotoProfile(profileId) {
+        logger.log(profileId)
+        router.push({ name: 'Profile', params: { accountId: profileId } })
+      }
+    }
   },
   components: { Login }
 }

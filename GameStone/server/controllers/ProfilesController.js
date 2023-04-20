@@ -1,4 +1,7 @@
 import { accountGamesService } from '../services/AccountGamesService.js'
+import { gatheringsService } from '../services/GatheringsService.js'
+import { groupMemberService } from '../services/GroupMembersService.js'
+import { playersService } from '../services/PlayersService.js'
 import { profileService } from '../services/ProfileService.js'
 import BaseController from '../utils/BaseController'
 
@@ -9,6 +12,36 @@ export class ProfilesController extends BaseController {
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
       .get('/:id/games', this.getProfileGames)
+      .get('/:id/gatherings', this.getProfileGatherings)
+      .get('/:id/hostedGatherings', this.getHostedGatherings)
+      .get('/:id/groups', this.getProfileGroups)
+  }
+  async getProfileGroups(req, res, next) {
+    try {
+      let profileId = req.params.id
+      let groups = await groupMemberService.getProfileGroups(profileId)
+      res.send(groups)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getHostedGatherings(req, res, next) {
+    try {
+      let creatorId = req.params.id
+      let gatherings = await gatheringsService.getHostedGatherings(creatorId)
+      res.send(gatherings)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getProfileGatherings(req, res, next) {
+    try {
+      let profileId = req.params.id
+      let gatherings = await playersService.getProfileGatherings(profileId)
+      res.send(gatherings)
+    } catch (error) {
+      next(error)
+    }
   }
   async getProfileGames(req, res, next) {
     try {

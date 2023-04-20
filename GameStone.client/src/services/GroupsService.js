@@ -7,6 +7,13 @@ import { api } from "./AxiosService.js"
 
 class GroupsService {
 
+    async getProfileGroups(profileId) {
+        const res = await api.get(`api/profiles/${profileId}/groups`)
+        logger.log('profile group', res.data)
+        AppState.profileGroups = res.data.map(g => new GroupMember(g))
+        logger.log('group member', AppState.profileGroups)
+    }
+
     async getAllGroups() {
         const res = await api.get('api/groups')
         logger.log(res.data)
@@ -27,7 +34,7 @@ class GroupsService {
     }
 
     async createGroup(groupData) {
-        const res= await api.post('api/groups', groupData)
+        const res = await api.post('api/groups', groupData)
         logger.log('creating group', res.data)
         const newGroup = new Group(res.data)
         AppState.groups.push(newGroup)

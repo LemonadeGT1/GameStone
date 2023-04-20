@@ -12,9 +12,9 @@ export const AppState = reactive({
   /** @type {import('./models/Gathering.js').Gathering[]} */
   gatherings: [],
 
-    /** @type {import('./models/Gathering.js').Gathering} */
+  /** @type {import('./models/Gathering.js').Gathering} */
   gathering: {},
-  
+
   /** @type {import('./models/Gathering.js').Gathering|null} */
   activeGathering: null,
 
@@ -25,6 +25,16 @@ export const AppState = reactive({
 
   /** @type {import('./models/Player.js').Player[]} */
   players: [],
+
+  /** @type {import('./models/Player.js').Player[]} */
+  profileGatherings: [],
+
+  /** @type {import('./models/Gathering.js').Gathering[]} */
+  profileHostedGatherings: [],
+
+  /** @type {import('./models/GroupMember.js').GroupMember[]} */
+
+  profileGroups: [],
 
   /** @type {import('./models/Group.js').Group[]} */
   groups: [],

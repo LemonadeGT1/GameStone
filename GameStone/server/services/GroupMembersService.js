@@ -5,6 +5,12 @@ import { groupsService } from "./GroupsService"
 
 
 class GroupMemberService {
+    async getProfileGroups(profileId) {
+        const groups = await dbContext.GroupMember.find({ profileId })
+            .populate('group')
+            .populate('profile')
+        return groups
+    }
 
     async createMember(memberData) {
         const memberCheck = await dbContext.GroupMember.exists(memberData);
@@ -58,11 +64,11 @@ class GroupMemberService {
         if (groupMember.profileId != userId) {
             throw new Forbidden("You are not allowed to delete this.")
         }
-        
+
         // if (groupMember.isRestricted == true) {
-            //     throw new BadRequest("You cannot access this group.")
-            // }
-            // groupMember.isRestricted = true
+        //     throw new BadRequest("You cannot access this group.")
+        // }
+        // groupMember.isRestricted = true
         await groupMember.remove()
         return groupMember
     }

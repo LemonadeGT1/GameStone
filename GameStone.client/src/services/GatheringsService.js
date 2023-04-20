@@ -2,12 +2,23 @@ import { AppState } from "../AppState"
 import { Gathering } from "../models/Gathering"
 import { logger } from "../utils/Logger"
 import { api, atlasApi } from "./AxiosService"
+import { Player } from "../models/Player.js"
 
 
 class GatheringsService {
 
-    async getProfileGatherings() {
+    async getProfileGatherings(profileId) {
+        const res = await api.get(`api/profiles/${profileId}/gatherings`)
+        logger.log('profile gatherings', res.data)
+        AppState.profileGatherings = res.data.map(p => new Player(p))
+        logger.log('added player gathering', AppState.profileGatherings)
+    }
 
+    async getGatheringsIOwn(profileId) {
+        const res = await api.get(`api/profiles/${profileId}/hostedGatherings`)
+        logger.log('gatherings im hosting', res.data)
+        AppState.profileHostedGatherings = res.data.map(g => new Gathering(g))
+        logger.log('mapped our hosted gatherings', AppState.profileHostedGatherings)
     }
 
     async getAllGatherings() {

@@ -27,6 +27,27 @@
                 <ProfileGameCard :game="p" />
             </div>
         </section>
+        <section class="row justify-content-center container-fluid">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
+                        <GatheringCard :gathering="g.gathering" />
+                        <!-- //NOTE - how dis work lol, it is going inside the player object, to the gathering -->
+                    </div>
+                    <div class="col-5 mx-4"></div>
+                </div>
+            </div>
+        </section>
+        <section class="row justify-content-center container-fluid">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div v-for="g in hostedGatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
+                        <GatheringCard :gathering="g" />
+                    </div>
+                    <div class="col-5 mx-4"></div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -49,6 +70,8 @@ export default {
 
         const route = useRoute()
 
+
+
         async function getProfileById() {
             try {
                 const profileId = route.params.accountId
@@ -62,6 +85,9 @@ export default {
 
         async function getProfileGames() {
             try {
+                AppState.profileGames = []
+                AppState.profileGatherings = []
+                AppState.profileHostedGatherings = []
                 const accountId = route.params.accountId
                 // logger.log("is this stupid thing working? pls be", accountId)
                 await gamesService.getProfileGames(accountId)
@@ -83,9 +109,19 @@ export default {
             account: computed(() => AppState.account),
             profile: computed(() => AppState.activeProfile),
             profileGames: computed(() => AppState.profileGames),
+            gatherings: computed(() => AppState.profileGatherings),
+            hostedGatherings: computed(() => AppState.profileHostedGatherings),
+
+            async resetOthers() {
+                AppState.profileGames = []
+                AppState.profileGatherings = []
+                AppState.profileHostedGatherings = []
+
+            },
 
             async getMyProfileGames() {
                 try {
+                    this.resetOthers()
                     const accountId = route.params.accountId
                     // logger.log("is this stupid thing working? pls be", accountId)
                     await gamesService.getProfileGames(accountId)
@@ -98,6 +134,7 @@ export default {
 
             async getProfileGatherings() {
                 try {
+                    this.resetOthers()
                     const profileId = this.profile?.id
                     await gatheringsService.getProfileGatherings(profileId)
                 } catch (error) {
@@ -108,7 +145,8 @@ export default {
 
             async getGatheringsIOwn() {
                 try {
-                    const profileId = this.account.id
+                    this.resetOthers()
+                    const profileId = this.profile?.id
                     await gatheringsService.getGatheringsIOwn(profileId)
                 } catch (error) {
                     logger.error(error.message)
@@ -118,7 +156,8 @@ export default {
 
             async getProfileGroups() {
                 try {
-                    const profileId = this.account.id
+                    // this.resetOthers()
+                    const profileId = this.profile?.id
                     await groupsService.getProfileGroups(profileId)
                 } catch (error) {
                     logger.error(error.message)

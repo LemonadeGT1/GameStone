@@ -5,6 +5,19 @@
             <input placeholder="New Gathering" v-model="editable.name" type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
+            <label for="game" class="form-label">Games</label>
+            <!-- <input placeholder="Add some games!" v-model="editable.game" type="text" class="form-control" id="game"> -->
+            <div class="dropdown open">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="triggerId"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Your Games
+                    </button>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="triggerId">
+                        <button class="dropdown-item" v-for="pg in profileGames" :key="pg.gameId">{{ pg.gameName }}</button>
+                    </div>
+                </div>
+        </div>
+        <div class="mb-3">
             <label for="location" class="form-label">Location</label>
             <input v-model="editable.location" type="text" placeholder="" class="form-control" id="location">
         </div>
@@ -61,9 +74,8 @@ export default {
     },
 
     setup(props) {
-
-
         const editable = ref({})
+        const profileGames = AppState.profileGames
 
         watchEffect(() => {
             editable.value = { ...AppState.activeGathering }
@@ -73,8 +85,10 @@ export default {
         const route = useRoute()
 
         return {
+            profileGames,
             editable,
             route,
+            profileGames: computed(() => AppState.profileGames),
 
 
             handleSubmit() {

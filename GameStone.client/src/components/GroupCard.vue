@@ -10,9 +10,6 @@
                     <h1>{{ group?.name }}</h1>
                     <h3>{{ group?.description }}</h3>
                 </div>
-                <div class="text-center py-2 ps-5">
-                    <h5>Games Here</h5>
-                </div>
             </div>
         </section>
     </router-link>

@@ -15,8 +15,8 @@
                     <h6>Biography:</h6>
                     <p>{{ profile?.bio }}</p>
                 </div>
-                <button v-if="profile?.id == account?.id" class="btn btn-info"><i class="mdi mdi-pencil text-dark"
-                        @click="gotoAccount(account?.id)"></i></button>
+                <button v-if="profile?.id == account?.id" class="btn btn-info" title="Edit Profile"><i
+                        class="mdi mdi-pencil text-dark" @click="gotoAccount(account?.id)"></i></button>
             </div>
 
         </section>
@@ -189,14 +189,16 @@ export default {
 </script>
 
 <style scoped>
-/* img {
-    max-width: 100px;
-  } */
-
 .img-relative {
     position: relative;
     bottom: -267px;
     left: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .img-relative {
+        bottom: -138px;
+    }
 }
 
 .profile-picture {
@@ -248,4 +250,3 @@ export default {
 
 }
 </style>
-  

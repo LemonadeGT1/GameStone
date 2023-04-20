@@ -67,8 +67,9 @@
 </template>
 
 <script>
+import { useRoute, useRouter } from 'vue-router';
 import { AppState } from '../AppState';
-import { computed } from 'vue';
+import { computed, watchEffect } from 'vue';
 export default {
   setup() {
     return {

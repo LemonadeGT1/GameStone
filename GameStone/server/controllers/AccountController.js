@@ -9,8 +9,6 @@ export class AccountController extends BaseController {
   constructor() {
     super('account')
     this.router
-      .get('/:accountId/accountGames', this.getAccountGames)
-      //NOTE - move back down
       .use(Auth0Provider.getAuthorizedUserInfo)
       // .get('/profileGames', this.getProfileGames)
       .get('', this.getUserAccount)
@@ -71,15 +69,15 @@ export class AccountController extends BaseController {
     }
   }
 
-  async getAccountGames(req, res, next) {
-    try {
-      let accountId = req.params.accountId
-      let games = await accountGamesService.getAccountGames(accountId)
-      res.send(games)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async getAccountGames(req, res, next) {
+  //   try {
+  //     let accountId = req.params.accountId
+  //     let games = await accountGamesService.getAccountGames(accountId)
+  //     res.send(games)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   // async getProfileGames(req, res, next) {
   //   try {

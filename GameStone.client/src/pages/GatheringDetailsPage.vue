@@ -74,8 +74,8 @@
 
 
 <script>
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { onMounted, ref, watchEffect } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { gatheringsService } from '../services/GatheringsService.js';
@@ -83,12 +83,28 @@ import { chatsService } from '../services/ChatsService'
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
 import { playersService } from '../services/PlayersService.js';
+import { socketService } from '../services/SocketService';
 
 
 export default {
     setup() {
+        const router = useRouter()
         const editable = ref({})
-        let route = useRoute()
+        const route = useRoute()
+        watchEffect(() => {
+            route.params.id
+            joiningRoom()
+            getChats()
+        })
+
+        function joiningRoom() {
+            try {
+                let payload = { gatheringName: route.params.id }
+                socketService.emit("c:joining:room", payload)
+            } catch (error) {
+                Pop.error(error.message)
+            }
+        }
         async function getGatheringById() {
             try {
                 let gatheringId = route.params.gatheringId

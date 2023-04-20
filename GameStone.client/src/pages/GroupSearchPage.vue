@@ -1,35 +1,33 @@
 <template>
-        <div class="container-fluid">
-        <section class="row my-3 justify-content-center">
-            <div class="col-md-5">
-                <h1>Local Groups</h1>
-                <div>
-                    <GroupSearchBar/>
-                </div>
+    <section class="row my-3 justify-content-center">
+        <div class="col-md-5">
+            <h1>Local Groups</h1>
+            <div>
+                <GroupSearchBar/>
             </div>
-            <div class="col-md-5 text-end">
-                <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
-                            data-bs-target="#groupModal">Create Group</button>
-            </div>
-        </section>
-        <section class="row justify-content-center">
-            <div v-for="g in groups" class="col-md-9">
-                <GroupCard :group="g" />
-            </div>
-        </section>
-    </div>
+        </div>
+        <div class="col-md-5 text-end">
+            <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#groupModal">Create Group</button>
+        </div>
+    </section>
+    <section class="row justify-content-center">
+        <div v-for="g in groups" class="col-md-9">
+            <GroupCard :group="g" />
+        </div>
+    </section>
 
     <Modal id="groupModal">
 
-<template #header>
-    <h5>Create Group!</h5>
-</template>
+        <template #header>
+            <h5>Create Group!</h5>
+        </template>
 
-<template #modalBody>
-    <CreateGroupForm />
-</template>
+        <template #modalBody>
+            <CreateGroupForm />
+        </template>
 
-</Modal>
+    </Modal>
 </template>
 
 

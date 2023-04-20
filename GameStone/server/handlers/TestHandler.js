@@ -9,8 +9,18 @@ export class TestHandler extends SocketHandler {
     super(io, socket)
     this
       .on('SOCKET_TEST', this.testEvent)
+      .on('c:joining:room', this.joiningRoom)
   }
 
+  joiningRoom(payload) {
+    if (!payload.gatheringName) {
+      this.socket.emit("error", {error: 'error'})
+      return
+    }
+    this.socket.join(payload.gatheringName)
+    this.io.to(payload.gatheringName).emit('s:joined:room', this.user)
+  }
+  
   async testEvent(payload) {
     this.socket.emit('IS_TESTED', payload)
   }

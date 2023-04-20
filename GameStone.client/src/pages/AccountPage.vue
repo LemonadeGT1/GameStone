@@ -1,26 +1,4 @@
 <template>
-  <!-- <div class="container-fluid px-0">
-    <button @click="gotoProfile(account?.id)">Go to Profile Page...</button>
-    <section class="d-flex justify-content-start banner-size">
-      <img class="hero-img mx-0 elevation-3" :src="account.coverImg" :alt="account.name">
-      <img class="img-relative profile-picture img-fluid selectable" :src="account.picture"
-        :alt="account.name + account.id" title="Edit Profile" data-bs-toggle="modal" data-bs-target="#editAccountModal">
-    </section>
-  </div>
-  <div class="container-fluid">
-    <section class="row p-3">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-8 p-3 bio-background">
-        <h3 class="pb-3">Name: {{ account.name }}</h3>
-        <h6>Biography:</h6>
-        <p>{{ account.bio }}</p>
-      </div>
-    </section>
-
-  </div> -->
-
-
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 d-flex justify-content-between mb-4">
@@ -69,7 +47,7 @@
   <Modal id="editAccountModal">
 
     <template #header>
-      <h5>Edit Account!</h5>
+      <h5>Edit Profile!</h5>
     </template>
 
     <template #modalBody>

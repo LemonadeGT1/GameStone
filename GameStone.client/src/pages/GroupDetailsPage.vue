@@ -5,17 +5,15 @@
             <div class="col-md-9">
                 <section class="row my-3 justify-content-between bg-secondary rounded">
                     <div class="col-md-8 p-4 px-5">
-                        <div class="py-2" style="position:absolute">
+                        <div class="py-2 makeAbsolute">
                             <h1>{{ group?.name }}</h1>
                             <h3>{{ group?.description }}</h3>
-                            <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator?.name"
-                                style="position:relative; bottom: 0px; left: 0px;" @click="gotoProfile(group?.creator.id)">
+                            <img :src="group?.creator.picture" class="profilePic selectable makeRelative"
+                                :title="group?.creator?.name" @click="gotoProfile(group?.creator.id)">
                         </div>
                     </div>
-                    <div class="col-md-3 p-0">
-                        <img class="group-img img-fluid rounded-end"
-                            :src="group?.imgUrl"
-                            :alt="group?.name">
+                    <div class="col-md-3 p-0 goTop">
+                        <img class="group-img img-fluid rounded-end" :src="group?.imgUrl" :alt="group?.name">
                     </div>
                 </section>
             </div>
@@ -23,9 +21,10 @@
         <!-- SECTION - Buttons -->
         <section class="row justify-content-between m-3">
             <div class="col-md-4">
-                <button v-if="group?.creatorId == account?.id" class="btn btn-info border selectable rounded-pill mx-3" data-bs-toggle="modal"
-                        data-bs-target="#editGroupModal">Edit Group</button>
-                <button v-if="group?.creatorId == account?.id" @click="deleteGroup(group.id)" class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
+                <button v-if="group?.creatorId == account?.id" class="btn btn-info border selectable rounded-pill mx-3"
+                    data-bs-toggle="modal" data-bs-target="#editGroupModal">Edit Group</button>
+                <button v-if="group?.creatorId == account?.id" @click="deleteGroup(group.id)"
+                    class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
             </div>
             <div class="col-md-4">
                 <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
@@ -73,15 +72,15 @@
 
     <Modal id="editGroupModal">
 
-<template #header>
-    <h5>Edit Group</h5>
-</template>
+        <template #header>
+            <h5>Edit Group</h5>
+        </template>
 
-<template #modalBody>
-    <GroupEditForm />
-</template>
+        <template #modalBody>
+            <GroupEditForm />
+        </template>
 
-</Modal>
+    </Modal>
 </template>
 
 
@@ -202,5 +201,26 @@ export default {
     position: relative;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+}
+
+.makeAbsolute {
+    position: absolute;
+}
+
+.makeRelative {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .makeAbsolute {
+        position: relative;
+    }
+
+    .goTop {
+        order: -1;
+    }
+
 }
 </style>

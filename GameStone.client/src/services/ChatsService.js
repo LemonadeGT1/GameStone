@@ -1,3 +1,4 @@
+import { AppState } from "../AppState"
 import { Chat } from "../models/Chat"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
@@ -7,7 +8,10 @@ class ChatsService {
 
     async createChat(chatData) {
         const res = await api.post("api/chats", chatData)
-        logger.log(new Chat(res.data))
+        const newChat = new Chat(res.data)
+        AppState.chats.push(newChat)
+        logger.log(res.data)
+        return newChat
     }
 }
 

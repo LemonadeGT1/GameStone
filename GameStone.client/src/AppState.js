@@ -13,9 +13,9 @@ export const AppState = reactive({
   gatherings: [],
   gatheringChats: [],
 
-    /** @type {import('./models/Chat.js').Chat[]} */
+  /** @type {import('./models/Chat.js').Chat[]} */
   chats: [],
-    /** @type {import('./models/Gathering.js').Gathering} */
+
   /** @type {import('./models/Gathering.js').Gathering} */
   gathering: {},
 
@@ -37,7 +37,6 @@ export const AppState = reactive({
   profileHostedGatherings: [],
 
   /** @type {import('./models/GroupMember.js').GroupMember[]} */
-
   profileGroups: [],
 
   /** @type {import('./models/Group.js').Group[]} */

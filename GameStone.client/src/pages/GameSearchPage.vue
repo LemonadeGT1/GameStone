@@ -11,9 +11,6 @@
             <div class="col-12 p-2">
                 <GameFilterBar />
             </div>
-            <div class="col-12 p-2">
-                <button @click="clearAll()" class="btn btn-danger border rounded-pill"> Clear All</button>
-            </div>
             <div class="col-12 p-2 text-center">
                 <button @click="changePage(-20)" class="btn btn-info border rounded-pill">Previous Page</button>
                 <button @click="changePage(20)" class="btn btn-info border rounded-pill mx-2">Next Page</button>
@@ -21,7 +18,7 @@
         </section>
         <!-- SECTION GAME CARDS -->
         <section class="row justify-content-center p-3">
-            <div class="col-md-3" v-for="g in games" :key="g.id">
+            <div class="col-md-4 col-lg-3" v-for="g in games" :key="g.id">
                 <GameCard :game="g" />
             </div>
         </section>
@@ -92,7 +89,7 @@ export default {
     color: #008291;
 }
 
-.cardContainer {
-    min-height: 40vh;
-}
+// .cardContainer {
+//     min-height: 40vh;
+// }
 </style>

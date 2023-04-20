@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="col-md-5 text-end">
-            <button class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+            <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
                         data-bs-target="#groupModal">Create Group</button>
         </div>
     </section>
@@ -55,7 +55,7 @@ export default {
         onMounted(() => getAllGroups())
 
         return {
-
+            account: computed(() => AppState.account),
             groups: computed(() => AppState.groups)
 
         }

@@ -23,29 +23,38 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 d-flex justify-content-between">
-        <div class="h1">Edit Profile <i class="mdi mdi-pencil-outline selectable" title="Edit Profile"
-            data-bs-toggle="modal" data-bs-target="#editAccountModal"></i>
-
+      <div class="col-12 d-flex justify-content-between mb-4">
+        <div>
+          <h1 class="text-secondary ">Account:</h1>
+          <div class="border border-dark rounded selectable" title="Edit Profile" data-bs-toggle="modal"
+            data-bs-target="#editAccountModal">Edit Your Profile <i class="mdi mdi-pencil-outline"></i>
+          </div>
         </div>
-        <button @click="gotoProfile(account?.id)">Back to Profile Page</button>
+        <div>
+          <button @click="gotoProfile(account?.id)" class="mt-2 rounded text-dark bg-info p-1">
+            Back to Profile Page</button>
+        </div>
+
       </div>
 
       <div class="col-12">
         <div class="row">
-          <div class="col-4">
-            <h5>Profile Picture:</h5>
-            <img class="profile-picture img-fluid selectable" :src="account.picture" :alt="account.name + account.id">
+          <div class="col-md-4 d-flex justify-content-between">
+            <div>
+              <h5 class="bg-light rounded p-2">Profile Picture:</h5>
+            </div>
+            <img class="profile-picture img-fluid " :src="account.picture" :alt="account.name + account.id">
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <h5>Cover Photo:</h5>
+      <div class="col-12 pt-2">
+        <h5 class="bg-light rounded p-2 mt-4">Cover Photo:</h5>
+
         <img class="hero-img mx-0 elevation-3 w-100" :src="account.coverImg" :alt="account.name">
       </div>
       <div class="col-12">
         <section class="row p-3">
-          <h5>Description:</h5>
+          <h5 class="bg-light rounded p-2 mt-4">Description:</h5>
           <div class="col-md-8 p-3 bio-background">
             <h3 class="pb-3">Name: {{ account.name }}</h3>
             <h6>Biography:</h6>
@@ -194,7 +203,11 @@ export default {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   border: 1px solid rgba(255, 251, 251, 0.548);
-
-
 }
+
+/* .title-looks {
+  height: 4vh;
+  width: auto;
+
+} */
 </style>

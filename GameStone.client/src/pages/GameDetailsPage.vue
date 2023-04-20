@@ -38,14 +38,14 @@
             </div>
         </div>
         <div class="row justify-content-center my-4">
-            <div class="col-md-3 text-center">
+            <div class="col-md-3">
                 <button class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
                     data-bs-target="#gatheringModal">Create a Gathering</button>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3">
                 <button class="btn btn-info border rounded-pill selectable">Find Gatherings</button>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3">
                 <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game
                     to
                     Collection</button>

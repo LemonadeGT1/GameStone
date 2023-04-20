@@ -66,6 +66,13 @@ class GatheringsService {
         AppState.gathering = res.data.map(g => new Gathering(g))
 
     }
+
+    async getChats(gatheringId) {
+        const res = await api.get(`api/gatherings/${gatheringId}/chats`)
+        AppState.chats = res.data
+        logger.log('[get Chat]', res.data)
+    }
+
     // async getGatheringsByGames(gatheringQuery) {
     //     const res = await api.get(`api/gatherings/${gatheringQuery}`)
     //     AppState.gatheringQuery = gatheringQuery

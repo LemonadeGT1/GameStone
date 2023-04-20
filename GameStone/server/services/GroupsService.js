@@ -47,11 +47,10 @@ class GroupsService {
         if (group.creatorId != userId) {
             throw new Forbidden('You are not allowed to delete this.')
         }
-        if (group.isDeleted == true) {
-            throw new BadRequest(`${group.name} has already been deleted.`)
+        if (group == null) {
+            throw new BadRequest("This group no longer exists.")
         }
-        group.isDeleted = true
-        await group.save()
+        await group.remove()
         return `${group.name} has been deleted`
     }
 }

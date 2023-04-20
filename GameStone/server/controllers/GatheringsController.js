@@ -4,6 +4,7 @@ import { gatheringsService } from "../services/GatheringsService.js";
 import { playersService } from "../services/PlayersService.js";
 import { chatsService } from "../services/ChatsService.js";
 import { gatheringGamesService } from "../services/GatheringGamesService.js";
+import { socketProvider } from "../SocketProvider.js";
 
 
 export class GatheringsController extends BaseController {
@@ -80,6 +81,7 @@ export class GatheringsController extends BaseController {
             let userId = req.userInfo.id
             gData.creatorId = userId
             let gathering = await gatheringsService.createGathering(gData)
+            socketProvider.message("s:created:gathering", gathering)
             res.send(gathering)
         } catch (error) {
             next(error)

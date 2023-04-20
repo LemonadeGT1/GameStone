@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController";
+import { socketProvider } from "../SocketProvider"
 import { chatsService } from "../services/ChatsService";
 
 
@@ -17,6 +18,7 @@ export class ChatController extends BaseController {
             let chatData = req.body
             chatData.profileId = req.userInfo.id
             let chat = await chatsService.createChat(chatData)
+            socketProvider.messageRoom(chat.gatheringId.toString(), "s:created:chat", chat)
             res.send(chat)
         } catch (error) {
             next(error)

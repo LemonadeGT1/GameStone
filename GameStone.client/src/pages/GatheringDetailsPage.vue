@@ -50,9 +50,9 @@
     <div class="row justify-content-center m-2">
         <textarea @keydown.enter.prevent="createChat(chatData)" class="col-12 rounded align-items-center py-2 form-control" placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows="1"></textarea>
     </div>
-    <section class="row m-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c.id">
+    <section class="row m-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
         <div class="col-1 me-3">
-            <img :src="c.profile.picture" :alt="c.profile.name" class="profilePicture">
+            <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
         </div>
         <div class="col-10">
             <h5>{{ c.creator }}</h5>

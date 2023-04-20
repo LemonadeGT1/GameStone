@@ -45,7 +45,7 @@
                 <button class="btn btn-info border rounded-pill">Find Gatherings</button>
             </div>
             <div class="col-3">
-                <button class="btn btn-info border rounded-pill">Add Game to Collection</button>
+                <button @click="addGame()" class="btn btn-info border rounded-pill">Add Game to Collection</button>
             </div>
         </div>
     </div>
@@ -111,6 +111,15 @@ export default {
             // , activeMechanics: computed(() => AppState?.activeMechanics)
             // gameDescription: computed(() => AppState.activeGame.description?.replace(/<[^>]+>|&quot;/g, ' ')),
             // gameCategories: computed(() => AppState.gameCategories),
+            async addGame() {
+                try {
+                    logger.log(this.game)
+                    await gamesService.addGame(this.game)
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            }
         };
     },
     components: { Modal }

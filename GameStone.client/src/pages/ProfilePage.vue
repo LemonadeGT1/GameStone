@@ -1,12 +1,12 @@
 <template>
     <div class="container-fluid px-0">
         <h5>Profile Page</h5>
-        <section class="d-flex justify-content-start banner-size">
-            <img class="hero-img mx-0 elevation-3" :src="profile?.coverImg" :alt="profile?.name">
+        <section class="d-flex justify-content-start banner-size mx-0">
+            <img class="hero-img mx-0 elevation-3 w-100" :src="profile?.coverImg" :alt="profile?.name">
             <img class="img-relative profile-picture img-fluid" :src="profile?.picture" :alt="profile?.name + profile?.id">
         </section>
     </div>
-    <div class="container-fluid test-trans">
+    <div class="container-fluid">
         <section class="row p-3">
             <div class="col-md-3">
             </div>
@@ -97,7 +97,7 @@ export default {
 
             async getProfileGatherings() {
                 try {
-                    const profileId = this.account.id
+                    const profileId = this.profile?.id
                     await gatheringsService.getProfileGatherings(profileId)
                 } catch (error) {
                     logger.error(error.message)
@@ -156,7 +156,7 @@ export default {
     object-fit: cover;
     object-position: center;
     height: 39vh;
-    width: 100vw;
+    /* width: 100vw; */
     border-bottom: #0e0d0d;
     border-style: solid;
     border-width: 2px;
@@ -164,7 +164,7 @@ export default {
 
 .banner-size {
     height: 39vh;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .my-stuff-buttons {

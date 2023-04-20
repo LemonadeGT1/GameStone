@@ -8,7 +8,8 @@ class GatheringsService {
 
     async getProfileGatherings(profileId) {
         const res = await api.get(`api/profiles/${profileId}/gatherings`)
-        logger.log('profile gatherings', res.data)
+        // logger.log('profile gatherings', res.data)
+
     }
 
     async getAllGatherings() {

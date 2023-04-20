@@ -34,6 +34,18 @@ class GroupsService {
         return newGroup
     }
 
+    async deleteGroup(groupId) {
+        const res = await api.delete(`api/groups/${groupId}`)
+        logger.log('Deleting Group from service', res.data)
+        AppState.groups = AppState.groups.filter(g => g.group != groupId)
+    }
+
+    async editGroup(groupData, groupId) {
+        logger.log('Edit Group from service', groupData, groupId)
+        const res = await api.put(`api/groups/${groupId}`, groupData)
+        logger.log('Edited Group', res.data)
+    }
+
     async getMembersByGroupId(groupId) {
         const res = await api.get(`api/groups/${groupId}/groupMembers`)
         AppState.groupMembers = res.data

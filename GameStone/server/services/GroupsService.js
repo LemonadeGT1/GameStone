@@ -37,6 +37,7 @@ class GroupsService {
         }
         originalGroup.name = groupEdit.name ? groupEdit.name : originalGroup.name
         originalGroup.description = groupEdit.description ? groupEdit.description : originalGroup.description
+        originalGroup.imgUrl = groupEdit.imgUrl ? groupEdit.imgUrl : originalGroup.imgUrl
         originalGroup.isPublic = groupEdit.isPublic ? groupEdit.isPublic : originalGroup.isPublic
         await originalGroup.save()
         return originalGroup

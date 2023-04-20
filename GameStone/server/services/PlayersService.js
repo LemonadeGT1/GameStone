@@ -7,6 +7,7 @@ class PlayersService {
     async getProfileGatherings(profileId) {
         let gatherings = await dbContext.Players.find({ profileId })
             .populate('gathering')
+            .populate('profile')
         return gatherings
     }
     async getGatheringPlayers(gatheringId) {

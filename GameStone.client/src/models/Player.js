@@ -1,4 +1,5 @@
 import { Profile } from "./Account.js"
+import { Gathering } from "./Gathering.js"
 
 export class Player {
     constructor(data) {
@@ -8,5 +9,6 @@ export class Player {
         this.accepted = data.accepted
         this.accountId = data.profileId
         this.profile = new Profile(data.profile)
+        this.gathering = new Gathering(data.gathering)
     }
 }

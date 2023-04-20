@@ -13,13 +13,14 @@ class GamesService {
 
     async addGame(game) {
         const res = await api.post('api/accountGames', game)
-        logger.log(res.data, 'added game')
+        AppState.profileGames.push(new AccountGame(res.data))
+        logger.log(AppState.profileGames, 'added game')
     }
     async getProfileGames(accountId) {
         // logger.log(accountId)
         const res = await api.get(`api/profiles/${accountId}/games`)
-        // logger.log(res.data)
         AppState.profileGames = res.data.map(p => new AccountGame(p))
+        logger.log(AppState.profileGames, 'PROFILE GAMES')
         // AppState.profileGames = res.data
 
         logger.log('the spot we are looking for rn', AppState.profileGames)

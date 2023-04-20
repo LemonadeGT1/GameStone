@@ -46,7 +46,8 @@
                 <button class="btn btn-info border rounded-pill">Find Gatherings</button>
             </div>
             <div class="col-3">
-                <button @click="addGame()" class="btn btn-info border rounded-pill">Add Game to Collection</button>
+                <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill">Add Game to
+                    Collection</button>
             </div>
         </div>
     </div>
@@ -68,7 +69,7 @@
 import { useRoute } from "vue-router";
 import { AppState } from '../AppState';
 import { gatheringsService } from '../services/GatheringsService'
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, watchEffect } from 'vue';
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 import { gamesService } from "../services/GamesService.js"
@@ -87,11 +88,32 @@ export default {
                 Pop.error(error.message);
             }
         }
+
+        async function getProfileGames() {
+            try {
+                const accountId = AppState.account.id
+                logger.log("is this stupid thing working? pls be", accountId)
+                await gamesService.getProfileGames(accountId)
+            } catch (error) {
+                logger.error(error.message)
+                Pop.error(error.message)
+            }
+        }
+
         onMounted(() => {
             getGameById();
         });
+
+        watchEffect(() => {
+            if (AppState.account.id) {
+                getProfileGames()
+            }
+        })
         return {
             game: computed(() => AppState.activeGame),
+            profileGames: computed(() => AppState.profileGames.find(g => g.gameId == AppState.activeGame.id)),
+            account: computed(() => AppState.account),
+
             activeCategories: computed(() => {
                 const game = AppState.activeGame;
                 const categories = [];

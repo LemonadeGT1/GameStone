@@ -28,7 +28,7 @@
 
 
 <script>
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue'
 import { Gathering } from '../models/Gathering.js';
 import { logger } from '../utils/Logger.js';
 

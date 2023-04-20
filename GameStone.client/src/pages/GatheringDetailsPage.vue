@@ -97,6 +97,10 @@ export default {
             }
         }
 
+        async function getGatheringChats() {
+            
+        }
+
         onMounted(() => {
             getGatheringById()
             getGatheringPlayers()

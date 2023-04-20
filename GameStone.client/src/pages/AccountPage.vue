@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid px-0">
+  <!-- <div class="container-fluid px-0">
     <button @click="gotoProfile(account?.id)">Go to Profile Page...</button>
     <section class="d-flex justify-content-start banner-size">
       <img class="hero-img mx-0 elevation-3" :src="account.coverImg" :alt="account.name">
@@ -17,12 +17,44 @@
         <p>{{ account.bio }}</p>
       </div>
     </section>
-    <section class="row pt-3">
-      <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGames()">My Games</div>
-      <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGatherings()">My Gatherings</div>
-      <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
-      <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyGroups()">My Groups</div>
-    </section>
+
+  </div> -->
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between">
+        <div class="h1">Edit Profile <i class="mdi mdi-pencil-outline selectable" title="Edit Profile"
+            data-bs-toggle="modal" data-bs-target="#editAccountModal"></i>
+
+        </div>
+        <button @click="gotoProfile(account?.id)">Back to Profile Page</button>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-4">
+            <h5>Profile Picture:</h5>
+            <img class="profile-picture img-fluid selectable" :src="account.picture" :alt="account.name + account.id">
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <h5>Cover Photo:</h5>
+        <img class="hero-img mx-0 elevation-3 w-100" :src="account.coverImg" :alt="account.name">
+      </div>
+      <div class="col-12">
+        <section class="row p-3">
+          <h5>Description:</h5>
+          <div class="col-md-8 p-3 bio-background">
+            <h3 class="pb-3">Name: {{ account.name }}</h3>
+            <h6>Biography:</h6>
+            <p>{{ account.bio }}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
   </div>
 
   <Modal id="editAccountModal">
@@ -129,11 +161,11 @@ export default {
 
 
 .hero-img {
-  position: absolute;
+  /* position: absolute; */
   object-fit: cover;
   object-position: center;
   height: 39vh;
-  width: 100vw;
+  /* width: 100vw; */
   border-bottom: #0e0d0d;
   border-style: solid;
   border-width: 2px;

@@ -38,6 +38,16 @@
                 </div>
             </div>
         </section>
+        <section class="row justify-content-center container-fluid">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div v-for="g in hostedGatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
+                        <GatheringCard :gathering="g" />
+                    </div>
+                    <div class="col-5 mx-4"></div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -97,10 +107,12 @@ export default {
             profile: computed(() => AppState.activeProfile),
             profileGames: computed(() => AppState.profileGames),
             gatherings: computed(() => AppState.profileGatherings),
+            hostedGatherings: computed(() => AppState.profileHostedGatherings),
 
             async resetOthers() {
                 AppState.profileGames = []
                 AppState.profileGatherings = []
+                AppState.profileHostedGatherings = []
 
             },
 
@@ -130,6 +142,7 @@ export default {
 
             async getGatheringsIOwn() {
                 try {
+                    this.resetOthers()
                     const profileId = this.profile?.id
                     await gatheringsService.getGatheringsIOwn(profileId)
                 } catch (error) {

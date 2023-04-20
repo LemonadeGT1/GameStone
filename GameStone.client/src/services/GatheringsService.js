@@ -15,7 +15,10 @@ class GatheringsService {
     }
 
     async getGatheringsIOwn(profileId) {
-        const res = await api.get
+        const res = await api.get(`api/profiles/${profileId}/hostedGatherings`)
+        logger.log('gatherings im hosting', res.data)
+        AppState.profileHostedGatherings = res.data.map(g => new Gathering(g))
+        logger.log('mapped our hosted gatherings', AppState.profileHostedGatherings)
     }
 
     async getAllGatherings() {

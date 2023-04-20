@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+import { GroupSchema } from "./Group.js";
 
 
 export const GatheringSchema = new Schema({
@@ -11,6 +12,7 @@ export const GatheringSchema = new Schema({
     isPublic: { type: Boolean, default: true },
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
     isCanceled: { type: Boolean, default: false },
+    games: { type: [Object] }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 

@@ -189,17 +189,13 @@ export default {
 </script>
 
 <style scoped>
-/* img {
-    max-width: 100px;
-  } */
-
 .img-relative {
     position: relative;
     bottom: -267px;
     left: 100px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .img-relative {
         bottom: -138px;
     }

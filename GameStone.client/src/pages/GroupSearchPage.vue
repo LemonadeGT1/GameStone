@@ -3,12 +3,12 @@
         <div class="col-md-5">
             <h1>Local Groups</h1>
             <div>
-                <GroupSearchBar/>
+                <GroupSearchBar />
             </div>
         </div>
         <div class="col-md-5 text-end">
             <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
-                        data-bs-target="#groupModal">Create Group</button>
+                data-bs-target="#groupModal">Create Group</button>
         </div>
     </section>
     <section class="row justify-content-center">
@@ -19,15 +19,15 @@
 
     <Modal id="groupModal">
 
-<template #header>
-    <h5>Create Group!</h5>
-</template>
+        <template #header>
+            <h5>Create Group!</h5>
+        </template>
 
-<template #modalBody>
-    <CreateGroupForm />
-</template>
+        <template #modalBody>
+            <CreateGroupForm />
+        </template>
 
-</Modal>
+    </Modal>
 </template>
 
 

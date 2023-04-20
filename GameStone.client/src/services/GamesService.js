@@ -11,6 +11,10 @@ import { AccountGame } from "../models/AccountGame.js"
 
 class GamesService {
 
+    async addGame(game) {
+        const res = await api.post('api/accountGames', game)
+        logger.log(res.data, 'added game')
+    }
     async getProfileGames(accountId) {
         // logger.log(accountId)
         const res = await api.get(`api/profiles/${accountId}/games`)

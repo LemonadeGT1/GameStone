@@ -48,9 +48,9 @@ class GroupsService {
     }
 
     async editGroup(groupData, groupId) {
-        logger.log('Edit Group from service', groupData, groupId)
         const res = await api.put(`api/groups/${groupId}`, groupData)
         logger.log('Edited Group', res.data)
+        AppState.activeGroup = new Group(res.data)
     }
 
     async getMembersByGroupId(groupId) {

@@ -6,8 +6,9 @@ import { api, atlasApi } from "./AxiosService"
 
 class GatheringsService {
 
-    async getProfileGatherings() {
-
+    async getProfileGatherings(profileId) {
+        const res = await api.get(`api/profiles/${profileId}/gatherings`)
+        logger.log('profile gatherings', res.data)
     }
 
     async getAllGatherings() {

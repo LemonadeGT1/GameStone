@@ -29,6 +29,9 @@ export const AppState = reactive({
   /** @type {import('./models/Player.js').Player[]} */
   profileGatherings: [],
 
+  /** @type {import('./models/Gathering.js').Gathering[]} */
+  profileHostedGatherings: [],
+
   /** @type {import('./models/Group.js').Group[]} */
   groups: [],
 

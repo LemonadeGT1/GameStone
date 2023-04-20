@@ -12,7 +12,7 @@ class ChatsService {
 
     async getGatheringChats(gatheringId) {
         let chats = await dbContext.Chat.find({gatheringId})
-        .populate("profile")
+        .populate("profile", 'name picture')
         return chats
     }
 

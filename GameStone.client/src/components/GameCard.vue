@@ -1,29 +1,31 @@
 <template>
-    <router-link :to="{ name: 'GameDetails', params: { gameId: game.id } }">
-        <div class="elevation-3 rounded my-2 bg-white">
-            <img class="img-fluid p-2 bg-white game-card" :src="game.image_url" :alt="game.name">
-            <h5 class="text-black bg-white p-1 mb-0">{{ game.name }}</h5>
-            <div class="row mx-1 mb-0 text-secondary justify-content-center">
+    <div class="elevation-3 rounded bg-white cardContainer align-items-bottom">
+        <router-link :to="{ name: 'GameDetails', params: { gameId: game.id } }">
+            <div class="my-3 text-center align-items-between">
+                <img class="img-fluid p-2 gameImg" :src="game.image_url" :alt="game.name">
+                <h5 class="text-black p-1 mb-0">{{ game.name }}</h5>
 
-                <div class="col-4 p-2">
-                    <i class="mdi mdi-account-group text-black"></i>
-                    <span class="mx-1"
-                        v-text="game.min_players == game.max_players ? game.max_players : game.min_players + '-' + game.max_players"></span>
-                </div>
-                <!-- <span> | </span>  -->
-                <div class="col-4 p-2 text-center">
-                    <i class="mdi mdi-clock-outline text-black"></i>
-                    <span class="mx-1"
-                        v-text="game.min_playtime == game.max_playtime ? game.max_playtime : game.min_playtime + '-' + game.max_playtime"></span>
-                </div>
-                <!-- <span> | </span> -->
-                <div class="col-4 p-2 text-end">
-                    <i class="mdi mdi-account-supervisor text-black mx-1"></i>{{ game.min_age }}+
-                </div>
+                <div class="row mx-1 mb-0 text-secondary justify-content-center">
+                    <div class="col-4 p-2">
+                        <i class="mdi mdi-account-group text-black" title="Number of players"></i>
+                        <span class="mx-1"
+                            v-text="game.min_players == game.max_players ? game.max_players : game.min_players + '-' + game.max_players"></span>
+                    </div>
+                    <!-- <span> | </span>  -->
+                    <div class="col-4 p-2 text-center">
+                        <i class="mdi mdi-clock-outline text-black" title="Play time"></i>
+                        <span class="mx-1"
+                            v-text="game.min_playtime == game.max_playtime ? game.max_playtime : game.min_playtime + '-' + game.max_playtime"></span>
+                    </div>
+                    <!-- <span> | </span> -->
+                    <div class="col-4 p-2 text-end">
+                        <i class="mdi mdi-account-supervisor text-black mx-1" title="Age"></i>{{ game.min_age }}+
+                    </div>
 
+                </div>
             </div>
-        </div>
-    </router-link>
+        </router-link>
+    </div>
 </template>
 
 
@@ -48,7 +50,16 @@ export default {
 
 <style lang="scss" scoped>
 .game-card {
-    height: 50vh;
-    width: 50vh;
+    height: auto;
+    width: 40vh;
+}
+
+.gameImg {
+    height: auto;
+    width: 40vh;
+}
+
+.cardContainer {
+    height: 62vh;
 }
 </style>

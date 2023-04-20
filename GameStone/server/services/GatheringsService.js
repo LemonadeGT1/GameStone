@@ -5,6 +5,11 @@ import { playersService } from "./PlayersService.js"
 
 
 class GatheringsService {
+    async getHostedGatherings(creatorId) {
+        let gatherings = await dbContext.Gatherings.find({ creatorId })
+            .populate('creator', 'name picture')
+        return gatherings
+    }
     async getMyGatherings(profileId) {
         let gatherings = await dbContext.Gatherings.find({ creatorId: profileId })
         return gatherings

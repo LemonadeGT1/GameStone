@@ -3,6 +3,7 @@ import { groupsService } from "../services/GroupsService";
 import BaseController from "../utils/BaseController";
 import { commentsService } from "../services/CommentsService";
 import { groupMemberService } from "../services/GroupMembersService";
+import { logger } from "../utils/Logger.js";
 
 
 export class GroupsController extends BaseController {
@@ -54,6 +55,7 @@ export class GroupsController extends BaseController {
             const groupEdit = req.body
             const groupId = req.params.id
             const userId = req.userInfo.id
+            logger.log('GROUP CONTROLLER', groupEdit, groupId, userId)
             const editedGroup = await groupsService.editGroup(groupEdit, groupId, userId)
             res.send(editedGroup)
         } catch (error) {

@@ -23,8 +23,9 @@
         <!-- SECTION - Buttons -->
         <section class="row justify-content-between m-3">
             <div class="col-md-4">
-                <button v-if="group?.creatorId == account?.id" class="btn btn-info border selectable rounded-pill mx-3">Edit Group</button>
-                <button v-if="group?.creatorId == account?.id" @click="deleteGroup()" class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
+                <button v-if="group?.creatorId == account?.id" class="btn btn-info border selectable rounded-pill mx-3" data-bs-toggle="modal"
+                        data-bs-target="#editGroupModal">Edit Group</button>
+                <button v-if="group?.creatorId == account?.id" @click="deleteGroup(group.id)" class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
             </div>
             <div class="col-md-4">
                 <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
@@ -69,6 +70,18 @@
             </div>
         </section>
     </div>
+
+    <Modal id="editGroupModal">
+
+<template #header>
+    <h5>Edit Group</h5>
+</template>
+
+<template #modalBody>
+    <GroupEditForm />
+</template>
+
+</Modal>
 </template>
 
 
@@ -81,6 +94,7 @@ import { groupsService } from '../services/GroupsService.js';
 import { useRoute, useRouter } from 'vue-router';
 import { Account } from "../models/Account.js";
 import { commentsService } from "../services/CommentsService.js";
+import GroupEditForm from '../components/GroupEditForm.vue';
 export default {
     setup() {
         const route = useRoute()
@@ -93,7 +107,6 @@ export default {
                 await groupsService.getGroupById(groupId)
                 await groupsService.getMembersByGroupId(groupId)
                 await groupsService.getCommentsByGroupId(groupId)
-                logger.log(AppState.account.id, AppState.activeGroup.creatorId)
             } catch (error) {
                 logger.log(error.message)
                 Pop.error(error.message)
@@ -116,7 +129,7 @@ export default {
                 try {
                     logger.log('Group ID', groupId)
                     if (await Pop.confirm('Are you sure you want to delete this group?')) {
-                        await groupsService.deleteGroup()
+                        await groupsService.deleteGroup(groupId)
                     }
                 } catch (error) {
                     logger.log(error.message)
@@ -162,7 +175,7 @@ export default {
                 }
             }
         }
-    }
+    }, components: { GroupEditForm }
 };
 </script>
 

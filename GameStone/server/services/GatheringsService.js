@@ -86,6 +86,11 @@ class GatheringsService {
         return `Gathering: ${gathering.name} has been canceled`
     }
 
+    // async getChats(gatheringId) {
+    //     let chats = await dbContext.Chat.find({gatheringId})
+    //     .populate("profile", 'name picture')
+    //     return chats
+    // }
 }
 
 export const gatheringsService = new GatheringsService()

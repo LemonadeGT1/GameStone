@@ -47,7 +47,18 @@
             </div>
         </div>
     </section>
-
+    <div class="row justify-content-center m-2">
+        <textarea @keydown.enter.prevent="createChat(chatData)" class="col-12 rounded align-items-center py-2 form-control" placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows="1"></textarea>
+    </div>
+    <section class="row m-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c.id">
+        <div class="col-1 me-3">
+            <img :src="c.profile.picture" :alt="c.profile.name" class="profilePicture">
+        </div>
+        <div class="col-10">
+            <h5>{{ c.creator }}</h5>
+            <p>{{ c.body }}</p>
+        </div>
+    </section>
     <Modal id="gatheringModal">
 
         <template #header>
@@ -63,11 +74,12 @@
 
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { gatheringsService } from '../services/GatheringsService.js';
+import { chatsService } from '../services/ChatsService'
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
 import { playersService } from '../services/PlayersService.js';
@@ -75,7 +87,7 @@ import { playersService } from '../services/PlayersService.js';
 
 export default {
     setup() {
-
+        const editable = ref({})
         let route = useRoute()
         async function getGatheringById() {
             try {
@@ -97,22 +109,39 @@ export default {
             }
         }
 
-        async function getGatheringChats() {
-            
+        async function getChats() {
+            try {
+                let gatheringId = route.params.gatheringId
+                await gatheringsService.getChats(gatheringId)
+            } catch (error) {
+                Pop.error(error.message)
+            }
         }
 
         onMounted(() => {
             getGatheringById()
             getGatheringPlayers()
+            getChats()
         })
 
         return {
-
+            editable,
+            chats: computed(() => AppState.chats),
             gathering: computed(() => AppState.activeGathering),
             players: computed(() => AppState.players),
             player: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             isPlayer: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             account: computed(() => AppState.account),
+
+            async createChat() {
+                try {
+                    let chatData = editable.value
+                    chatData.gatheringId = route.params.gatheringId
+                    await chatsService.createChat(chatData)
+                } catch (error) {
+                    Pop.error(('[error]'), error.message)
+                }
+            },
 
             async becomePlayer(gatheringId) {
                 try {
@@ -150,6 +179,13 @@ export default {
 
 
 <style lang="scss" scoped>
+.profilePicture {
+    height: 50px;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
 .gathering-img {
     height: 40vh;
     width: 100%;

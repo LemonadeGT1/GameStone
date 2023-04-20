@@ -11,7 +11,10 @@ export const AppState = reactive({
 
   /** @type {import('./models/Gathering.js').Gathering[]} */
   gatherings: [],
+  gatheringChats: [],
 
+    /** @type {import('./models/Chat.js').Chat[]} */
+  chats: [],
     /** @type {import('./models/Gathering.js').Gathering} */
   gathering: {},
   

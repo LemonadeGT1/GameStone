@@ -6,10 +6,10 @@
                 <h1 class="text-secondary">Games</h1>
             </div>
             <div class="col-12">
-                <GameSearchBar/>
+                <GameSearchBar />
             </div>
             <div class="col-12 p-2">
-                <GameFilterBar/>
+                <GameFilterBar />
             </div>
             <div class="col-12 p-2">
                 <button @click="clearAll()" class="btn btn-danger border rounded-pill"> Clear All</button>
@@ -20,9 +20,9 @@
             </div>
         </section>
         <!-- SECTION GAME CARDS -->
-        <section class="row justify-content-center p-3 align-items-center">
+        <section class="row justify-content-center p-3">
             <div class="col-md-3" v-for="g in games" :key="g.id">
-                <GameCard :game="g"/>
+                <GameCard :game="g" />
             </div>
         </section>
         <!-- SECTION BOTTOM PAGINATION BUTTONS -->
@@ -43,7 +43,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { gamesService } from '../services/GamesService.js';
 export default {
-    setup(){
+    setup() {
 
         async function getGames() {
             try {
@@ -57,30 +57,30 @@ export default {
         onMounted(() => {
             getGames()
         })
-        
-    return { 
 
-        games: computed(() => AppState.games),
-        gameSkip: computed(() => AppState.gameSkip),
+        return {
 
-        async clearAll() {
-            try {
-                await gamesService.clearAll()
-            } catch (error) {
-                logger.error(error.message)
-                Pop.error(error.message)
-            }
-        },
+            games: computed(() => AppState.games),
+            gameSkip: computed(() => AppState.gameSkip),
 
-        async changePage(num) {
-            try {
-                await gamesService.changePage(num)
-            } catch (error) {
-                logger.error(error.message)
-                Pop.error(error.message)
+            async clearAll() {
+                try {
+                    await gamesService.clearAll()
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
+            async changePage(num) {
+                try {
+                    await gamesService.changePage(num)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
             }
         }
-    }
     }
 
 };
@@ -90,5 +90,9 @@ export default {
 <style lang="scss" scoped>
 .siteText {
     color: #008291;
+}
+
+.cardContainer {
+    min-height: 40vh;
 }
 </style>

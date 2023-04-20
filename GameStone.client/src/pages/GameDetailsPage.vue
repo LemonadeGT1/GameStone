@@ -1,12 +1,12 @@
 <template>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-11 py-3">
+            <div class="col-xl-11 py-3">
                 <div class="row">
                     <h2>{{ game.name }}</h2>
-                    <div class="text-secondary col-md-8" v-html="game.description">
+                    <div class="text-secondary col-xl-7" v-html="game.description">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xl-5">
                         <img :src="game.image_url" class="imgContainer ms-4 mb-3">
                     </div>
                 </div>
@@ -156,11 +156,18 @@ export default {
 
 <style lang="scss" scoped>
 .imgContainer {
-    max-height: 40vh;
     width: auto;
+    max-height: 40vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
     border-radius: 30px;
     background-color: #d9d9d9;
+}
+
+@media screen and (max-width: 700px) {
+    .imgContainer {
+        width: 80vw;
+        max-height: 40vh;
+    }
 }
 </style>

@@ -85,6 +85,9 @@ export default {
 
         async function getProfileGames() {
             try {
+                AppState.profileGames = []
+                AppState.profileGatherings = []
+                AppState.profileHostedGatherings = []
                 const accountId = route.params.accountId
                 // logger.log("is this stupid thing working? pls be", accountId)
                 await gamesService.getProfileGames(accountId)
@@ -153,7 +156,8 @@ export default {
 
             async getProfileGroups() {
                 try {
-                    const profileId = this.account.id
+                    // this.resetOthers()
+                    const profileId = this.profile?.id
                     await groupsService.getProfileGroups(profileId)
                 } catch (error) {
                     logger.error(error.message)

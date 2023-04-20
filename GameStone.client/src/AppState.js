@@ -32,6 +32,10 @@ export const AppState = reactive({
   /** @type {import('./models/Gathering.js').Gathering[]} */
   profileHostedGatherings: [],
 
+  /** @type {import('./models/GroupMember.js').GroupMember[]} */
+
+  profileGroups: [],
+
   /** @type {import('./models/Group.js').Group[]} */
   groups: [],
 

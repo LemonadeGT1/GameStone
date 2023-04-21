@@ -74,6 +74,7 @@ export default {
                     // }
                     logger.log('GROUP FORM DATA', groupData)
                     const group = await groupsService.createGroup(groupData)
+                    AppState.activeGroup = null
                     await router.push({ name: 'GroupDetails', params: { groupId: group.id } })
                 } catch (error) {
                     logger.log(error.message)

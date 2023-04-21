@@ -75,7 +75,7 @@
     <Modal id="gatheringModal">
 
         <template #header>
-            <h5>Create Gathering!</h5>
+            <h5 class="text-dark">Edit Gathering!</h5>
         </template>
 
         <template #modalBody>

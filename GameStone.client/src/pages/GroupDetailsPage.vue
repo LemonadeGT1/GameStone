@@ -8,7 +8,6 @@
                         <div class="py-2 overflow-auto">
                             <h1 class="text-dark">{{ group?.name }}</h1>
                             <h4>{{ group?.description }}</h4>
-
                             <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator?.name"
                                 @click="gotoProfile(group?.creator.id)">
                         </div>
@@ -28,7 +27,7 @@
                     class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
             </div>
             <div class="col-md-4 flexButtons">
-                <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
+                <button  class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
                 <button v-if="!isMember" @click="becomeMember()"
                     class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
                 <button v-else="isMember" @click="leaveGroup()"
@@ -64,13 +63,14 @@
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                         </div>
-                        <div class="col-sm-10 align-self-center col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body }}</span>
+                        <div class="col-sm-10 align-self-center col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body
+                        }}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-else class="row justify-content-center chatCard bg-dark-gray">
-                <div class="col-8 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
+                <div class="col-4 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <div class="row">
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic border" :title="gc.creator?.name">
@@ -86,7 +86,7 @@
     <Modal id="editGroupModal">
 
         <template #header>
-            <h5>Edit Group</h5>
+            <h5 class="text-dark">Edit Group</h5>
         </template>
 
         <template #modalBody>

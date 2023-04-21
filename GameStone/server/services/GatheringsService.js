@@ -73,7 +73,7 @@ class GatheringsService {
     async createGathering(gData) {
         const gathering = await dbContext.Gatherings.create(gData)
         await gathering.populate("creator", "name picture")
-        await playersService.becomePlayer({ gatheringId: gathering.id, accountId: gData.creatorId })
+        await playersService.becomePlayer({ gatheringId: gathering.id, profileId: gData.creatorId })
         return gathering
     }
 
@@ -92,8 +92,8 @@ class GatheringsService {
     }
 
     async getChats(gatheringId) {
-        let chats = await dbContext.Chat.find({gatheringId})
-        .populate("profile", 'name picture')
+        let chats = await dbContext.Chat.find({ gatheringId })
+            .populate("profile", 'name picture')
         return chats
     }
 }

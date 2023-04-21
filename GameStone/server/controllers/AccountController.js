@@ -4,6 +4,7 @@ import BaseController from '../utils/BaseController'
 import { gatheringsService } from '../services/GatheringsService.js'
 import { groupMemberService } from '../services/GroupMembersService'
 import { accountGamesService } from '../services/AccountGamesService'
+import { profileService } from '../services/ProfileService.js'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -16,8 +17,18 @@ export class AccountController extends BaseController {
       .get('/players', this.getGatheringsPlayingIn)
       .get('/gatherings', this.getMyGatherings)
       .put('', this.updateAccount)
+      // .put('/mode', this.changeMode)
       .delete("/accountGames/:id", this.deleteAccountGame)
   }
+  // async changeMode(req, res, next) {
+  //   try {
+  //     let accountEdit = req.body
+  //     const account = await profileService.changeMode(accountEdit)
+  //     res.send(account)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
 
   async updateAccount(req, res, next) {

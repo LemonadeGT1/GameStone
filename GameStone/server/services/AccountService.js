@@ -43,6 +43,7 @@ function sanitizeBody(body) {
     picture: body.picture,
     coverImg: body.coverImg,
     bio: body.bio,
+    lightMode: body.lightMode,
   }
   return writable
 }

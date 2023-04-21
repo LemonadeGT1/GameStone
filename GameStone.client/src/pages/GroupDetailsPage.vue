@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
         <!-- SECTION - Banner / Group Image -->
-        <section class="row justify-content-center my-4">
+        <section class="row justify-content-center bannerMargins">
             <div class="col-md-9">
                 <section class="row my-3 justify-content-between bg-secondary rounded">
                     <div class="col-md-8 p-4 px-5">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 p-0 goTop">
-                        <img class="group-img img-fluid rounded-end" :src="group?.imgUrl" :alt="group?.name">
+                        <img class="group-img img-fluid group-imgRounded" :src="group?.imgUrl" :alt="group?.name">
                     </div>
                 </section>
             </div>
@@ -26,7 +26,7 @@
                 <button v-if="group?.creatorId == account?.id" @click="deleteGroup(group.id)"
                     class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 flexButtons">
                 <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
                 <button v-if="!isMember" @click="becomeMember()"
                     class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
@@ -36,7 +36,7 @@
         </section>
         <!-- SECTION - Profile Images -->
         <section class="row justify-content-center">
-            <div class="col-9 m-3">
+            <div class="col-9 m-3 bg-secondary pill-Rounded p-4">
                 <img :src="gm.profile?.picture" class="profilePic selectable" :title="gm.profile?.name"
                     v-for="gm in groupMembers" :key="gm?.id" @click="gotoProfile(gm.profile?.id)">
             </div>
@@ -213,6 +213,27 @@ export default {
     left: 0px;
 }
 
+.group-imgRounded {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.pill-Rounded {
+    border-radius: 50em;
+}
+
+.bannerMargins {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.flexButtons {
+    display: flex;
+    justify-content: end;
+
+
+}
+
 @media screen and (max-width: 768px) {
     .makeAbsolute {
         position: relative;
@@ -220,6 +241,27 @@ export default {
 
     .goTop {
         order: -1;
+    }
+
+
+    .group-imgRounded {
+        border-top-right-radius: 0.375rem;
+        border-top-left-radius: 0.375rem;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .pill-Rounded {
+        border-radius: 20%;
+    }
+
+    .bannerMargins {
+        margin-top: 0px;
+    }
+
+    .flexButtons {
+        justify-content: start;
+        margin-top: 6px;
     }
 
 }

@@ -7,12 +7,12 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input maxlength="1000" v-model="editable.description" type="text" required class="form-control"
-                id="description">
+            <input maxlength="1000" v-model="editable.description" type="text" placeholder="Description" required
+                class="form-control" id="description">
         </div>
         <div class="mb-3">
             <label for="imgUrl" class="form-label">Image</label>
-            <input v-model="editable.imgUrl" type="url" class="form-control" id="imgUrl" required placeholder="image url">
+            <input v-model="editable.imgUrl" type="url" class="form-control" id="imgUrl" required placeholder="Image URL">
         </div>
         <!-- <div class="mb-3">
             <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""

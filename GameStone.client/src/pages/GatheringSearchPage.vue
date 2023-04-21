@@ -24,7 +24,9 @@
                 <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
                     <GatheringCard :gathering="g" />
                 </div>
-                <div class="col-5 mx-4"></div>
+                <div class="col-5 mx-4">
+                    <h1 class="text-center" v-if="!gatherings[0]">No Results</h1>
+                </div>
             </div>
         </div>
     </section>

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-md-5 text-end">
-                <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                <button v-if="account?.id" class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
                     data-bs-target="#groupModal">Create Group</button>
             </div>
         </section>

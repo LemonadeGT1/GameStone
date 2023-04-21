@@ -20,7 +20,7 @@
         </div>
         <div class="col-9 text-end my-4">
             <button v-if="!gathering?.isCanceled && !isPlayer && account.id" @click="becomePlayer(gathering?.id)"
-                class="btn btn-info border rounded-pill">Become Player</button>
+                class="btn btn-info border rounded-pill selectable">Become Player</button>
             <button v-if="!gathering?.isCanceled && isPlayer && account.id" @click="quit(player?.id)"
                 class="btn btn-danger rounded-pill">Quit</button>
         </div>
@@ -35,7 +35,7 @@
             <div class="text-end">
                 <div class="m-3">
                     <button v-if="!gathering?.isCanceled && account?.id == gathering?.creatorId"
-                        class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                        class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
                         data-bs-target="#gatheringModal">Edit
                         Gathering</button>
                 </div>
@@ -48,7 +48,8 @@
         </div>
     </section>
     <div class="row justify-content-center m-2">
-        <textarea @keydown.enter.prevent="createChat(chatData)" class="col-12 rounded align-items-center py-2 form-control" placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows="1"></textarea>
+        <textarea @keydown.enter.prevent="createChat(chatData)" class="col-12 rounded align-items-center py-2 form-control"
+            placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows="1"></textarea>
     </div>
     <section class="row m-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
         <div class="col-1 me-3">
@@ -105,7 +106,7 @@ export default {
 
         function leaveRoom(id) {
             try {
-                let payload = { gatheringName: id}
+                let payload = { gatheringName: id }
                 socketService.emit("c:leaving:room", payload)
             } catch (error) {
                 Pop.error('[error]', error.message)

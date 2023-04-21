@@ -9,7 +9,7 @@
           </div>
         </div>
         <div>
-          <button @click="gotoProfile(account?.id)" class="mt-2 rounded text-dark bg-info p-1">
+          <button @click="gotoProfile(account?.id)" class="mt-2 rounded text-dark bg-info p-1 selectable">
             Back to Profile Page</button>
         </div>
 

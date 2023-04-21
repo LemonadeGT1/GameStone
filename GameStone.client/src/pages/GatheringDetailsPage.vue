@@ -47,16 +47,20 @@
             </div>
         </div>
     </section>
-    <div class="row justify-content-center m-2">
-        <textarea @keydown.enter.prevent="createChat(chatData)" class="rounded align-items-center py-2 form-control"
-            placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows=""></textarea>
+    <div class="row m-2">
+        <textarea @keydown.enter.prevent="createChat(chatData)" class="rounded col-4 align-items-center py-2"
+            placeholder="Write a message..." v-model="editable.body" name="description" cols="5" rows="3"></textarea>
     </div>
-    <section class="row m-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
-        <div class="col-1 me-3">
-            <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
-        </div>
-        <div class="col-4">
-            <p>{{ c.body }}</p>
+
+    <section class="row m-3">
+        <div class="col-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
+
+            <div class="col-1 me-3">
+                <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
+            </div>
+            <div class="col-4">
+                <p>{{ c.body }}</p>
+            </div>
         </div>
     </section>
     <Modal id="gatheringModal">

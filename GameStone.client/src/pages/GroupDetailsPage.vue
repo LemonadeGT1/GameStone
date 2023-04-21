@@ -8,7 +8,6 @@
                         <div class="py-2 overflow-auto">
                             <h1 class="text-dark">{{ group?.name }}</h1>
                             <h4>{{ group?.description }}</h4>
-
                             <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator?.name"
                                 @click="gotoProfile(group?.creator.id)">
                         </div>
@@ -28,7 +27,7 @@
                     class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
             </div>
             <div class="col-md-4 flexButtons">
-                <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
+                <button  class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
                 <button v-if="!isMember" @click="becomeMember()"
                     class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
                 <button v-else="isMember" @click="leaveGroup()"

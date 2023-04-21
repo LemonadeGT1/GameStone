@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main v-if="!account.lightMode" class="bg-dark-gray">

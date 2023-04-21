@@ -12,10 +12,12 @@
                         <h5>{{ gathering?.description }}</h5>
                         <p>Capacity: {{ gathering?.capacity }}</p>
                     </div>
-                    <div class="d-flex">
-                        <img title=" g?.gameName" class="gatheringGameCard selectable" v-for="g in gathering?.games"
-                            :key="g?.id" :src="g?.gameImg" :alt="g?.gameName" @click="goToGameDetails(g?.gameId)">
-
+                    <div class="row">
+                        <div class="col-md-8 gatheringGamesSpot rounded p-2 d-flex align-items-center flex-wrap">
+                            <h4 class="pe-2">Games:</h4>
+                            <img :title="g?.gameName" class="gatheringGameCard selectable" v-for="g in gathering?.games"
+                                :key="g?.id" :src="g?.gameImg" :alt="g?.gameName" @click="goToGameDetails(g?.gameId)">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 text-end">
@@ -192,7 +194,7 @@ export default {
 
             async becomePlayer(gatheringId) {
                 try {
-                    if (await Pop.confirm('Become a Player?'))
+                    if (await Pop.confirm('Become a Player?', ''))
                         await playersService.becomePlayer({ gatheringId })
                     this.gathering.capacity--
                 } catch (error) {
@@ -212,7 +214,7 @@ export default {
 
             async quit(playerId) {
                 try {
-                    if (await Pop.confirm("Are you sure you want to quit"))
+                    if (await Pop.confirm("Are you sure you want to quit", ''))
                         await playersService.quit(playerId)
                 } catch (error) {
                     logger.error(error.message)
@@ -233,8 +235,7 @@ export default {
     }
 };
 </script>
-logger.log(profileId)
-router.push({ name: 'Profile', params: { accountId: profileId } })
+
 
 <style lang="scss" scoped>
 .profilePicture {
@@ -271,5 +272,12 @@ router.push({ name: 'Profile', params: { accountId: profileId } })
     border-radius: 50%;
     padding-left: 4px;
     padding-right: 4px;
+}
+
+.gatheringGamesSpot {
+    border-style: double;
+    border-color: #d9d9d9;
+    border-width: 4px;
+    // border-radius: 0.375rem;
 }
 </style>

@@ -3,7 +3,9 @@
         <!-- SECTION HEADER SEARCH FILTER -->
         <section class="row">
             <div class="col-12 p-3">
-                <h1 class="text-secondary">Games</h1>
+                <h1 v-if="account.lightMode" class="text-secondary">Games</h1>
+                <h1 v-else class="text-white">Games</h1>
+
             </div>
             <div class="col-12">
                 <GameSearchBar />
@@ -61,7 +63,7 @@ export default {
         })
 
         return {
-
+            account: computed(() => AppState.account),
             games: computed(() => AppState.games),
             gameSkip: computed(() => AppState.gameSkip),
 

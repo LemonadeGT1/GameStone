@@ -1,7 +1,12 @@
 <template>
     <form @submit.prevent="searchGatherings()">
-        <input type="text" v-model="search.query" class="col-3 rounded-pill border-dark" id="Search" placeholder="  Search">
-        <button class="btn btn-border selectable" type="submit" title="search"><i class="mdi mdi-magnify"></i></button>
+        <input type="text" v-model="search.query" class="col-3 rounded-pill border-dark px-3" id="Search"
+            placeholder="  Search">
+        <button v-if="account.lightMode" class="btn btn-border selectable" type="submit" title="search"><i
+                class="mdi mdi-magnify"></i></button>
+        <button v-else class="btn btn-border selectable text-white" type="submit" title="search"><i
+                class="mdi mdi-magnify"></i></button>
+
     </form>
 </template>
 
@@ -16,6 +21,8 @@ import { reactive, ref } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { gatheringsService } from '../services/GatheringsService.js';
+import { computed } from '@vue/reactivity';
+import { AppState } from '../AppState.js';
 
 
 
@@ -31,6 +38,7 @@ export default {
         return {
             // editable,
             search,
+            account: computed(() => AppState.account),
 
             async searchGatherings() {
                 try {

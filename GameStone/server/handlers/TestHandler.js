@@ -20,6 +20,15 @@ export class TestHandler extends SocketHandler {
     this.socket.join(payload.gatheringName)
     this.io.to(payload.gatheringName).emit('s:joined:room', this.user)
   }
+
+  leavingRoom(payload) {
+    if (!payload.gatheringName) {
+      this.socket.emit("error", {error: "something went wrong."})
+      return
+    }
+    this.socket.leave(payload.gatheringName)
+    this.io.to(payload.gatheringName).emit("s:leaving:room", this.user)
+  }
   
   async testEvent(payload) {
     this.socket.emit('IS_TESTED', payload)

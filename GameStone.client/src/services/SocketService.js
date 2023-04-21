@@ -12,6 +12,8 @@ class SocketService extends SocketHandler {
       .on("s:created:gathering", this.createdGathering)
       .on("s:created:chat", this.createdChat)
       .on("s:joined:room", this.joiningRoom)
+      .on("s:leaving:room", this.leavingRoom)
+      .on("s:created:messageUser", this.messageUser)
   }
 
   onError(e) {
@@ -44,6 +46,25 @@ class SocketService extends SocketHandler {
         null
       )
     }
+  }
+
+  leavingRoom(payload) {
+    if (payload && AppState.account.id != payload.id) {
+      Pop.toast(
+        `
+        <h5 class="text-danger bg-warning">${payload.name} has left.</h5>
+        `
+      )
+    }
+  }
+
+  messageUser(payload) {
+    Pop.toast(
+      `
+      ${payload.creator.name} has posted in ${payload.gathering.name}.
+      `,
+      "info"
+    )
   }
 }
 

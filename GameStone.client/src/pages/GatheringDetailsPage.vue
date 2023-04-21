@@ -55,7 +55,7 @@
             <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
         </div>
         <div class="col-10">
-            <h5>{{ c.creator }}</h5>
+            <h5>{{ c.creator?.picture }}</h5>
             <p>{{ c.body }}</p>
         </div>
     </section>
@@ -97,6 +97,21 @@ export default {
             getChats()
         })
 
+        router.beforeEach((to, from) => {
+            if (from.name == "Gathering") {
+                leaveRoom(from.params.id)
+            }
+        })
+
+        function leaveRoom(id) {
+            try {
+                let payload = { gatheringName: id}
+                socketService.emit("c:leaving:room", payload)
+            } catch (error) {
+                Pop.error('[error]', error.message)
+            }
+        }
+
         function joiningRoom() {
             try {
                 let payload = { gatheringName: route.params.gatheringId }
@@ -137,7 +152,7 @@ export default {
         onMounted(() => {
             getGatheringById()
             getGatheringPlayers()
-            getChats()
+            // getChats()
         })
 
         return {

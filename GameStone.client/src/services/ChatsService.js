@@ -8,10 +8,10 @@ class ChatsService {
 
     async createChat(chatData) {
         const res = await api.post("api/chats", chatData)
-        const newChat = new Chat(res.data)
-        AppState.chats.push(newChat)
+        // const newChat = new Chat(res.data)
+        // AppState.chats.push(newChat)
         logger.log(res.data)
-        return newChat
+        // return newChat
     }
 }
 

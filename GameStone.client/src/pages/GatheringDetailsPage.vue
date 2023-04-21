@@ -13,7 +13,9 @@
                         <p>Capacity: {{ gathering?.capacity }}</p>
                     </div>
                     <div>
-
+                        <img v-for="gm in gathering?.games" :src="gathering?.games?.gameImg"
+                            :alt="gathering?.games?.gameName">
+                        <h4>{{ gathering?.games?.gameName }}</h4>
                     </div>
                 </div>
                 <div class="col-md-4 text-end">
@@ -137,7 +139,7 @@ export default {
 
         // async function getGamesByProfile() {
         //     try {
-                
+
         //     } catch (error) {
         //         logger.log(error.message)
         //         Pop.error(error.message)

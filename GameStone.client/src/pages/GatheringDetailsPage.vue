@@ -12,10 +12,12 @@
                         <h5>{{ gathering?.description }}</h5>
                         <p>Capacity: {{ gathering?.capacity }}</p>
                     </div>
-                    <div>
-                        <img v-for="gm in gathering?.games" :src="gathering?.games?.gameImg"
-                            :alt="gathering?.games?.gameName">
-                        <h4>{{ gathering?.games?.gameName }}</h4>
+                    <div class="row">
+                        <div class="col-md-8 gatheringGamesSpot rounded p-2 d-flex align-items-center flex-wrap">
+                            <h4 class="pe-2">Games:</h4>
+                            <img :title="g?.gameName" class="gatheringGameCard selectable" v-for="g in gathering?.games"
+                                :key="g?.id" :src="g?.gameImg" :alt="g?.gameName" @click="goToGameDetails(g?.gameId)">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 text-end">
@@ -61,7 +63,6 @@
 
     <section class="row m-3">
         <div class="col-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
-
             <div class="col-1 me-3">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>
@@ -102,6 +103,8 @@ export default {
         const router = useRouter()
         const editable = ref({})
         const route = useRoute()
+
+
         watchEffect(() => {
             route.params.id
             joiningRoom()
@@ -141,14 +144,6 @@ export default {
             }
         }
 
-        // async function getGamesByProfile() {
-        //     try {
-
-        //     } catch (error) {
-        //         logger.log(error.message)
-        //         Pop.error(error.message)
-        //     }
-        // }
 
         async function getGatheringPlayers() {
             try {
@@ -176,6 +171,7 @@ export default {
         })
 
         return {
+            router,
             editable,
             chats: computed(() => AppState.chats),
             gathering: computed(() => AppState.activeGathering),
@@ -183,6 +179,7 @@ export default {
             player: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             isPlayer: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             account: computed(() => AppState.account),
+            // gatheringGames: computed(() => AppState.activeGathering.games),
 
             async createChat() {
                 try {
@@ -196,7 +193,7 @@ export default {
 
             async becomePlayer(gatheringId) {
                 try {
-                    if (await Pop.confirm('Become a Player?'))
+                    if (await Pop.confirm('Become a Player?', ''))
                         await playersService.becomePlayer({ gatheringId })
                     this.gathering.capacity--
                 } catch (error) {
@@ -216,8 +213,18 @@ export default {
 
             async quit(playerId) {
                 try {
-                    if (await Pop.confirm("Are you sure you want to quit"))
+                    if (await Pop.confirm("Are you sure you want to quit", ''))
                         await playersService.quit(playerId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
+            async goToGameDetails(gameId) {
+                try {
+                    logger.log(gameId)
+                    router.push({ name: 'GameDetails', params: { gameId: gameId } })
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)
@@ -256,5 +263,20 @@ export default {
 
 .bg-grey {
     background-color: #d9d9d9;
+}
+
+.gatheringGameCard {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.gatheringGamesSpot {
+    border-style: double;
+    border-color: #d9d9d9;
+    border-width: 4px;
+    // border-radius: 0.375rem;
 }
 </style>

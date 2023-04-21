@@ -59,6 +59,15 @@ export default {
             categories,
             mechanics,
 
+            async clearAll() {
+                try {
+                    await gamesService.clearAll()
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
             Games: computed(() => {
                 if (!filterCategories.value) {
                     return AppState.games

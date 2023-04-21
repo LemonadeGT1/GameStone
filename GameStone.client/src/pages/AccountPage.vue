@@ -4,8 +4,13 @@
       <div class="col-12 d-flex justify-content-between mb-4">
         <div>
           <h1 class="text-secondary ">Account:</h1>
-          <div class="border border-dark rounded selectable" title="Edit Profile" data-bs-toggle="modal"
-            data-bs-target="#editAccountModal">Edit Your Profile <i class="mdi mdi-pencil-outline"></i>
+          <div v-if="account.lightMode" class="border border-dark rounded selectable text-center" title="Edit Profile"
+            data-bs-toggle="modal" data-bs-target="#editAccountModal">Edit Your Profile <i
+              class="mdi mdi-pencil-outline"></i>
+          </div>
+          <div v-else class="border border-white rounded selectable text-center" title="Edit Profile"
+            data-bs-toggle="modal" data-bs-target="#editAccountModal">Edit Your Profile <i
+              class="mdi mdi-pencil-outline"></i>
           </div>
         </div>
         <div>

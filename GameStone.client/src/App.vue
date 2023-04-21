@@ -2,7 +2,10 @@
   <header>
     <Navbar />
   </header>
-  <main class="bg-primary">
+  <main v-if="!account.lightMode" class="bg-dark-gray">
+    <router-view />
+  </main>
+  <main v-else class="bg-primary">
     <router-view />
   </main>
 </template>
@@ -15,7 +18,8 @@ import Navbar from './components/Navbar.vue'
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      account: computed(() => AppState.account)
     }
   },
   components: { Navbar }
@@ -33,5 +37,10 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+.bg-dark-gray {
+  background-color: #363232;
+  color: white;
 }
 </style>

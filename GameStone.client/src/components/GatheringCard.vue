@@ -50,7 +50,7 @@ export default {
 .gathering-img {
     object-fit: cover;
     object-position: center;
-    height: 15vh;
+    height: 18vh;
     width: 100%;
 }
 

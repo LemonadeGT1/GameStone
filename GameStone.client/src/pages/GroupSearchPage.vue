@@ -1,24 +1,27 @@
 <template>
-    <section class="row my-3 justify-content-center">
-        <div class="col-md-5">
-            <h1>Local Groups</h1>
-            <div>
-                <GroupSearchBar />
+    <div class="container-fluid">
+
+        <section class="row my-3 justify-content-center">
+            <div class="col-md-5">
+                <h1>Local Groups</h1>
+                <div>
+                    <GroupSearchBar />
+                </div>
             </div>
-        </div>
-        <div class="col-md-5 text-end">
-            <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
-                data-bs-target="#groupModal">Create Group</button>
-        </div>
-    </section>
-    <section class="row justify-content-center">
-        <div v-for="g in groups" class="col-md-9">
-            <GroupCard :group="g" />
-        </div>
-        <div class="col-md-9">
-            <h1 v-if="!groups[0]" class="text-center">No Results</h1>
-        </div>
-    </section>
+            <div class="col-md-5 text-end">
+                <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                    data-bs-target="#groupModal">Create Group</button>
+            </div>
+        </section>
+        <section class="row justify-content-center">
+            <div v-for="g in groups" class="col-lg-9">
+                <GroupCard :group="g" />
+            </div>
+            <div class="col-md-9">
+                <h1 v-if="!groups[0]" class="text-center">No Results</h1>
+            </div>
+        </section>
+    </div>
 
     <Modal id="groupModal">
 

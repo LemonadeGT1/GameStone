@@ -17,20 +17,20 @@
                 </div>
             </div>
         </section>
-    </div>
-    <section class="row justify-content-center container-fluid">
-        <div class="col-12">
-            <div class="row justify-content-center">
-                <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
-                    <GatheringCard :gathering="g" />
-                </div>
-                <div class="col-5 mx-4">
-                    <h1 class="text-center" v-if="!gatherings[0]">No Results</h1>
+        <section class="row justify-content-center">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div v-for="g in gatherings" :key="g.id" class=" col-11 col-lg-5 gathering-card my-3 mx-4 py-2">
+                        <GatheringCard :gathering="g" />
+                    </div>
+                    <div class="col-5 mx-4">
+                        <h1 class="text-center" v-if="!gatherings[0]">No Results</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+    </div>
     <Modal id="gatheringModal">
 
         <template #header>
@@ -71,19 +71,19 @@ export default {
         })
         return {
             gatherings: computed(() => AppState.gatherings),
-            account:computed(() => AppState.account),
+            account: computed(() => AppState.account),
 
             async getProfileGames() {
-            try {
-                AppState.profileGames = []
-                const accountId = AppState.account.id
-                // logger.log("is this stupid thing working? pls be", accountId)
-                await gamesService.getProfileGames(accountId)
-            } catch (error) {
-                logger.error(error.message)
-                Pop.error(error.message)
+                try {
+                    AppState.profileGames = []
+                    const accountId = AppState.account.id
+                    // logger.log("is this stupid thing working? pls be", accountId)
+                    await gamesService.getProfileGames(accountId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
             }
-        }
         }
     }, components: { GatheringCard, CreateGatheringForm }
 };

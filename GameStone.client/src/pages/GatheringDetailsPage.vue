@@ -272,8 +272,7 @@ export default {
     // padding-left: 4px;
     // padding-right: 4px;
     background-color: white;
-    margin-left: 4px;
-    margin-right: 4px;
+    margin: 4px;
 }
 
 .gatheringGamesSpot {

@@ -64,7 +64,8 @@
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                         </div>
-                        <div class="col-sm-10 align-self-center col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body }}</span>
+                        <div class="col-sm-10 align-self-center col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body
+                        }}</span>
                         </div>
                     </div>
                 </div>
@@ -86,7 +87,7 @@
     <Modal id="editGroupModal">
 
         <template #header>
-            <h5>Edit Group</h5>
+            <h5 class="text-dark">Edit Group</h5>
         </template>
 
         <template #modalBody>

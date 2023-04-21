@@ -26,7 +26,7 @@
     <Modal id="groupModal">
 
         <template #header>
-            <h5>Create Group!</h5>
+            <h5 class="text-dark">Create Group!</h5>
         </template>
 
         <template #modalBody>

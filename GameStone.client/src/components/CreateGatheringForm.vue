@@ -64,6 +64,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { gatheringsService } from '../services/GatheringsService.js';
 import { AppState } from '../AppState.js';
+import { gamesService } from '../services/GamesService.js';
 
 
 export default {

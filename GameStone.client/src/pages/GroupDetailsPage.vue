@@ -5,11 +5,12 @@
             <div class="col-md-9">
                 <section class="row my-3 justify-content-between bg-secondary rounded">
                     <div class="col-md-8 p-4 px-5">
-                        <div class="py-2 makeAbsolute">
+                        <div class="py-2 overflow-auto">
                             <h1>{{ group?.name }}</h1>
                             <h3>{{ group?.description }}</h3>
-                            <img :src="group?.creator.picture" class="profilePic selectable makeRelative"
-                                :title="group?.creator?.name" @click="gotoProfile(group?.creator.id)">
+
+                            <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator?.name"
+                                @click="gotoProfile(group?.creator.id)">
                         </div>
                     </div>
                     <div class="col-md-3 p-0 goTop">
@@ -58,7 +59,7 @@
                     <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                     <span class="pt-2 pb-3 ps-4 pe-3 comText">{{ gc?.body }}</span>
                 </div> -->
-                <div class="col-10 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
+                <div class="col-8 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <div class="row">
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
@@ -204,15 +205,6 @@ export default {
     border-top-right-radius: 20px;
 }
 
-.makeAbsolute {
-    position: absolute;
-}
-
-.makeRelative {
-    position: relative;
-    bottom: 0px;
-    left: 0px;
-}
 
 .group-imgRounded {
     border-top-right-radius: 0.375rem;
@@ -255,13 +247,16 @@ export default {
     border-radius: 0.375rem;
 }
 
+.scrollableBio {
+    height: auto;
+    max-height: 600px;
+    overflow: auto;
+}
+
 
 
 
 @media screen and (max-width: 768px) {
-    .makeAbsolute {
-        position: relative;
-    }
 
     .goTop {
         order: -1;

@@ -64,7 +64,7 @@
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                         </div>
-                        <div class="col-sm-10 col-md-11 ps-4"><span class="pt-2 pb-3 pe-3 comText">{{ gc?.body }}</span>
+                        <div class="col-sm-10 align-self-center col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body }}</span>
                         </div>
                     </div>
                 </div>
@@ -215,6 +215,7 @@ export default {
     position: relative;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+    padding-left: 2rem;
 }
 
 

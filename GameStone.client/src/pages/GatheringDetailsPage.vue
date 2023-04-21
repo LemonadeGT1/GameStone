@@ -66,7 +66,7 @@
             <div class="col-1 me-3">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>
-            <div class="col-4">
+            <div class="">
                 <p>{{ c.body }}</p>
             </div>
         </div>
@@ -272,8 +272,7 @@ export default {
     // padding-left: 4px;
     // padding-right: 4px;
     background-color: white;
-    margin-left: 4px;
-    margin-right: 4px;
+    margin: 4px;
 }
 
 .gatheringGamesSpot {

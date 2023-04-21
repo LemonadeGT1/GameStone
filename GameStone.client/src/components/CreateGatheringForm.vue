@@ -38,7 +38,7 @@
             <label for="date" class="form-label">Date</label>
             <input required v-model="editable.date" type="datetime-local" class="form-control" id="date">
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <input type="radio" class="form-check-input" id="isPublic" name="isPublic" value=false
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
@@ -47,7 +47,7 @@
             <input type="radio" class="form-check-input" id="isPublic" name="isPublic" value="true"
                 v-model="editable.isPublic"> Public?
             <label class="form-check-label" for="isPublic"></label>
-        </div>
+        </div> -->
         <button data-bs-dismiss="modal" type="submit" class="btn btn-success">Submit</button>
     </form>
 </template>

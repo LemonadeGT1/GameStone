@@ -12,11 +12,11 @@
             <label for="imgUrl" class="form-label">Image</label>
             <input v-model="editable.imgUrl" type="url" class="form-control" id="imgUrl" placeholder="image url">
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""
                 v-model="editable.isPublic"> Private?
             <label class="form-check-label" for="isPublic"></label>
-        </div>
+        </div> -->
         <button data-bs-dismiss="modal" type="submit" class="btn btn-success">Submit</button>
     </form>
 </template>

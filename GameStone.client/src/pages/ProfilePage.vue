@@ -27,8 +27,8 @@
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGroups()">My Groups</div>
         </section>
         <section v-else class="row pt-3 mx-1">
-            <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
             <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getMyProfileGames()">My Games</div>
+            <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
             <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting
             </div>
             <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getProfileGroups()">My Groups</div>

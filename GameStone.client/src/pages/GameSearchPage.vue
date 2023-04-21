@@ -18,7 +18,7 @@
         </section>
         <!-- SECTION GAME CARDS -->
         <section class="row justify-content-center p-3">
-            <div class="col-md-4 col-lg-3" v-for="g in games" :key="g.id">
+            <div class="col-md-4 col-xl-3" v-for="g in games" :key="g.id">
                 <GameCard :game="g" />
             </div>
             <div class="col-md-4">

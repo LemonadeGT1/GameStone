@@ -1,5 +1,6 @@
 <template>
-    <div class="elevation-3 rounded bg-white cardContainer align-items-bottom d-flex flex-column my-2">
+    <div
+        class="elevation-3 rounded bg-white cardContainer align-items-center justify-content-end d-flex flex-column my-2 h-card">
         <router-link :to="{ name: 'GameDetails', params: { gameId: game.id } }">
             <div class="my-3 text-center">
                 <img class="img-fluid p-2 gameImg" :src="game.image_url" :alt="game.name">
@@ -59,10 +60,19 @@ export default {
 // }
 
 .gameImg {
-    height: auto;
+    max-height: 33vh;
     width: 35vh;
 }
 
+.h-card {
+    min-height: 46vh;
+}
+
+// @media screen and (min-width: 1450px) {
+//     .h-card {
+//         min-height: 46vh;
+//     }
+// }
 // .cardContainer {
 //     height: 65vh;
 // }

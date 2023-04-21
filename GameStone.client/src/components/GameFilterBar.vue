@@ -4,7 +4,7 @@
             <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4">
                 <h5>Filter By:</h5>
             </div>
-            <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4">
+            <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4 mx-2 my-1">
                 <div class="dropdown open">
                     <button class="btn btn-secondary dropdown-toggle rounded-pill" type="button" id="triggerId"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4">
+            <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4 mx-2 my-1">
                 <div class="dropdown open">
                     <button class="btn btn-secondary dropdown-toggle rounded-pill" type="button" id="triggerId"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-1 col-lg-2 col-md-3">
+            <div class="col-xl-2 col-lg-2 col-md-3 mx-2 my-1">
                 <button @click="clearAll()" class="btn btn-danger border rounded-pill"> Clear All</button>
             </div>
         </div>

@@ -196,4 +196,10 @@ export default {
         max-height: 40vh;
     }
 }
+
+@media screen and (min-width: 1200px) {
+    .imgContainer {
+        max-width: 35vw;
+    }
+}
 </style>

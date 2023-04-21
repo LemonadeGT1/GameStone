@@ -20,11 +20,18 @@
             </div>
 
         </section>
-        <section class="row pt-3 mx-1">
+        <section v-if="account.lightMode" class="row pt-3 mx-1">
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyProfileGames()">My Games</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGroups()">My Groups</div>
+        </section>
+        <section v-else class="row pt-3 mx-1">
+            <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
+            <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getMyProfileGames()">My Games</div>
+            <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting
+            </div>
+            <div class="col-md-3 my-stuff-buttons-w selectable p-2" @click="getProfileGroups()">My Groups</div>
         </section>
         <section class="row justify-content-center p-3 align-items-center">
             <div class="col-md-6  col-lg-4 col-xl-3" v-for="p in profileGames" :key="p.id">
@@ -235,8 +242,19 @@ export default {
     text-align: center;
 }
 
+.my-stuff-buttons-w {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f1eaea;
+    text-align: center;
+}
+
 .my-stuff-buttons:hover {
     text-decoration: underline;
+}
+
+.my-stuff-buttons-w:hover {
+    text-decoration: underline white;
 }
 
 .bio-background {

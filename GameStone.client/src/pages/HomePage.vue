@@ -21,7 +21,7 @@
     <!-- SECTION GROUPS -->
     <section class="row justify-content-center p-2 my-3">
       <div class="col-md-7 card elevation-5 d-flex flex-column justify-content-between py-2 order-2 order-md-1">
-        <div>
+        <div class="text-dark">
           <h3 class="pb-2">Find a Group</h3>
           <p>Wanting to find a people to start playing with? Search through our 100's of local playgroups that are open to
             new players! Make new friends and find new games. Imagine what new adventures are awaiting you! Hit the link
@@ -45,7 +45,7 @@
           alt="gathering-img">
       </div>
       <div class="col-md-7 card rounded elevation-5 d-flex flex-column justify-content-between py-2 order-md-3 order-4">
-        <div>
+        <div class="text-dark">
           <h3 class="pb-2">Join a Gathering</h3>
           <p>Looking for a specific game to play? Bored of your old games and want to try some new one? Hit the link below
             and search through our local gatherings of people playing game! Meet some new friends and start up your own

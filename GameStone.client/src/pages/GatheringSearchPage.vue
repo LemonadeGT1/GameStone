@@ -3,7 +3,9 @@
         <section class="row m-3">
             <div class="col-12">
                 <div class="d-flex justify-content-between">
-                    <h1 class="text-secondary">Gatherings</h1>
+                    <h1 v-if="account.lightMode" class="text-secondary">Gatherings</h1>
+                    <h1 v-else class="text-white">Gatherings</h1>
+
                     <button v-if="account?.id" class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
                         data-bs-target="#gatheringModal" @click="getProfileGames()">Create Gathering</button>
                 </div>

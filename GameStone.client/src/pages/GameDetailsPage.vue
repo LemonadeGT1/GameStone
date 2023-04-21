@@ -4,7 +4,9 @@
             <div class="col-xl-11 py-3">
                 <div class="row">
                     <h2>{{ game.name }}</h2>
-                    <div class="text-secondary col-xl-7" v-html="game.description">
+                    <div v-if="account.lightMode" class="text-secondary col-xl-7" v-html="game.description">
+                    </div>
+                    <div v-else class="text-white col-xl-7" v-html="game.description">
                     </div>
                     <div class="col-xl-5">
                         <img :src="game.image_url" class="imgContainer ms-4 mb-3">
@@ -19,20 +21,32 @@
         </div>
         <div class="row mt-4">
             <div class="col-4 offset-2">
-                <p>Players: <span class="text-secondary">{{ game.min_players }} - {{ game.max_players }}</span></p>
+                <p v-if="account.lightMode">Players: <span class="text-secondary">{{ game.min_players }} - {{
+                    game.max_players }}</span></p>
+                <p v-else>Players: <span class="text-white">{{ game.min_players }} - {{ game.max_players }}</span></p>
+
             </div>
             <div class="col-4">
-                <p>Playtime: <span class="text-secondary">{{ game.min_playtime }} - {{ game.max_playtime }}</span></p>
+                <p v-if="account.lightMode">Playtime: <span class="text-secondary">{{ game.min_playtime }} - {{
+                    game.max_playtime }}</span></p>
+                <p v-else>Playtime: <span class="text-white">{{ game.min_playtime }} - {{ game.max_playtime }}</span></p>
+
             </div>
         </div>
         <div class="row">
             <div class="col-4 offset-2">
-                <p>Categories: <span class="text-secondary" id="gameCategories" v-for="c in activeCategories"
+                <p v-if="account.lightMode">Categories: <span class="text-secondary" id="gameCategories"
+                        v-for="c in activeCategories" :key="c.id"><br />{{
+                            c.name }}</span></p>
+                <p v-else>Categories: <span class="text-white" id="gameCategories" v-for="c in activeCategories"
                         :key="c.id"><br />{{
                             c.name }}</span></p>
             </div>
             <div class="col-4">
-                <p>Mechanics: <span class="text-secondary" id="gameMechanics" v-for="m in activeMechanics"
+                <p v-if="account.lightMode">Mechanics: <span class="text-secondary" id="gameMechanics"
+                        v-for="m in activeMechanics" :key="m.id"><br />{{
+                            m.name }}</span></p>
+                <p v-else>Mechanics: <span class="text-white" id="gameMechanics" v-for="m in activeMechanics"
                         :key="m.id"><br />{{
                             m.name }}</span></p>
             </div>

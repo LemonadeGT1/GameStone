@@ -54,7 +54,7 @@
                     </div>
                 </form>
             </div>
-            <div class="row justify-content-center chatCard">
+            <div v-if="account.lightMode" class="row justify-content-center chatCard bg-white">
                 <!-- <div class="col-10 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                     <span class="pt-2 pb-3 ps-4 pe-3 comText">{{ gc?.body }}</span>
@@ -63,6 +63,17 @@
                     <div class="row">
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
+                        </div>
+                        <div class="col-sm-10 col-md-11 ps-4"><span class="pt-2 pb-3 pe-3 comText">{{ gc?.body }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="row justify-content-center chatCard bg-dark-gray">
+                <div class="col-8 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-2">
+                            <img :src="gc.creator?.picture" class="profilePic border" :title="gc.creator?.name">
                         </div>
                         <div class="col-sm-10 col-md-11 ps-4"><span class="pt-2 pb-3 pe-3 comText">{{ gc?.body }}</span>
                         </div>
@@ -229,7 +240,6 @@ export default {
 }
 
 .chatCard {
-    background-color: white;
     border-style: solid;
     border-width: 2px;
     border-color: rgb(22, 22, 22);

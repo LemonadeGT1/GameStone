@@ -61,7 +61,6 @@
 
     <section class="row m-3">
         <div class="col-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
-
             <div class="col-1 me-3">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>

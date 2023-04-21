@@ -7,7 +7,7 @@
             <div class="col-md-8 p-3">
                 <div class="py-2">
                     <h1>{{ group?.name }}</h1>
-                    <h3 class="text-break">{{ group?.description.substring(0, 150) }}</h3>
+                    <h5 class="text-break">{{ truncateDescription(group?.description) }}</h5>
                 </div>
             </div>
         </section>
@@ -24,10 +24,24 @@ export default {
         group: { type: Group, required: true }
     },
 
+
+
+
     setup() {
-        return {}
+        return {
+
+            truncateDescription(text) {
+                const characterLimit = 100;
+                if (text.length > characterLimit) {
+                    text = text.substring(0, characterLimit) + "\u2026";
+                }
+                return text;
+            },
+
+        }
     }
 }
+
 </script>
 
 

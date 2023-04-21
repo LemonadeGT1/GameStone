@@ -37,8 +37,9 @@
             <div>
                 <h2>Current Players</h2>
                 <div class="d-flex flex-wrap">
-                    <img v-if="!gathering?.isCanceled" v-for="p in players" class="m-2 profile-img" :title="p.profile.name"
-                        :src="p.profile.picture" :alt="p.profile.name">
+                    <img v-if="!gathering?.isCanceled" v-for="p in players" class="m-2 profile-img selectable"
+                        :title="p.profile.name" :src="p.profile.picture" :alt="p.profile.name"
+                        @click="gotoProfile(p.profile?.id)">
                 </div>
             </div>
             <div class="text-end">
@@ -230,7 +231,12 @@ export default {
                     logger.error(error.message)
                     Pop.error(error.message)
                 }
-            }
+            },
+
+            gotoProfile(profileId) {
+                logger.log(profileId)
+                router.push({ name: 'Profile', params: { accountId: profileId } })
+            },
         }
     }
 };

@@ -21,6 +21,9 @@
             <div class="col-md-4 col-lg-3" v-for="g in games" :key="g.id">
                 <GameCard :game="g" />
             </div>
+            <div class="col-md-4">
+                <h1 class="text-center" v-if="!games[0]">No results</h1>
+            </div>
         </section>
         <!-- SECTION BOTTOM PAGINATION BUTTONS -->
         <section class="row">

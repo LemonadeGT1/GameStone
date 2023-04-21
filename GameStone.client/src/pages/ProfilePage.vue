@@ -20,21 +20,21 @@
             </div>
 
         </section>
-        <section class="row pt-3">
+        <section class="row pt-3 mx-1">
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getMyProfileGames()">My Games</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGatherings()">My Gatherings</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getGatheringsIOwn()">Gatherings I'm Hosting</div>
             <div class="col-md-3 my-stuff-buttons selectable p-2" @click="getProfileGroups()">My Groups</div>
         </section>
         <section class="row justify-content-center p-3 align-items-center">
-            <div class="col-md-3" v-for="p in profileGames" :key="p.id">
+            <div class="col-md-6  col-lg-4 col-xl-3" v-for="p in profileGames" :key="p.id">
                 <ProfileGameCard :game="p" />
             </div>
         </section>
         <section class="row justify-content-center container-fluid">
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
+                    <div v-for="g in gatherings" :key="g.id" class="col-lg-5 gathering-card my-3 mx-4 py-2">
                         <GatheringCard :gathering="g.gathering" />
                         <!-- //NOTE - how dis work lol, it is going inside the player object, to the gathering -->
                     </div>
@@ -45,7 +45,7 @@
         <section class="row justify-content-center container-fluid">
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <div v-for="g in hostedGatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
+                    <div v-for="g in hostedGatherings" :key="g.id" class="col-lg-5 gathering-card my-3 mx-4 py-2">
                         <GatheringCard :gathering="g" />
                     </div>
                     <div class="col-5 mx-4"></div>

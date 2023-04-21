@@ -34,6 +34,7 @@ class GatheringsService {
         const gatherings = await dbContext.Gatherings.find({
             $or: [
                 { name: { $regex: filter } },
+                { description: { $regex: filter}},
                 {
                     games: {
                         $elemMatch: {

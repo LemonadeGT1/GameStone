@@ -131,6 +131,15 @@ export default {
             }
         }
 
+        // async function getGamesByProfile() {
+        //     try {
+                
+        //     } catch (error) {
+        //         logger.log(error.message)
+        //         Pop.error(error.message)
+        //     }
+        // }
+
         async function getGatheringPlayers() {
             try {
                 let gatheringId = route.params.gatheringId

@@ -36,7 +36,7 @@
         </section>
         <!-- SECTION - Profile Images -->
         <section class="row justify-content-center">
-            <div class="col-9 m-3 bg-secondary pill-Rounded p-4">
+            <div class="col-9 m-3 pill-Rounded p-4">
                 <img :src="gm.profile?.picture" class="profilePic selectable" :title="gm.profile?.name"
                     v-for="gm in groupMembers" :key="gm?.id" @click="gotoProfile(gm.profile?.id)">
             </div>
@@ -220,6 +220,9 @@ export default {
 
 .pill-Rounded {
     border-radius: 50em;
+    border-style: double;
+    border-color: #cbcbcb;
+    border-width: 6px;
 }
 
 .bannerMargins {
@@ -252,7 +255,7 @@ export default {
     }
 
     .pill-Rounded {
-        border-radius: 20%;
+        border-radius: 0.375rem;
     }
 
     .bannerMargins {

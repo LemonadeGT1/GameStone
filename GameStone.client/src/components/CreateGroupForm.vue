@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="createGroup()">
+    <form class="text-dark" @submit.prevent="createGroup()">
         <div class="mb-3">
             <label for="name" class="form-label">Group Name</label>
             <input maxlength="30" placeholder="Group Name" v-model="editable.name" type="text" required class="form-control"

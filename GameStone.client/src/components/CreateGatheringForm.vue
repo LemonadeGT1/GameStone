@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="handleSubmit()">
+    <form class="text-dark" @submit.prevent="handleSubmit()">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input placeholder="New Gathering" v-model="editable.name" type="text" class="form-control" id="name">

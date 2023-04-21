@@ -268,9 +268,11 @@ export default {
 .gatheringGameCard {
     height: 60px;
     width: 60px;
-    border-radius: 50%;
-    padding-left: 4px;
-    padding-right: 4px;
+    border-radius: 0.4rem;
+    // padding-left: 4px;
+    // padding-right: 4px;
+    background-color: white;
+    margin: 4px;
 }
 
 .gatheringGamesSpot {

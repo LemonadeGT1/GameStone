@@ -28,7 +28,7 @@
                     class="btn btn-danger border selectable rounded-pill mx-3">Delete Group</button>
             </div>
             <div class="col-md-4 flexButtons">
-                <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button>
+                <!-- <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button> -->
                 <button v-if="!isMember" @click="becomeMember()"
                     class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
                 <button v-else="isMember" @click="leaveGroup()"
@@ -40,6 +40,8 @@
             <div class="col-9 m-3 pill-Rounded p-4">
                 <img :src="gm.profile?.picture" class="profilePic selectable" :title="gm.profile?.name"
                     v-for="gm in groupMembers" :key="gm?.id" @click="gotoProfile(gm.profile?.id)">
+            </div>
+            <div class="col-9 pill-Rounded m-3">
             </div>
         </section>
         <!-- SECTION - Chat -->
@@ -108,6 +110,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { Account } from "../models/Account.js";
 import { commentsService } from "../services/CommentsService.js";
 import GroupEditForm from '../components/GroupEditForm.vue';
+import { profilesService } from '../services/ProfilesService.js';
+import { gamesService } from '../services/GamesService.js';
 export default {
     setup() {
         const route = useRoute()
@@ -126,7 +130,25 @@ export default {
             }
         }
 
-        onMounted(() => getGroupById())
+        async function getGroupMembersGames() {
+            try {
+                AppState.profileGames = []
+                await AppState.groupMembers.forEach(gm => {
+                    let accountId = gm.profile.id
+                    logger.log(accountId, 'PROFILE IDSSSSS')
+                    gamesService.getGroupMembersGames(accountId)
+
+                });
+            } catch (error) {
+                logger.log(error.message)
+                Pop.error(error.message)
+            }
+        }
+
+        onMounted(() => {
+            getGroupById()
+            getGroupMembersGames()
+        })
         return {
             editable,
             account: computed(() => AppState.account),

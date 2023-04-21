@@ -3,7 +3,8 @@
 
         <section class="row my-3 justify-content-center">
             <div class="col-md-5">
-                <h1>Local Groups</h1>
+                <h1 v-if="account.lightMode" class="text-secondary">Local Groups</h1>
+                <h1 v-else>Local Groups</h1>
                 <div>
                     <GroupSearchBar />
                 </div>

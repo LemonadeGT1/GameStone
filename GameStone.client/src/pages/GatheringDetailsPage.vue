@@ -63,8 +63,8 @@
     </div>
 
     <section class="row m-3">
-        <div class="col-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
-            <div class="col-1 me-3">
+        <div class="col-3 ms-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
+            <div class="col-1 me-5">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>
             <div class="">
@@ -75,7 +75,7 @@
     <Modal id="gatheringModal">
 
         <template #header>
-            <h5>Create Gathering!</h5>
+            <h5 class="text-dark">Edit Gathering!</h5>
         </template>
 
         <template #modalBody>
@@ -216,6 +216,7 @@ export default {
                 try {
                     if (await Pop.confirm("Are you sure you want to quit", ''))
                         await playersService.quit(playerId)
+                        this.gathering.capacity++
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)

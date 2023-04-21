@@ -57,7 +57,7 @@
                     data-bs-target="#gatheringModal">Create a Gathering</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-info border rounded-pill selectable">Find Gatherings</button>
+                <button class="btn btn-info border rounded-pill selectable" @click="searchGatherings()">Find Gatherings</button>
             </div>
             <div class="col-md-3">
                 <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game
@@ -156,6 +156,18 @@ export default {
                     // logger.log(game)
                     await gamesService.addGame(game)
                     await Pop.toast('Added game to your collection', 'success', 'center')
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
+            async searchGatherings() {
+                try {
+                    const query = AppState.activeGame.name
+                    logger.log(query)
+                    const gatherings = await gatheringsService.searchGatherings(query)
+                    logger.log('game search page', gatherings)
                 } catch (error) {
                     logger.log(error.message)
                     Pop.error(error.message)

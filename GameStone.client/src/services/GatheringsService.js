@@ -33,6 +33,7 @@ class GatheringsService {
         logger.log('[searched posts]', res.data)
         AppState.query = query.query
         AppState.gatherings = res.data.map(g => new Gathering(g))
+        return AppState.gatherings
     }
 
     async getGatheringById(gatheringId) {

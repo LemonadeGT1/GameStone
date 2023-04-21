@@ -42,17 +42,18 @@
             </div>
         </section>
         <!-- SECTION - Chat -->
-        <section class="row justify-content-center">
-            <div class="col-10">
+        <section class="row justify-content-center p-2 chatTop mt-3">
+            <div class="col-10 ">
                 <form @submit.prevent="addGroupComment()">
                     <div class="d-flex justify-content-center my-3">
                         <input placeholder="Let's Discuss" class="w-50 border-dark px-3 p-2" type="text"
                             v-model="editable.body">
-                        <button class="btn btn-info border selectable rounded-pill mx-3" type="submit">Submit</button>
+                        <button class="btn btn-info border border-dark selectable rounded-pill mx-3"
+                            type="submit">Submit</button>
                     </div>
                 </form>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center chatCard">
                 <!-- <div class="col-10 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                     <span class="pt-2 pb-3 ps-4 pe-3 comText">{{ gc?.body }}</span>
@@ -233,9 +234,29 @@ export default {
 .flexButtons {
     display: flex;
     justify-content: end;
-
-
 }
+
+.chatCard {
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(22, 22, 22);
+    border-radius: 0.375rem;
+    padding: 2vh;
+}
+
+.chatTop {
+    background-color: #cbcbcb;
+    border-color: rgb(22, 22, 22);
+    // border-top: solid;
+    // border-bottom: solid;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 0.375rem;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
     .makeAbsolute {

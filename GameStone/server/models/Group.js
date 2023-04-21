@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 export const GroupSchema = new Schema({
-    name: { type: String, required: true, default: "New Group", minLength: 2, maxLength: 50 },
+    name: { type: String, required: true, default: "New Group", minLength: 2, maxLength: 30 },
     description: { type: String, required: true, default: "Please add a description", minLength: 10, maxLength: 1000 },
     imgUrl: { type: String, required: true, default: "https://th.bing.com/th/id/OIP.TfKDEcKxFA1u41jGznCOuQHaHa?pid=ImgDet&rs=1" },
     isPublic: { type: Boolean, default: true },

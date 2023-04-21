@@ -13,8 +13,7 @@
 
         <div class="row row my-3 bg-grey rounded selectable elevation-3 justify-content-start">
             <div class="col-md-3 px-0">
-                <img class="elevation-4 img-fluid gathering-img rounded-start" :src="gathering.coverImg"
-                    :alt="gathering.name">
+                <img class="elevation-4 img-fluid gathering-img" :src="gathering.coverImg" :alt="gathering.name">
             </div>
 
             <div class="col-md-8 pt-2">
@@ -52,6 +51,19 @@ export default {
     object-position: center;
     height: 18vh;
     width: 100%;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .gathering-img {
+        border-top-left-radius: 0.375rem;
+        border-top-right-radius: 0.375rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }
 
 .bg-grey {

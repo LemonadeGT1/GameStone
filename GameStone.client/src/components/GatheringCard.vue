@@ -9,7 +9,7 @@
             <div class="col-md-8 pt-2">
                 <div class="row flex-column">
                     <h6>{{ gathering.name }}</h6>
-                    <p>{{ gathering.description }}</p>
+                    <p>{{ truncateDescription(gathering?.description) }}</p>
                     <p>{{ gathering.date }}</p>
                 </div>
                 <div class="row">
@@ -41,7 +41,13 @@ export default {
     setup(props) {
 
         return {
-
+            truncateDescription(text) {
+                const characterLimit = 67;
+                if (text.length > characterLimit) {
+                    text = text.substring(0, characterLimit) + "\u2026";
+                }
+                return text;
+            },
         }
     }
 }

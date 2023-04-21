@@ -57,12 +57,18 @@
                     data-bs-target="#gatheringModal">Create a Gathering</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-info border rounded-pill selectable" @click="searchGatherings()">Find Gatherings</button>
+                <button class="btn btn-info border rounded-pill selectable" @click="searchGatherings()">Find
+                    Gatherings</button>
             </div>
             <div class="col-md-3">
                 <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game
                     to
                     Collection</button>
+            </div>
+        </div>
+        <div class="row" v-if="gatherings.length > 0">
+            <div class="col-12" v-for="g in gatherings" :key="g.id">
+                <GatheringCard :gathering="g" />
             </div>
         </div>
     </div>
@@ -90,6 +96,7 @@ import Pop from "../utils/Pop.js";
 import { gamesService } from "../services/GamesService.js"
 import Modal from "../components/Modal.vue";
 import { AccountGame } from "../models/AccountGame.js";
+import GatheringCard from "../components/GatheringCard.vue";
 export default {
     setup() {
         const route = useRoute();
@@ -117,6 +124,7 @@ export default {
 
         onMounted(() => {
             getGameById();
+            AppState.gatherings = []
         });
 
         watchEffect(() => {
@@ -128,6 +136,7 @@ export default {
             game: computed(() => AppState.activeGame),
             profileGames: computed(() => AppState.profileGames.find(g => g.gameId == AppState.activeGame.id)),
             account: computed(() => AppState.account),
+            gatherings: computed(() => AppState.gatherings),
 
             activeCategories: computed(() => {
                 const game = AppState.activeGame;
@@ -175,7 +184,7 @@ export default {
             }
         };
     },
-    components: { Modal }
+    components: { Modal, GatheringCard }
 };
 </script>
 

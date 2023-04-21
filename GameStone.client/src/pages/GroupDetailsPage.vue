@@ -6,8 +6,8 @@
                 <section class="row my-3 justify-content-between bg-secondary rounded">
                     <div class="col-md-8 p-4 px-5">
                         <div class="py-2 overflow-auto">
-                            <h1>{{ group?.name }}</h1>
-                            <h3>{{ group?.description }}</h3>
+                            <h1 class="text-dark">{{ group?.name }}</h1>
+                            <h4>{{ group?.description }}</h4>
 
                             <img :src="group?.creator.picture" class="profilePic selectable" :title="group?.creator?.name"
                                 @click="gotoProfile(group?.creator.id)">

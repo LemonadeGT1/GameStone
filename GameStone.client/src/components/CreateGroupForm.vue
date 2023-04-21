@@ -1,12 +1,12 @@
 <template>
-        <form @submit.prevent="createGroup()">
+    <form @submit.prevent="createGroup()">
         <div class="mb-3">
             <label for="name" class="form-label">Group Name</label>
-            <input placeholder="" v-model="editable.name" type="text" class="form-control" id="name">
+            <input maxlength="30" placeholder="" v-model="editable.name" type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input v-model="editable.description" type="text" class="form-control" id="description">
+            <input maxlength="1000" v-model="editable.description" type="text" class="form-control" id="description">
         </div>
         <div class="mb-3">
             <label for="imgUrl" class="form-label">Image</label>
@@ -49,41 +49,39 @@ export default {
         const router = useRouter()
         const route = useRoute()
 
-    return { 
-        editable,
-        route,
+        return {
+            editable,
+            route,
 
-        handleSubmit() {
-            if (AppState.activeGroup) {
-                this.editGroup()
-            } else {
-                this.createGroup()
-            }
-        },
+            handleSubmit() {
+                if (AppState.activeGroup) {
+                    this.editGroup()
+                } else {
+                    this.createGroup()
+                }
+            },
 
-        async createGroup() {
-            try {
-                const groupData = editable.value
-                // for (const [key, value] of Object.entries
-                // (groupData)) {
-                //     if (value == '') {
-                //         delete groupData[key]
-                //     }
-                // }
-                logger.log('GROUP FORM DATA', groupData)
-                const group = await groupsService.createGroup(groupData)
-                await router.push({ name: 'GroupDetails', params: {groupId: group.id}})
-            } catch (error) {
-                logger.log(error.message)
-                Pop.error(error.message)
+            async createGroup() {
+                try {
+                    const groupData = editable.value
+                    // for (const [key, value] of Object.entries
+                    // (groupData)) {
+                    //     if (value == '') {
+                    //         delete groupData[key]
+                    //     }
+                    // }
+                    logger.log('GROUP FORM DATA', groupData)
+                    const group = await groupsService.createGroup(groupData)
+                    await router.push({ name: 'GroupDetails', params: { groupId: group.id } })
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
             }
         }
-     }
     }
 };
 </script>
 
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -7,7 +7,7 @@
             <div class="col-md-8 p-3">
                 <div class="py-2">
                     <h1>{{ group?.name }}</h1>
-                    <h3>{{ group?.description }}</h3>
+                    <h3>{{ group?.description.substring(0, 150) }}</h3>
                 </div>
             </div>
         </section>

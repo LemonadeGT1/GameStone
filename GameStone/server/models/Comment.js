@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 export const CommentSchema = new Schema({
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
     groupId: { type: Schema.Types.ObjectId, required: true, ref: "Group" },
-    body: { type: String, required: true, default: "Leave a comment", minLength: 5, maxLength: 1000 },
+    body: { type: String, required: true, default: "Leave a comment", maxLength: 1000 },
     isAttending: { type: Boolean, required: true, default: true },
 }, { timestamps: true, toJSON: { virtuals: true } })
 

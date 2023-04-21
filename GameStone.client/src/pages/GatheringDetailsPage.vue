@@ -3,13 +3,18 @@
         <div class="col-md-10 p-0 bg-secondary rounded">
             <section class="row">
                 <div class="col-md-8 py-3 px-5">
-                    <h1>{{ gathering?.name }}</h1>
-                    <h1 v-if="gathering?.isCanceled" class="cancel-color">Cancelled</h1>
-                    <h2>Host: {{ gathering?.creator.name }}</h2>
-                    <h4>{{ gathering?.date }}</h4>
-                    <h4>{{ gathering?.time }}</h4>
-                    <h5>{{ gathering?.description }}</h5>
-                    <p>Capacity: {{ gathering?.capacity }}</p>
+                    <div>
+                        <h1>{{ gathering?.name }}</h1>
+                        <h1 v-if="gathering?.isCanceled" class="cancel-color">Cancelled</h1>
+                        <h2>Host: {{ gathering?.creator.name }}</h2>
+                        <h4>{{ gathering?.date }}</h4>
+                        <h4>{{ gathering?.time }}</h4>
+                        <h5>{{ gathering?.description }}</h5>
+                        <p>Capacity: {{ gathering?.capacity }}</p>
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
                 <div class="col-md-4 text-end">
                     <img class="gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">

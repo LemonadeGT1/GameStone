@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute, useRouter } from 'vue-router'
 import { gatheringsService } from '../services/GatheringsService.js'
@@ -116,6 +116,12 @@ export default {
         }
 
         onMounted(() => {
+            getProfileById()
+            getProfileGames()
+        })
+
+        watchEffect(() => {
+            route.params.profileId
             getProfileById()
             getProfileGames()
         })

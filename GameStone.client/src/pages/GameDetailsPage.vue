@@ -160,6 +160,18 @@ export default {
                     logger.log(error.message)
                     Pop.error(error.message)
                 }
+            },
+
+            async searchGatherings() {
+                try {
+                    const query = search.query
+                    // const query = { name: { $regex: editable.value } }
+                    logger.log(query)
+                    await gatheringsService.searchGatherings(query)
+                } catch (error) {
+                    logger.log(error.message)
+                    Pop.error(error.message)
+                }
             }
         };
     },

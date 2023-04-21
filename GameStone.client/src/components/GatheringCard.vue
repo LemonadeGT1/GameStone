@@ -42,7 +42,7 @@ export default {
 
         return {
             truncateDescription(text) {
-                const characterLimit = 30;
+                const characterLimit = 67;
                 if (text.length > characterLimit) {
                     text = text.substring(0, characterLimit) + "\u2026";
                 }

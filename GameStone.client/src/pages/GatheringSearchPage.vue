@@ -4,8 +4,8 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between">
                     <h1 class="text-secondary">Gatherings</h1>
-                    <button class="btn btn-info border rounded-pill" data-bs-toggle="modal"
-                        data-bs-target="#gatheringModal">Create Gathering</button>
+                    <button v-if="account?.id" class="btn btn-info border rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#gatheringModal" @click="getProfileGames()">Create Gathering</button>
                 </div>
             </div>
             <div class="col-12">
@@ -17,18 +17,20 @@
                 </div>
             </div>
         </section>
-    </div>
-    <section class="row justify-content-center container-fluid">
-        <div class="col-12">
-            <div class="row justify-content-center">
-                <div v-for="g in gatherings" :key="g.id" class="col-md-5 gathering-card my-3 mx-4 py-2">
-                    <GatheringCard :gathering="g" />
+        <section class="row justify-content-center">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div v-for="g in gatherings" :key="g.id" class=" col-11 col-lg-5 gathering-card my-3 mx-4 py-2">
+                        <GatheringCard :gathering="g" />
+                    </div>
+                    <div class="col-5 mx-4">
+                        <h1 class="text-center" v-if="!gatherings[0]">No Results</h1>
+                    </div>
                 </div>
-                <div class="col-5 mx-4"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
+    </div>
     <Modal id="gatheringModal">
 
         <template #header>
@@ -51,6 +53,7 @@ import { gatheringsService } from '../services/GatheringsService';
 import { logger } from '../utils/Logger';
 import GatheringCard from '../components/GatheringCard.vue'
 import CreateGatheringForm from '../components/CreateGatheringForm.vue';
+import { gamesService } from '../services/GamesService.js';
 
 export default {
     setup() {
@@ -67,7 +70,20 @@ export default {
             getAllGatherings()
         })
         return {
-            gatherings: computed(() => AppState.gatherings)
+            gatherings: computed(() => AppState.gatherings),
+            account: computed(() => AppState.account),
+
+            async getProfileGames() {
+                try {
+                    AppState.profileGames = []
+                    const accountId = AppState.account.id
+                    // logger.log("is this stupid thing working? pls be", accountId)
+                    await gamesService.getProfileGames(accountId)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            }
         }
     }, components: { GatheringCard, CreateGatheringForm }
 };

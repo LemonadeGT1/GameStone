@@ -2,7 +2,11 @@
     <form @submit.prevent="searchGames()">
         <input type="text" v-model="search.query" class="col-md-2 rounded-pill border-dark ps-3" id="Search"
             placeholder="  Search">
-        <button class="btn btn-border selectable mx-2" type="submit" title="search"><i class="mdi mdi-magnify"></i></button>
+        <button v-if="account.lightMode" class="btn btn-border selectable mx-2" type="submit" title="search"><i
+                class="mdi mdi-magnify"></i></button>
+        <button v-else class="btn btn-border selectable mx-2 text-white" type="submit" title="search"><i
+                class="mdi mdi-magnify"></i></button>
+
     </form>
 </template>
 
@@ -22,6 +26,7 @@ export default {
 
         return {
             search,
+            account: computed(() => AppState.account),
 
             async searchGames() {
                 try {

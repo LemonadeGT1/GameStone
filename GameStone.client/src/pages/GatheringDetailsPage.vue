@@ -24,7 +24,7 @@
             <button v-if="!gathering?.isCanceled && isPlayer && account.id" @click="quit(player?.id)"
                 class="btn btn-danger rounded-pill">Quit</button>
         </div>
-        <div class="col-11">
+        <div class="col-11 card bg-secondary">
             <div>
                 <h2>Current Players</h2>
                 <div class="d-flex flex-wrap">
@@ -48,15 +48,14 @@
         </div>
     </section>
     <div class="row justify-content-center m-2">
-        <textarea @keydown.enter.prevent="createChat(chatData)" class="col-12 rounded align-items-center py-2 form-control"
-            placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows="1"></textarea>
+        <textarea @keydown.enter.prevent="createChat(chatData)" class="rounded align-items-center py-2 form-control"
+            placeholder="Write a message..." v-model="editable.body" name="description" id="" cols="" rows=""></textarea>
     </div>
     <section class="row m-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
         <div class="col-1 me-3">
             <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
         </div>
-        <div class="col-10">
-            <h5>{{ c.creator?.picture }}</h5>
+        <div class="col-4">
             <p>{{ c.body }}</p>
         </div>
     </section>

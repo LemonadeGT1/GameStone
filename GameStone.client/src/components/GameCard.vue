@@ -60,7 +60,8 @@ export default {
 // }
 
 .gameImg {
-    max-height: 33vh;
+    max-height: 35vh;
+    height: auto;
     width: 35vh;
 }
 

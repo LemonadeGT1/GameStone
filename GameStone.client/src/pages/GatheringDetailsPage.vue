@@ -12,10 +12,10 @@
                         <h5>{{ gathering?.description }}</h5>
                         <p>Capacity: {{ gathering?.capacity }}</p>
                     </div>
-                    <div>
-                        <img v-for="gm in gathering?.games" :src="gathering?.games?.gameImg"
-                            :alt="gathering?.games?.gameName">
-                        <h4>{{ gathering?.games?.gameName }}</h4>
+                    <div class="d-flex">
+                        <img title=" g?.gameName" class="gatheringGameCard selectable" v-for="g in gathering?.games"
+                            :key="g?.id" :src="g?.gameImg" :alt="g?.gameName" @click="goToGameDetails(g?.gameId)">
+
                     </div>
                 </div>
                 <div class="col-md-4 text-end">
@@ -102,6 +102,8 @@ export default {
         const router = useRouter()
         const editable = ref({})
         const route = useRoute()
+
+
         watchEffect(() => {
             route.params.id
             joiningRoom()
@@ -141,14 +143,6 @@ export default {
             }
         }
 
-        // async function getGamesByProfile() {
-        //     try {
-
-        //     } catch (error) {
-        //         logger.log(error.message)
-        //         Pop.error(error.message)
-        //     }
-        // }
 
         async function getGatheringPlayers() {
             try {
@@ -176,6 +170,7 @@ export default {
         })
 
         return {
+            router,
             editable,
             chats: computed(() => AppState.chats),
             gathering: computed(() => AppState.activeGathering),
@@ -183,6 +178,7 @@ export default {
             player: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             isPlayer: computed(() => AppState.players.find(p => p.accountId == AppState.account.id)),
             account: computed(() => AppState.account),
+            // gatheringGames: computed(() => AppState.activeGathering.games),
 
             async createChat() {
                 try {
@@ -222,12 +218,23 @@ export default {
                     logger.error(error.message)
                     Pop.error(error.message)
                 }
+            },
+
+            async goToGameDetails(gameId) {
+                try {
+                    logger.log(gameId)
+                    router.push({ name: 'GameDetails', params: { gameId: gameId } })
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
             }
         }
     }
 };
 </script>
-
+logger.log(profileId)
+router.push({ name: 'Profile', params: { accountId: profileId } })
 
 <style lang="scss" scoped>
 .profilePicture {
@@ -256,5 +263,13 @@ export default {
 
 .bg-grey {
     background-color: #d9d9d9;
+}
+
+.gatheringGameCard {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 </style>

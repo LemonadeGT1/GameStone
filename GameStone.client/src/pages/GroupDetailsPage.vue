@@ -126,6 +126,7 @@ export default {
             }),
             activeGroupComments: computed(() => AppState.activeGroupComments),
 
+
             async deleteGroup(groupId) {
                 try {
                     logger.log('Group ID', groupId)

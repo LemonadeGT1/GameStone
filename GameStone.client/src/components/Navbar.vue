@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 border-bottom border-light">
     <router-link class="navbar-brand text-info d-flex" :to="{ name: 'Home' }">
       <img src="../assets/img/icons8-carrom-64 2.svg" alt="">
       <h1>GameStone</h1>
@@ -26,6 +26,7 @@
       <router-link :to="{ name: 'Gatherings' }" class="btn text-light selectable text-uppercase mx-2">
         Gatherings
       </router-link>
+      <button @click="changeMode()" class="btn mx-2 text-light selectable"><i class="mdi mdi-weather-night"></i></button>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -38,6 +39,8 @@ import Login from './Login.vue'
 import { AppState } from '../AppState.js';
 import { useRoute, useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { accountService } from '../services/AccountService.js';
 
 export default {
   setup() {
@@ -51,6 +54,17 @@ export default {
       async gotoProfile(profileId) {
         logger.log(profileId)
         router.push({ name: 'Profile', params: { accountId: profileId } })
+      },
+
+      async changeMode() {
+        try {
+          this.account.lightMode = !this.account.lightMode
+          logger.log(this.account.lightMode, AppState.account.lightMode)
+          await accountService.editAccount({ lightMode: this.account.lightMode })
+        } catch (error) {
+          logger.log(error.message)
+          Pop.error(error.message)
+        }
       }
     }
   },

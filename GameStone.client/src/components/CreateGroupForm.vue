@@ -2,15 +2,17 @@
     <form @submit.prevent="createGroup()">
         <div class="mb-3">
             <label for="name" class="form-label">Group Name</label>
-            <input maxlength="30" placeholder="" v-model="editable.name" type="text" class="form-control" id="name">
+            <input maxlength="30" placeholder="Group Name" v-model="editable.name" type="text" required class="form-control"
+                id="name">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input maxlength="1000" v-model="editable.description" type="text" class="form-control" id="description">
+            <input maxlength="1000" v-model="editable.description" type="text" placeholder="Description" required
+                class="form-control" id="description">
         </div>
         <div class="mb-3">
             <label for="imgUrl" class="form-label">Image</label>
-            <input v-model="editable.imgUrl" type="url" class="form-control" id="imgUrl" placeholder="image url">
+            <input v-model="editable.imgUrl" type="url" class="form-control" id="imgUrl" required placeholder="Image URL">
         </div>
         <!-- <div class="mb-3">
             <input type="checkbox" class="form-check-input " id="isPublic" name="isPublic" value=""

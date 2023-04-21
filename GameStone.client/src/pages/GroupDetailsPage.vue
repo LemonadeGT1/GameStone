@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div v-else class="row justify-content-center chatCard bg-dark-gray">
-                <div class="col-8 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
+                <div class="col-4 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <div class="row">
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic border" :title="gc.creator?.name">

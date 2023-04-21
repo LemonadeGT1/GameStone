@@ -99,7 +99,7 @@ export default {
 
         function joiningRoom() {
             try {
-                let payload = { gatheringName: route.params.id }
+                let payload = { gatheringName: route.params.gatheringId }
                 socketService.emit("c:joining:room", payload)
             } catch (error) {
                 Pop.error(error.message)

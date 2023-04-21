@@ -19,7 +19,7 @@ export class ChatController extends BaseController {
             chatData.profileId = req.userInfo.id
             let chat = await chatsService.createChat(chatData)
             socketProvider.messageRoom(chat.gatheringId.toString(), "s:created:chat", chat)
-            socketProvider.messageUser(chat.gatheringId.toString(), "s:created:messageUser", chat)
+            // socketProvider.messageUser(chat.gatheringId.toString(), "s:created:messageUser", chat)
             res.send(chat)
         } catch (error) {
             next(error)

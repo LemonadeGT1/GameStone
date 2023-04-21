@@ -4,18 +4,20 @@
             <label for="name" class="form-label">Name</label>
             <input placeholder="New Gathering" v-model="editable.name" type="text" class="form-control" id="name">
         </div>
-        <div class="mb-3">
-            <label for="game" class="form-label">Games</label>
+        <div class="mb-3 ">
+            <label for="game" class="form-label">Choose Your Games!</label>
             <!-- <input placeholder="Add some games!" v-model="editable.game" type="text" class="form-control" id="game"> -->
-            <div class="dropdown open">
-                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="triggerId"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Your Games
-                    </button>
-                    <div class="dropdown-menu scrollable-menu" aria-labelledby="triggerId">
-                        <button class="dropdown-item" v-for="pg in profileGames" :key="pg.gameId">{{ pg.gameName }}</button>
-                    </div>
+            <!-- <select multiple class="form-select" id="triggerId">
+                        <option class="dropdown-item" v-for="pg in profileGames" :key="pg.gameId">{{ pg.gameName }}</option>
+                    </select> -->
+            <div class="profile-games">
+                <div v-for="pg in profileGames" :key="pg.id">
+                    <input @change="addProfileGame(pg)" type="checkbox" :id="pg.id" :name="pg.id">
+                    <label :for="pg.id">{{ pg.gameName }}</label>
                 </div>
+            </div>
+            <!-- <div class="dropdown-menu scrollable-menu" aria-labelledby="triggerId">
+                    </div> -->
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
@@ -75,11 +77,11 @@ export default {
     },
 
     setup(props) {
-        const editable = ref({})
+        const editable = ref({ games: [] })
         const profileGames = AppState.profileGames
 
         watchEffect(() => {
-            editable.value = { ...AppState.activeGathering }
+            editable.value = { ...AppState.activeGathering, games: [] }
         })
 
         const router = useRouter()
@@ -100,6 +102,15 @@ export default {
                 }
             },
 
+            addProfileGame(game) {
+                console.log('Am I workin?', profileGames);
+                if (!editable.value.games.includes(game)) {
+                    editable.value.games.push(game)
+                }
+                else {
+                    editable.value.games = editable.value.games.filter(g => g != game)
+                }
+            },
 
 
             async createGathering() {
@@ -139,4 +150,9 @@ export default {
 
 
 
-<style></style>
+<style lang="scss">
+.profile-games {
+    max-height: 15vh;
+    overflow-y: auto;
+}
+</style>

@@ -32,9 +32,6 @@ class GamesService {
         games.forEach(g => {
             AppState.profileGames.push(g)
         });
-        logger.log(AppState.profileGames, 'PROFILE GAMES')
-        // AppState.profileGames = res.data
-
         logger.log('the spot we are looking for rn', AppState.profileGames)
     }
 

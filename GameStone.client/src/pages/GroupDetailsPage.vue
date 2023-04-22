@@ -40,7 +40,9 @@
                 <img :src="gm.profile?.picture" class="profilePic selectable" :title="gm.profile?.name"
                     v-for="gm in groupMembers" :key="gm?.id" @click="gotoProfile(gm.profile?.id)">
             </div>
-            <div class="col-9 pill-Rounded m-3">
+            <div class="col-9 pill-Rounded m-3 p-3 px-5 text-center">
+                <img v-for="g in games" :src="g.gameImg" :alt="g.gameName" class="gatheringGameCard selectable"
+                    :title="g.gameName" @click="goToGameDetails(g?.gameId)">
             </div>
         </section>
         <!-- SECTION - Chat -->
@@ -101,7 +103,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, ref } from 'vue';
+import { computed, reactive, onMounted, ref, watchEffect } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { groupsService } from '../services/GroupsService.js';
@@ -111,6 +113,7 @@ import { commentsService } from "../services/CommentsService.js";
 import GroupEditForm from '../components/GroupEditForm.vue';
 import { profilesService } from '../services/ProfilesService.js';
 import { gamesService } from '../services/GamesService.js';
+import { remove } from '@vue/shared';
 export default {
     setup() {
         const route = useRoute()
@@ -134,9 +137,7 @@ export default {
                 AppState.profileGames = []
                 await AppState.groupMembers.forEach(gm => {
                     let accountId = gm.profile.id
-                    logger.log(accountId, 'PROFILE IDSSSSS')
                     gamesService.getGroupMembersGames(accountId)
-
                 });
             } catch (error) {
                 logger.log(error.message)
@@ -144,21 +145,43 @@ export default {
             }
         }
 
+        function removeDupe() {
+            logger.log('ENTER: removeDupe')
+            for (let i = 0; i < AppState.profileGames.length; i++) {
+                for (let j = 0; j < AppState.profileGames.length; j++) {
+                    if (i != j) {
+                        if (AppState.profileGames[i].gameId == AppState.profileGames[j].gameId) {
+                            // AppState.profileGames2.push(AppState.profileGames[i])
+                            AppState.profileGames.splice(j, 1)
+                        }
+                    }
+                }
+
+            }
+            logger.log('removeDupes', AppState.profileGames2)
+        }
+
         onMounted(() => {
             getGroupById()
             getGroupMembersGames()
         })
+
+        watchEffect(() => {
+            removeDupe()
+        })
+
         return {
             editable,
             account: computed(() => AppState.account),
             group: computed(() => AppState.activeGroup),
             groupMembers: computed(() => AppState.groupMembers),
+            games: computed(() => AppState.profileGames),
+            games2: computed(() => AppState.profileGames2),
             isMember: computed(() => {
                 const res = AppState.groupMembers.find(a => a.profileId == AppState.account.id)
                 return res
             }),
             activeGroupComments: computed(() => AppState.activeGroupComments),
-
 
             async deleteGroup(groupId) {
                 try {
@@ -169,6 +192,16 @@ export default {
                     }
                 } catch (error) {
                     logger.log(error.message)
+                    Pop.error(error.message)
+                }
+            },
+
+            async goToGameDetails(gameId) {
+                try {
+                    logger.log(gameId)
+                    router.push({ name: 'GameDetails', params: { gameId: gameId } })
+                } catch (error) {
+                    logger.error(error.message)
                     Pop.error(error.message)
                 }
             },
@@ -223,6 +256,16 @@ export default {
     width: auto;
     z-index: 700 !important;
     position: relative;
+}
+
+.gatheringGameCard {
+    height: 60px;
+    width: 60px;
+    border-radius: 0.4rem;
+    // padding-left: 4px;
+    // padding-right: 4px;
+    background-color: white;
+    margin: 4px;
 }
 
 .comContainer {

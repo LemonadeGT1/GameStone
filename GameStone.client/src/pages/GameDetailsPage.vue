@@ -8,69 +8,76 @@
                     </div>
                     <div v-else class="text-white col-xl-7" v-html="game.description">
                     </div>
-                    <div class="col-xl-5">
+                    <div class="col-xl-5 text-center">
                         <img :src="game.image_url" class="imgContainer ms-4 mb-3">
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-2">
-                <div class="col-9">
+        </div>
+        <div class="row justify-content-center mt-4">
+            <!-- SECTION REORGANIZING -->
+            <div class="col-xl-11">
+                <div class="row">
+                <div class="col-xl-7">
+                    <div class="row">
+                        <div class="col-4">
+                            <p v-if="account.lightMode">Players: <span class="text-secondary">{{ game.min_players }} - {{ game.max_players }}</span></p>
+                                <p v-else>Players: <span class="text-white">{{ game.min_players }} - {{ game.max_players }}</span></p>
 
+                            <p v-if="account.lightMode">Categories: <span class="text-secondary" id="gameCategories"
+                                v-for="c in activeCategories" :key="c.id"><br />{{ c.name }}</span></p>
+                                <p v-else>Categories: <span class="text-white" id="gameCategories" v-for="c in activeCategories"
+                                :key="c.id"><br />{{
+                                    c.name }}</span></p>
+                        </div>
+                        <div class="col-4">
+                            <p v-if="account.lightMode">Playtime:<span class="text-secondary">{{ game.min_playtime }} - {{ game.max_playtime }}</span></p>
+                                <p v-else>Playtime: <span class="text-white">{{ game.min_playtime }} - {{ game.max_playtime }}</span></p>
+
+                            <p v-if="account.lightMode">Mechanics: <span class="text-secondary" id="gameMechanics"
+                                v-for="m in activeMechanics" :key="m.id"><br />{{
+                                    m.name }}</span></p>
+                                <p v-else>Mechanics: <span class="text-white" id="gameMechanics" v-for="m in activeMechanics"
+                                :key="m.id"><br />{{
+                                    m.name }}</span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-info border rounded-pill selectable my-2" @click="searchGatherings()">Find Gatherings</button>
+                            <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game to Collection</button>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5">
+                    <div class="row text-center" v-if="gatherings.length > 0">
+                        <h4>Gatherings Playing This Game</h4>
+                    </div>
+                    <div class="row" v-if="gatherings.length > 0">
+                        <div class="col-12" v-for="g in gatherings" :key="g?.id">
+                        <GatheringCard :gathering="g" />
+                    </div>
+                </div>
+        </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-4 offset-2">
-                <p v-if="account.lightMode">Players: <span class="text-secondary">{{ game.min_players }} - {{
-                    game.max_players }}</span></p>
-                <p v-else>Players: <span class="text-white">{{ game.min_players }} - {{ game.max_players }}</span></p>
-
-            </div>
-            <div class="col-4">
-                <p v-if="account.lightMode">Playtime: <span class="text-secondary">{{ game.min_playtime }} - {{
-                    game.max_playtime }}</span></p>
-                <p v-else>Playtime: <span class="text-white">{{ game.min_playtime }} - {{ game.max_playtime }}</span></p>
-
-            </div>
+            <!-- SECTION END -->
+            
         </div>
         <div class="row">
-            <div class="col-4 offset-2">
-                <p v-if="account.lightMode">Categories: <span class="text-secondary" id="gameCategories"
-                        v-for="c in activeCategories" :key="c.id"><br />{{
-                            c.name }}</span></p>
-                <p v-else>Categories: <span class="text-white" id="gameCategories" v-for="c in activeCategories"
-                        :key="c.id"><br />{{
-                            c.name }}</span></p>
-            </div>
-            <div class="col-4">
-                <p v-if="account.lightMode">Mechanics: <span class="text-secondary" id="gameMechanics"
-                        v-for="m in activeMechanics" :key="m.id"><br />{{
-                            m.name }}</span></p>
-                <p v-else>Mechanics: <span class="text-white" id="gameMechanics" v-for="m in activeMechanics"
-                        :key="m.id"><br />{{
-                            m.name }}</span></p>
-            </div>
+            
+            
         </div>
         <div class="row justify-content-center my-4">
-            <div class="col-md-3">
-                <button class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
-                    data-bs-target="#gatheringModal">Create a Gathering</button>
-            </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <button class="btn btn-info border rounded-pill selectable" @click="searchGatherings()">Find
                     Gatherings</button>
-            </div>
-            <div class="col-md-3">
-                <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game
-                    to
-                    Collection</button>
-            </div>
+            </div> -->
+            
         </div>
-        <div class="row" v-if="gatherings.length > 0">
-            <div class="col-12" v-for="g in gatherings" :key="g.id">
-                <GatheringCard :gathering="g" />
-            </div>
-        </div>
+        
     </div>
     <Modal id="gatheringModal">
 
@@ -137,6 +144,7 @@ export default {
             profileGames: computed(() => AppState.profileGames.find(g => g.gameId == AppState.activeGame.id)),
             account: computed(() => AppState.account),
             gatherings: computed(() => AppState.gatherings),
+
 
             activeCategories: computed(() => {
                 const game = AppState.activeGame;

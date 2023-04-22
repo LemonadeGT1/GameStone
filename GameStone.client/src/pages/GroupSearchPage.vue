@@ -8,6 +8,9 @@
                 <div>
                     <GroupSearchBar />
                 </div>
+                <div>
+                    <button @click="clearSearch()" class="btn btn-danger border rounded-pill"> Clear Search</button>
+                </div>
             </div>
             <div class="col-md-5 text-end">
                 <button v-if="account?.id" class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
@@ -63,7 +66,16 @@ export default {
 
         return {
             account: computed(() => AppState.account),
-            groups: computed(() => AppState.groups)
+            groups: computed(() => AppState.groups),
+
+            async clearSearch() {
+                try {
+                    await groupsService.clearSearch()
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
 
         }
     }, components: { GroupCard, CreateGroupForm }

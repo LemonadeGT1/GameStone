@@ -20,7 +20,7 @@ class GamesService {
         // logger.log(accountId)
         const res = await api.get(`api/profiles/${accountId}/games`)
         AppState.profileGames = res.data.map(p => new AccountGame(p))
-        logger.log(AppState.profileGames, 'PROFILE GAMES')
+        // logger.log(AppState.profileGames, 'PROFILE GAMES')
         // AppState.profileGames = res.data
 
         logger.log('the spot we are looking for rn', AppState.profileGames)
@@ -32,10 +32,7 @@ class GamesService {
         games.forEach(g => {
             AppState.profileGames.push(g)
         });
-        logger.log(AppState.profileGames, 'PROFILE GAMES')
-        // AppState.profileGames = res.data
-
-        logger.log('the spot we are looking for rn', AppState.profileGames)
+        // logger.log('the spot we are looking for rn', AppState.profileGames)
     }
 
     async getGames() {

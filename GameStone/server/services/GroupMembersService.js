@@ -7,8 +7,8 @@ import { groupsService } from "./GroupsService"
 class GroupMemberService {
     async getProfileGroups(profileId) {
         const groups = await dbContext.GroupMember.find({ profileId })
-            .populate('group')
-            .populate('profile')
+            .populate('profile').populate('group')
+            // .populate('profile')
         return groups
     }
 

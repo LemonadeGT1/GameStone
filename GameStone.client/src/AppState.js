@@ -53,6 +53,7 @@ export const AppState = reactive({
   activeProfile: null,
 
   profileGames: [],
+  profileGames2: [],
 
   activeGame: {},
   activeCategories: [],

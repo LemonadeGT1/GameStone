@@ -11,9 +11,9 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
       </ul>
-      <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase mx-2">
+      <!-- <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase mx-2">
         About
-      </router-link>
+      </router-link> -->
       <div class="btn text-light selectable text-uppercase mx-2" @click="gotoProfile(account.id)">
         My Profile
       </div>

@@ -116,7 +116,7 @@ export default {
         }
 
         onMounted(() => {
-            getProfileById()
+            // getProfileById()
             getProfileGames()
         })
 

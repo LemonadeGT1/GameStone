@@ -3,7 +3,7 @@
         <div class="col-md-10 p-0 bg-secondary rounded">
             <section class="row">
                 <div class="col-md-8 py-3 px-5">
-                    <div>
+                    <div class="ow-break-word">
                         <h1>{{ gathering?.name }}</h1>
                         <h1 v-if="gathering?.isCanceled" class="cancel-color">Cancelled</h1>
                         <h2>Host: {{ gathering?.creator.name }}</h2>
@@ -20,8 +20,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 text-end">
-                    <img class="gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
+                <div class="col-md-4 text-end goTop">
+                    <img class="gathering-img" :src="gathering?.coverImg" :alt="gathering?.name">
                 </div>
             </section>
 
@@ -216,7 +216,7 @@ export default {
                 try {
                     if (await Pop.confirm("Are you sure you want to quit", ''))
                         await playersService.quit(playerId)
-                        this.gathering.capacity++
+                    this.gathering.capacity++
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)
@@ -256,6 +256,10 @@ export default {
     width: 100%;
     object-fit: cover;
     object-position: center;
+    border-top-right-radius: 0.375rem;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0.375rem;
+    border-bottom-left-radius: 0;
 }
 
 .profile-img {
@@ -287,5 +291,24 @@ export default {
     border-color: #d9d9d9;
     border-width: 4px;
     // border-radius: 0.375rem;
+}
+
+.ow-break-word {
+    overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+
+    .goTop {
+        order: -1;
+    }
+
+    .gathering-img {
+        border-top-right-radius: 0.375rem;
+        border-top-left-radius: 0.375rem;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
 }
 </style>

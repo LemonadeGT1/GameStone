@@ -52,11 +52,11 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Michael Patience <img src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
+            <h4>Chandler Bowman <img src="https://i.kym-cdn.com/photos/images/facebook/001/274/170/594.png">
             </h4>
           </div>
           <div class="col-8">
-            <p>Spring23 CodeWorks student</p>
+            <p>We kept calm through the whole project, hopefully it's good enough.WAAAAAAGGHHH</p>
           </div>
         </div>
         <div class="row">
@@ -70,11 +70,13 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Michael Patience <img src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
+            <h4>William Edwards <img
+                src="https://vignette.wikia.nocookie.net/disney/images/6/64/Kronk_.jpg/revision/latest?cb=20160720194635">
             </h4>
           </div>
           <div class="col-8">
-            <p>Spring23 CodeWorks student</p>
+            <p>Spring23 CodeWorks student. William enjoys hunting,fishing, video games, golf (even tho he's not very
+              good), and watching movies.</p>
           </div>
         </div>
       </div>

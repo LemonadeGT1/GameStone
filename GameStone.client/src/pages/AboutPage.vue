@@ -33,7 +33,8 @@
               </h4>
             </div>
             <div class="col-8">
-              <p>Spring23 CodeWorks student</p>
+              <p>Michael is a Spring23 CodeWorks Student. He has enjoyed coding since the days of Apple II's and Commodore
+                64's. Loves Aviation, Board Games, Family, Hiking, and many other activities.</p>
             </div>
           </div>
         </div>

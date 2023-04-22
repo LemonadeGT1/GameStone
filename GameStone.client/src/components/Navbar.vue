@@ -14,7 +14,7 @@
       <!-- <router-link :to="{ name: 'About' }" class="btn text-light selectable text-uppercase mx-2">
         About
       </router-link> -->
-      <div class="btn text-light selectable text-uppercase mx-2" @click="gotoProfile(account.id)">
+      <div v-if="account.id" class="btn text-light selectable text-uppercase mx-2" @click="gotoProfile(account.id)">
         My Profile
       </div>
       <router-link :to="{ name: 'Games' }" class="btn text-light selectable text-uppercase mx-2">
@@ -26,7 +26,7 @@
       <router-link :to="{ name: 'Gatherings' }" class="btn text-light selectable text-uppercase mx-2">
         Gatherings
       </router-link>
-      <button @click="changeMode()" class="btn mx-2 text-light selectable"><i class="mdi mdi-weather-night"></i></button>
+      <button v-if="account.id" @click="changeMode()" class="btn mx-2 text-light selectable"><i class="mdi mdi-weather-night"></i></button>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>

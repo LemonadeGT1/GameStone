@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-4">
                             <button class="btn btn-info border rounded-pill selectable my-2" @click="searchGatherings()">Find Gatherings</button>
-                            <button v-if="!profileGames" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game to Collection</button>
+                            <button v-if="!profileGames && account.id" @click="addGame()" class="btn btn-info border rounded-pill selectable">Add Game to Collection</button>
                             
                         </div>
                         <div class="col-md-4">

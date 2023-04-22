@@ -28,9 +28,9 @@
             </div>
             <div class="col-md-4 flexButtons">
                 <!-- <button class="btn btn-info border selectable rounded-pill mx-3">View our games</button> -->
-                <button v-if="!isMember" @click="becomeMember()"
+                <button v-if="!isMember && account.id" @click="becomeMember()"
                     class="btn btn-info border selectable rounded-pill mx-3">Join Us!</button>
-                <button v-else="isMember" @click="leaveGroup()"
+                <button v-if="isMember" @click="leaveGroup()"
                     class="btn btn-danger border selectable rounded-pill mx-3">Leave Us!</button>
             </div>
         </section>

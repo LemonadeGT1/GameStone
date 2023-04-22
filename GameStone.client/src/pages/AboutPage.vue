@@ -44,7 +44,7 @@
             </h4>
           </div>
           <div class="col-8">
-            <p>Also a Spring23 CodeWorks student.  The Dude Abides.</p>
+            <p>Also a Spring23 CodeWorks student. The Dude Abides.</p>
           </div>
         </div>
         <div class="row">
@@ -72,7 +72,8 @@
             </h4>
           </div>
           <div class="col-8">
-            <p>Spring23 CodeWorks student</p>
+            <p>Spring23 CodeWorks student. William enjoys hunting,fishing, video games, golf (even tho he's not very
+              good), and watching movies.</p>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@
               create
               new gatherings.</li>
           </ul>
-          <h3>Languages</h3>
+          <h3>Languages and Tools</h3>
           <ul>
             <li>JavaScript</li>
             <li>HTML</li>
@@ -25,6 +25,9 @@
             <li>node.js</li>
             <li>Bootstrap</li>
             <li>Socket.io</li>
+            <li>AtlasApi</li>
+
+
           </ul>
           <h3>Contributors</h3>
           <div class="row">
@@ -44,7 +47,7 @@
             </h4>
           </div>
           <div class="col-8">
-            <p>Also a Spring23 CodeWorks student.  The Dude Abides.</p>
+            <p>Also a Spring23 CodeWorks student. The Dude Abides.</p>
           </div>
         </div>
         <div class="row">
@@ -62,7 +65,7 @@
             </h4>
           </div>
           <div class="col-8">
-            <p>Spring23 CodeWorks student. A lover of DND, books, video games and his dog Sage. </p>
+            <p>Isaac is an active Spring23 CodeWorks student. A lover of DND, books, video games and his dog Sage. </p>
           </div>
         </div>
         <div class="row">
@@ -89,4 +92,15 @@ export default {
 }
 </script>
 
-<style></style>
+
+
+<style scoped lang="scss">
+.profile-picture {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #0e0d0d;
+  border-width: 2px;
+}
+</style>

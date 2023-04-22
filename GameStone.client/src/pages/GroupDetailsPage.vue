@@ -146,7 +146,6 @@ export default {
         }
 
         function removeDupe() {
-            logger.log('ENTER: removeDupe')
             for (let i = 0; i < AppState.profileGames.length; i++) {
                 for (let j = 0; j < AppState.profileGames.length; j++) {
                     if (i != j) {
@@ -158,7 +157,6 @@ export default {
                 }
 
             }
-            logger.log('removeDupes', AppState.profileGames2)
         }
 
         onMounted(() => {

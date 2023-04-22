@@ -47,7 +47,7 @@
         </section>
         <!-- SECTION - Chat -->
         <section class="row justify-content-center p-2 chatTop mt-3">
-            <div class="col-10 ">
+            <div class="col-10 " v-if="account?.id">
                 <form @submit.prevent="addGroupComment()">
                     <div class="d-flex justify-content-center my-3">
                         <input placeholder="Let's Discuss" class="w-50 border-dark px-3 p-2" type="text"

@@ -57,7 +57,7 @@
             </div>
         </div>
     </section>
-    <div class="row m-2 justify-content-center">
+    <div class="row m-2 justify-content-center" v-if="account?.id">
         <textarea @keydown.enter.prevent="createChat(chatData)" class="rounded col-md-4 align-items-center py-2"
             placeholder="Write a message..." v-model="editable.body" name="description" cols="5" rows="3"></textarea>
     </div>

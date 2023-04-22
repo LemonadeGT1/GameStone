@@ -3,9 +3,13 @@
     <div class="row my-2">
       <div class="col-12">
         <div class="about">
-          <h2>About</h2>
-          <p>Ever had this problem? "So, I bought this $150 board game, but I don't have anybody to play with!"</p>
-          <h3>Description</h3>
+          <h2>Why GameStone Matters</h2>
+          <p>Ever had this problem? "So, I bought this $150 board game, but I don't have anybody to play with!" Yep, same
+            here. This tool helps gamers find other gamers to get, and keep, those games off of their owners "shelves of
+            shame" (the
+            shelves of
+            unplayed games).</p>
+          <h3>How we solve this problem</h3>
           <p>This site allows individuals to find other people to play with by way of gatherings and groups.</p>
           <ul>
             <li>Gatherings are events open to new players based around games and a date to play.</li>
@@ -13,7 +17,7 @@
               create
               new gatherings.</li>
           </ul>
-          <h3>Languages and Tools</h3>
+          <h3>Languages and Tools used on this project:</h3>
           <ul>
             <li>JavaScript</li>
             <li>HTML</li>
@@ -29,7 +33,7 @@
 
 
           </ul>
-          <h3 class="pb-4">Contributors</h3>
+          <h3 class="pb-4">GameStone Contributors</h3>
 
 
           <div class="row pb-5">
@@ -41,7 +45,7 @@
               <h3 class="p-2">Michael Patience
               </h3>
               <p>Michael is a Spring23 CodeWorks Student. He has enjoyed coding since the days of Apple II's and Commodore
-                64's. Loves Aviation, Board Games, Family, Hiking, and many other activities.</p>
+                64's. Loves Aviation, Board Games, Family, Hiking, and many other creative endeavors.</p>
             </div>
           </div>
         </div>

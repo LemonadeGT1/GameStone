@@ -28,6 +28,11 @@ class GroupsService {
         AppState.groups = res.data.map(g => new Group(g))
     }
 
+    async clearSearch() {
+        AppState.query = ''
+        this.getAllGroups()
+    }
+
     async getGroupById(groupId) {
         const res = await api.get(`api/groups/${groupId}`)
         AppState.activeGroup = new Group(res.data)

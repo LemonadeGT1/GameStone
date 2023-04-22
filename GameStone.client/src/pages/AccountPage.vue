@@ -52,7 +52,7 @@
   <Modal id="editAccountModal">
 
     <template #header>
-      <h5>Edit Profile!</h5>
+      <h5 class="text-dark">Edit Profile!</h5>
     </template>
 
     <template #modalBody>

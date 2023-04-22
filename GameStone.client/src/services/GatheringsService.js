@@ -36,6 +36,11 @@ class GatheringsService {
         return AppState.gatherings
     }
 
+    async clearSearch() {
+        AppState.query = ''
+        this.getAllGatherings()
+    }
+
     async getGatheringById(gatheringId) {
         const res = await api.get(`api/gatherings/${gatheringId}`)
         logger.log(res.data)

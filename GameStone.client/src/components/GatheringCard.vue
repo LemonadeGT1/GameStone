@@ -58,8 +58,8 @@ export default {
 .gathering-img {
     object-fit: cover;
     object-position: center;
-    height: 18vh;
-    width: 100%;
+    min-height: 100%;
+    width: 50vw;
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0.375rem;

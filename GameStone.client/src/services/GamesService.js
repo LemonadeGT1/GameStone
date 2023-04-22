@@ -26,6 +26,18 @@ class GamesService {
         logger.log('the spot we are looking for rn', AppState.profileGames)
     }
 
+    async getGroupMembersGames(accountId) {
+        const res = await api.get(`api/profiles/${accountId}/games`)
+        let games = res.data.map(p => new AccountGame(p))
+        games.forEach(g => {
+            AppState.profileGames.push(g)
+        });
+        logger.log(AppState.profileGames, 'PROFILE GAMES')
+        // AppState.profileGames = res.data
+
+        logger.log('the spot we are looking for rn', AppState.profileGames)
+    }
+
     async getGames() {
         const res = await atlasApi.get(`search?skip=${AppState.gameSkip}`)
         logger.log('[GETTING GAMES]', res.data)

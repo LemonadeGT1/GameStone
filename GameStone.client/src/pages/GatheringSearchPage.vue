@@ -14,7 +14,7 @@
                 <div class="row">
                     <GatheringSearchBar />
                     <div class="col-6">
-                        <!-- <h5>Ideal: Location Filtering</h5> -->
+                    <button @click="clearSearch()" class="btn btn-danger border rounded-pill"> Clear Search</button>
                     </div>
                 </div>
             </div>
@@ -74,6 +74,15 @@ export default {
         return {
             gatherings: computed(() => AppState.gatherings),
             account: computed(() => AppState.account),
+
+            async clearSearch() {
+                try {
+                    await gatheringsService.clearSearch()
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
+                }
+            },
 
             async getProfileGames() {
                 try {

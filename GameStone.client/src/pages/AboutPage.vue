@@ -40,11 +40,11 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Michael Patience <img src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
+            <h4>Ian Grell <img src="https://cdn.europosters.eu/image/1300/posters/the-big-lebowski-the-dude-i75968.jpg">
             </h4>
           </div>
           <div class="col-8">
-            <p>Spring23 CodeWorks student</p>
+            <p>Also a Spring23 CodeWorks student.  The Dude Abides.</p>
           </div>
         </div>
         <div class="row">
@@ -58,11 +58,11 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Michael Patience <img src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
+            <h4>Isaac Duff<img src="https://i.insider.com/5e32f2a324306a19834af322?width=700">
             </h4>
           </div>
           <div class="col-8">
-            <p>Spring23 CodeWorks student</p>
+            <p>Spring23 CodeWorks student. A lover of DND, books, video games and his dog Sage. </p>
           </div>
         </div>
         <div class="row">

@@ -32,7 +32,8 @@
           <h3>Contributors</h3>
           <div class="row">
             <div class="col-4">
-              <h4>Michael Patience <img src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
+              <h4>Michael Patience <img class="profile-picture"
+                  src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
               </h4>
             </div>
             <div class="col-8">
@@ -43,7 +44,8 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Ian Grell <img src="https://cdn.europosters.eu/image/1300/posters/the-big-lebowski-the-dude-i75968.jpg">
+            <h4>Ian Grell <img class="profile-picture"
+                src="https://cdn.europosters.eu/image/1300/posters/the-big-lebowski-the-dude-i75968.jpg">
             </h4>
           </div>
           <div class="col-8">
@@ -52,7 +54,8 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Chandler Bowman <img src="https://i.kym-cdn.com/photos/images/facebook/001/274/170/594.png">
+            <h4>Chandler Bowman <img class="profile-picture"
+                src="https://i.kym-cdn.com/photos/images/facebook/001/274/170/594.png">
             </h4>
           </div>
           <div class="col-8">
@@ -61,7 +64,7 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Isaac Duff<img src="https://i.insider.com/5e32f2a324306a19834af322?width=700">
+            <h4>Isaac Duff<img class="profile-picture" src="https://i.insider.com/5e32f2a324306a19834af322?width=700">
             </h4>
           </div>
           <div class="col-8">
@@ -70,7 +73,7 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>William Edwards <img
+            <h4>William Edwards <img class="profile-picture"
                 src="https://vignette.wikia.nocookie.net/disney/images/6/64/Kronk_.jpg/revision/latest?cb=20160720194635">
             </h4>
           </div>
@@ -104,5 +107,4 @@ export default {
   border-style: solid;
   border-color: #0e0d0d;
   border-width: 2px;
-}
-</style>
+}</style>

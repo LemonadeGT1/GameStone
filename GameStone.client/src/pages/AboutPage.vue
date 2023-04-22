@@ -66,7 +66,8 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <h4>Michael Patience <img src="https://s3.amazonaws.com/comicgeeks/characters/avatars/98.jpg?t=1661544547">
+            <h4>William Edwards <img
+                src="https://vignette.wikia.nocookie.net/disney/images/6/64/Kronk_.jpg/revision/latest?cb=20160720194635">
             </h4>
           </div>
           <div class="col-8">

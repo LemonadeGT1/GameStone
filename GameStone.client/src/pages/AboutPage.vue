@@ -53,7 +53,7 @@
             </h4>
           </div>
           <div class="col-8">
-            <p>We kept calm through the whole project, hopefully it's good enough.</p>
+            <p>We kept calm through the whole project, hopefully it's good enough.WAAAAAAGGHHH</p>
           </div>
         </div>
         <div class="row">

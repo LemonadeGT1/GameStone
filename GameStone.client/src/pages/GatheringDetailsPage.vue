@@ -62,14 +62,12 @@
             placeholder="Write a message..." v-model="editable.body" name="description" cols="5" rows="3"></textarea>
     </div>
 
-    <section class="row m-3">
+    <section class="m-3">
         <div class="col-3 ms-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
             <div class="col-1 me-5">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>
-            <div class="">
-                <p>{{ c.body }}</p>
-            </div>
+                <p class="">{{ c.body }}</p>
         </div>
     </section>
     <Modal id="gatheringModal">

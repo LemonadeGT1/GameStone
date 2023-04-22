@@ -65,13 +65,13 @@
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic" :title="gc.creator?.name">
                         </div>
-                        <div class="col-sm-10 align-self-center col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body
+                        <div class="col-sm-10 col-md-11 ps-4"><span class="pt-2 comText">{{ gc?.body
                         }}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div v-else class="row justify-content-center chatCard bg-dark-gray">
+            <div v-else class="chatCard bg-dark-gray">
                 <div class="col-4 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <div class="row">
                         <div class="col-md-1 col-sm-2">
@@ -269,6 +269,7 @@ export default {
     border-color: rgb(22, 22, 22);
     border-radius: 0.375rem;
     padding: 2vh;
+    overflow-wrap: break-word;
 }
 
 .chatTop {

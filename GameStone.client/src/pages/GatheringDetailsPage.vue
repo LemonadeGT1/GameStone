@@ -3,7 +3,7 @@
         <div class="col-md-10 p-0 bg-secondary rounded">
             <section class="row">
                 <div class="col-md-8 py-3 px-5">
-                    <div>
+                    <div class="ow-break-word">
                         <h1>{{ gathering?.name }}</h1>
                         <h1 v-if="gathering?.isCanceled" class="cancel-color">Cancelled</h1>
                         <h2>Host: {{ gathering?.creator.name }}</h2>
@@ -20,8 +20,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 text-end">
-                    <img class="gathering-img rounded-end" :src="gathering?.coverImg" :alt="gathering?.name">
+                <div class="col-md-4 text-end goTop">
+                    <img class="gathering-img" :src="gathering?.coverImg" :alt="gathering?.name">
                 </div>
             </section>
 
@@ -62,14 +62,12 @@
             placeholder="Write a message..." v-model="editable.body" name="description" cols="5" rows="3"></textarea>
     </div>
 
-    <section class="row m-3">
+    <section class="m-3">
         <div class="col-3 ms-4 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
             <div class="col-1 me-5">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>
-            <div class="">
-                <p>{{ c.body }}</p>
-            </div>
+                <p class="">{{ c.body }}</p>
         </div>
     </section>
     <Modal id="gatheringModal">
@@ -216,7 +214,7 @@ export default {
                 try {
                     if (await Pop.confirm("Are you sure you want to quit", ''))
                         await playersService.quit(playerId)
-                        this.gathering.capacity++
+                    this.gathering.capacity++
                 } catch (error) {
                     logger.error(error.message)
                     Pop.error(error.message)
@@ -256,6 +254,10 @@ export default {
     width: 100%;
     object-fit: cover;
     object-position: center;
+    border-top-right-radius: 0.375rem;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0.375rem;
+    border-bottom-left-radius: 0;
 }
 
 .profile-img {
@@ -287,5 +289,24 @@ export default {
     border-color: #d9d9d9;
     border-width: 4px;
     // border-radius: 0.375rem;
+}
+
+.ow-break-word {
+    overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+
+    .goTop {
+        order: -1;
+    }
+
+    .gathering-img {
+        border-top-right-radius: 0.375rem;
+        border-top-left-radius: 0.375rem;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
 }
 </style>

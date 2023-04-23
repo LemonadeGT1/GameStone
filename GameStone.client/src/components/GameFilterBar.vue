@@ -13,8 +13,6 @@
                     <div class="dropdown-menu scrollable-menu" aria-labelledby="triggerId">
                         <button class="dropdown-item" v-for="c in categories" @click="filterByCategory(c.id)">{{ c.name
                         }}</button>
-                        <button class="dropdown-item" href="#">Action</button>
-                        <button class="dropdown-item disabled" href="#">Disabled action</button>
                     </div>
                 </div>
             </div>
@@ -27,8 +25,6 @@
                     <div class="dropdown-menu scrollable-menu" aria-labelledby="triggerId">
                         <button class="dropdown-item" v-for="m in mechanics" @click="filterByMechanic(m.id)">{{ m.name
                         }}</button>
-                        <button class="dropdown-item" href="#">Action</button>
-                        <button class="dropdown-item disabled" href="#">Disabled action</button>
                     </div>
                 </div>
             </div>

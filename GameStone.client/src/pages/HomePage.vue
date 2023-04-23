@@ -35,14 +35,14 @@
       </div>
       <div class="col-md-4 d-flex justify-content-center order-md-2 order-1">
         <img class="img-fluid elevation-5 rounded group-img mb-3" src="../../src/assets/img/Planecrafaters_01.jpg"
-          alt="group-img">
+          alt="group-img" title="Happy people playing Planecrafters">
       </div>
     </section>
     <!-- SECTION GATHERINGS -->
     <section class="row justify-content-center p-2 order-4 order-md-3">
       <div class="col-md-4 d-flex justify-content-center">
         <img class="img-fluid rounded elevation-5 gathering-img mb-3" src="../../src/assets/img/Planecrafters_03.jpg"
-          alt="gathering-img">
+          alt="gathering-img" title="More happy people playing Planecrafters">
       </div>
       <div class="col-md-7 card rounded elevation-5 d-flex flex-column justify-content-between py-2 order-md-3 order-4">
         <div class="text-dark">

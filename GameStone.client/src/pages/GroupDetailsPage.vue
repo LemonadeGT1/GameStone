@@ -124,7 +124,6 @@ export default {
             try {
                 let groupId = route.params.groupId
                 await groupsService.getGroupById(groupId)
-                await groupsService.getMembersByGroupId(groupId)
                 await groupsService.getCommentsByGroupId(groupId)
             } catch (error) {
                 logger.log(error.message)
@@ -134,11 +133,16 @@ export default {
 
         async function getGroupMembersGames() {
             try {
+                let groupId = route.params.groupId
                 AppState.profileGames = []
-                await AppState.groupMembers.forEach(gm => {
+                logger.log('PROFILE GAMES', AppState.profileGames)
+                await groupsService.getMembersByGroupId(groupId)
+                AppState.groupMembers.forEach(async gm => {
                     let accountId = gm.profile.id
-                    gamesService.getGroupMembersGames(accountId)
+                    logger.log(accountId, 'ACCOUNT ID')
+                    await gamesService.getGroupMembersGames(accountId)
                 });
+                logger.log('GETTING GAMES')
             } catch (error) {
                 logger.log(error.message)
                 Pop.error(error.message)
@@ -166,6 +170,7 @@ export default {
 
         watchEffect(() => {
             removeDupe()
+
         })
 
         return {

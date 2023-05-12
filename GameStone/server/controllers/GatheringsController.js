@@ -105,8 +105,8 @@ export class GatheringsController extends BaseController {
         try {
             let userId = req.userInfo.id
             let gatheringId = req.params.id
-            let message = await gatheringsService.cancelGathering(gatheringId, userId)
-            res.send(message)
+            let gathering = await gatheringsService.cancelGathering(gatheringId, userId)
+            res.send(gathering)
         } catch (error) {
             next(error)
         }

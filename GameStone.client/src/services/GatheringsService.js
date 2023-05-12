@@ -59,9 +59,11 @@ class GatheringsService {
     async deleteGathering(gatheringId) {
         const res = await api.delete(`api/gatherings/${gatheringId}`)
         logger.log(res.data)
+        AppState.activeGathering = new Gathering(res.data)
     }
 
     async editGathering(gatheringData) {
+        logger.log(gatheringData, 'Gathering Data')
         const res = await api.put(`api/gatherings/${gatheringData.id}`, gatheringData)
         logger.log(res.data, 'edited gathering')
         AppState.activeGathering = new Gathering(res.data)

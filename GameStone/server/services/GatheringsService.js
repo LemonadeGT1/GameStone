@@ -34,7 +34,7 @@ class GatheringsService {
         const gatherings = await dbContext.Gatherings.find({
             $or: [
                 { name: { $regex: filter } },
-                { description: { $regex: filter}},
+                { description: { $regex: filter } },
                 {
                     games: {
                         $elemMatch: {
@@ -44,7 +44,7 @@ class GatheringsService {
                             }
                         }
                     }
-                }]
+                }], date: { $gte: Date.now() }, isCanceled: false, isPublic: true
         })
             // const gatherings = await dbContext.Gatherings.find({ $or: [{ name: { $regex: filter } }, { description: { $regex: filter } }, {games: {$regex: filter}}], date: { $gte: Date.now() }, isCanceled: false, isPublic: true })
 
@@ -80,6 +80,7 @@ class GatheringsService {
         originalGathering.capacity = gatheringEdits.capacity ? gatheringEdits.capacity : originalGathering.capacity
         originalGathering.date = gatheringEdits.date ? gatheringEdits.date : originalGathering.date
         originalGathering.isPublic = gatheringEdits.isPublic ? gatheringEdits.isPublic : originalGathering.isPublic
+        originalGathering.games = gatheringEdits.games ? gatheringEdits.games : originalGathering.games
         await originalGathering.save()
         return originalGathering
 
@@ -103,7 +104,7 @@ class GatheringsService {
         }
         gathering.isCanceled = true
         await gathering.save()
-        return `Gathering: ${gathering.name} has been canceled`
+        return gathering
     }
 
     async getChats(gatheringId) {

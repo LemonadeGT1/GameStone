@@ -44,7 +44,7 @@
             </div>
             <div class="text-end">
                 <div class="m-3">
-                    <button v-if="!gathering?.isCanceled && account?.id == gathering?.creatorId"
+                    <button @click="getProfileGames()" v-if="!gathering?.isCanceled && account?.id == gathering?.creatorId"
                         class="btn btn-info border rounded-pill selectable" data-bs-toggle="modal"
                         data-bs-target="#gatheringModal">Edit
                         Gathering</button>
@@ -63,12 +63,30 @@
     </div>
 
     <section class="m-3 row">
-        <div class="col-md-7 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
+        <div class="col-12" v-for="c in chats" :key="c?.id">
+            <section v-if="c.profileId == account.id" class="row justify-content-end">
+                <div class="col-md-7 mt-3 rounded-pill bg-secondary justify-content-end d-flex align-items-center">
+                    <p class="mx-4">{{ c.body }}</p>
+                    <div class="col-1 text-end">
+                        <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
+                    </div>
+                </div>
+            </section>
+            <section v-else class="row">
+                <div class="col-md-7 mt-3 rounded-pill bg-secondary d-flex align-items-center">
+                    <div class="col-1 me-5">
+                        <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
+                    </div>
+                    <p class="">{{ c.body }}</p>
+                </div>
+            </section>
+        </div>
+        <!-- <div class="col-md-7 mt-3 rounded-pill bg-secondary d-flex align-items-center" v-for="c in chats" :key="c?.id">
             <div class="col-1 me-5">
                 <img :src="c.profile?.picture" :alt="c.profile?.name" class="profilePicture">
             </div>
             <p class="">{{ c.body }}</p>
-        </div>
+        </div> -->
     </section>
 
     <Modal id="gatheringModal">
@@ -96,6 +114,7 @@ import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
 import { playersService } from '../services/PlayersService.js';
 import { socketService } from '../services/SocketService';
+import { gamesService } from '../services/GamesService.js';
 
 
 export default {
@@ -186,8 +205,21 @@ export default {
                     let chatData = editable.value
                     chatData.gatheringId = route.params.gatheringId
                     await chatsService.createChat(chatData)
+                    editable.value = {}
                 } catch (error) {
                     Pop.error(('[error]'), error.message)
+                }
+            },
+
+            async getProfileGames() {
+                try {
+                    AppState.profileGames = []
+                    // const accountId = await AppState.account.id
+                    // logger.log("is this stupid thing working? pls be", accountId)
+                    await gamesService.getProfileGames(AppState.account.id)
+                } catch (error) {
+                    logger.error(error.message)
+                    Pop.error(error.message)
                 }
             },
 

@@ -103,9 +103,10 @@ export default {
             },
 
             addProfileGame(game) {
-                console.log('Am I workin?', profileGames);
+                console.log('Am I workin?', this.profileGames);
                 if (!editable.value.games.includes(game)) {
                     editable.value.games.push(game)
+                    logger.log(editable.value)
                 }
                 else {
                     editable.value.games = editable.value.games.filter(g => g != game)

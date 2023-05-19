@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 text-end goTop">
+                <div class="col-md-4 text-end goTop d-flex align-items-center">
                     <img class="gathering-img" :src="gathering?.coverImg" :alt="gathering?.name">
                 </div>
             </section>
@@ -283,7 +283,8 @@ export default {
 }
 
 .gathering-img {
-    height: 40vh;
+    // min-height: 40vh;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;

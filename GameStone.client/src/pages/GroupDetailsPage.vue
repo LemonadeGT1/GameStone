@@ -40,7 +40,7 @@
                 <img :src="gm.profile?.picture" class="profilePic selectable" :title="gm.profile?.name"
                     v-for="gm in groupMembers" :key="gm?.id" @click="gotoProfile(gm.profile?.id)">
             </div>
-            <div class="col-9 pill-Rounded m-3 p-3 px-5 text-center">
+            <div class="col-md-9 pill-Rounded m-3 p-3 px-5 text-center">
                 <img v-for="g in games" :src="g.gameImg" :alt="g.gameName" class="gatheringGameCard selectable"
                     :title="g.gameName" @click="goToGameDetails(g?.gameId)">
             </div>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div v-else class="chatCard bg-dark-gray">
-                <div class="col-4 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
+                <div class="col-md-4 my-1 p-0 bg-grey comContainer" v-for="gc in activeGroupComments" :key="gc?.id">
                     <div class="row">
                         <div class="col-md-1 col-sm-2">
                             <img :src="gc.creator?.picture" class="profilePic border" :title="gc.creator?.name">
@@ -259,6 +259,13 @@ export default {
     width: auto;
     z-index: 700 !important;
     position: relative;
+}
+
+.group-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .gatheringGameCard {

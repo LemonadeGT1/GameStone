@@ -2,7 +2,7 @@
     <div
         class="elevation-3 rounded bg-white cardContainer align-items-center justify-content-end d-flex flex-column my-2 h-card">
         <router-link :to="{ name: 'GameDetails', params: { gameId: game.id } }">
-            <div class="my-3 text-center">
+            <div class="my-3 text-center card-height">
                 <img class="img-fluid p-2 gameImg" :src="game.image_url" :alt="game.name">
 
                 <div class="row w-100  d-flex flex-column justify-content-end align-items-center">
@@ -63,6 +63,10 @@ export default {
     max-height: 35vh;
     height: auto;
     width: 35vh;
+}
+
+.card-height {
+    height: 50vh;
 }
 
 .h-card {

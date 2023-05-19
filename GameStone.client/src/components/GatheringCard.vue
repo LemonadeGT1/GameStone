@@ -2,7 +2,7 @@
     <router-link :to="{ name: 'GatheringDetails', params: { gatheringId: gathering.id } }">
 
         <div class="row row my-3 bg-grey rounded selectable elevation-3 justify-content-start">
-            <div class="col-md-3 px-0">
+            <div class="col-md-4 px-0">
                 <img class="elevation-4 img-fluid gathering-img" :src="gathering.coverImg" :alt="gathering.name">
             </div>
 
@@ -13,7 +13,7 @@
                     <p>{{ gathering.date }}</p>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 gatheringGamesSpot rounded p-2 d-flex align-items-center flex-wrap">
+                    <div class="col-md-12 gatheringGamesSpot rounded p-2 d-flex align-items-center flex-wrap">
                         <h5 class="pe-2">Games:</h5>
                         <img :title="g?.gameName" class="gatheringGameCard" v-for="g in gathering?.games" :key="g?.gameId"
                             :src="g?.gameImg" :alt="g?.gameName">

@@ -50,6 +50,7 @@ export default {
     object-fit: cover;
     object-position: center;
     height: 24vh;
+    width: 25vw;
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0.375rem;

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 border-bottom border-light">
     <router-link class="navbar-brand text-info d-flex" :to="{ name: 'Home' }">
-      <img src="../assets/img/icons8-carrom-64 2.svg" alt="">
+      <img src="../assets/img/icons8-carrom-64_2.svg" alt="">
       <h1>GameStone</h1>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"

@@ -15,7 +15,7 @@
       </div>
       <div class="col-10 position-absolute mt-5 image-text">
         <h3>Welcome to GameStone, the one stop shop for finding players of all kinds to game it out with! Hit one of the
-          above buttons to take a look or click on one of these suggested one!</h3>
+          above buttons to take a look or click on one of these suggested ones below!</h3>
       </div>
     </section>
     <!-- SECTION GROUPS -->
@@ -62,7 +62,7 @@
     </section>
   </div>
   <footer class="container-fluid mt-3 pt-2">
-    <p class="text-white">Made with 😭 by The DC Room</p>
+    <p class="text-white">Made with 😭 by Guys in The DC Room</p>
   </footer>
 </template>
 
